@@ -1,4 +1,4 @@
-﻿// src/components/Manager/ManagerPerformance.jsx
+// src/components/Manager/ManagerPerformance.jsx
 import React, { useState } from 'react';
 import { GlassCard } from '../UI/Cards';
 import { showSwal } from '../../utils/swal';
@@ -115,7 +115,7 @@ const ManagerPerformance = ({ user }) => {
                         type="text" 
                         id="taskTitle" 
                         value="${task.title}" 
-                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full p-3 rounded-xl bg-slate-50/20 border border-slate-200/60 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         readonly
                     />
                 </div>
@@ -124,7 +124,7 @@ const ManagerPerformance = ({ user }) => {
                     <label class="block text-white text-sm font-medium mb-2">Deskripsi Tasks</label>
                     <textarea 
                         id="taskDesc" 
-                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full p-3 rounded-xl bg-slate-50/20 border border-slate-200/60 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="2"
                         readonly
                     >${task.description}</textarea>
@@ -135,7 +135,7 @@ const ManagerPerformance = ({ user }) => {
                     <input 
                         type="file" 
                         id="taskFile" 
-                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                        class="w-full p-3 rounded-xl bg-slate-50/20 border border-slate-200/60 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
                         accept=".pdf,.doc,.docx,.zip,.rar,.jpg,.jpeg,.png"
                     />
                     <p class="text-gray-300 text-xs mt-1">Format: PDF, DOC, DOCX, ZIP, RAR, JPG, PNG (Max: 10MB)</p>
@@ -147,7 +147,7 @@ const ManagerPerformance = ({ user }) => {
                         id="taskDescription" 
                         rows="4" 
                         placeholder="Addkan deskripsi atau notes mengenai tasks yang dikumpulkan..."
-                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full p-3 rounded-xl bg-slate-50/20 border border-slate-200/60 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     ></textarea>
                 </div>
             </div>
@@ -230,12 +230,12 @@ const ManagerPerformance = ({ user }) => {
                     <h3 class="font-bold text-lg mb-2 text-white">Detail Pengumpulan</h3>
                 </div>
                 
-                <div class="bg-slate-700/20 p-4 rounded-xl">
+                <div class="bg-slate-50/20 p-4 rounded-xl">
                     <label class="block text-sm font-medium mb-1 text-blue-300">Judul Tasks</label>
                     <p class="text-white font-semibold">${task.title}</p>
                 </div>
                 
-                <div class="bg-slate-700/20 p-4 rounded-xl">
+                <div class="bg-slate-50/20 p-4 rounded-xl">
                     <label class="block text-sm font-medium mb-1 text-blue-300">File Terkirim</label>
                     <div class="flex items-center justify-between">
                         <p class="text-white">${task.submittedFile || 'No file'}</p>
@@ -246,7 +246,7 @@ const ManagerPerformance = ({ user }) => {
                     </div>
                 </div>
                 
-                <div class="bg-slate-700/20 p-4 rounded-xl">
+                <div class="bg-slate-50/20 p-4 rounded-xl">
                     <label class="block text-sm font-medium mb-1 text-blue-300">Deskripsi Pengumpulan</label>
                     <p class="text-white whitespace-pre-wrap">${task.submissionDescription || 'No deskripsi'}</p>
                 </div>
@@ -369,7 +369,7 @@ const ManagerPerformance = ({ user }) => {
     };
 
     return (
-        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
+        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-50/20 border border-slate-200/60 rounded-3xl shadow-2xl">
             <div className="p-8">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
@@ -377,7 +377,7 @@ const ManagerPerformance = ({ user }) => {
                         <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
                             Dashboard Performance
                         </h2>
-                        <p className="text-slate-300 mt-2 flex items-center">
+                        <p className="text-slate-600 mt-2 flex items-center">
                             <i className="fas fa-user-check mr-2 text-[#6366F1]"></i>
                             Tracking produktivitas dan penyelesaian tasks
                         </p>
@@ -390,15 +390,15 @@ const ManagerPerformance = ({ user }) => {
                         <div className="p-6 rounded-2xl bg-indigo-600 backdrop-blur-sm relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
                             <div className="relative z-10 text-center">
-                                <div className="w-20 h-20 rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-indigo-500/10 flex items-center justify-center mx-auto mb-4">
+                                <div className="w-20 h-20 rounded-2xl bg-white/50 backdrop-blur-sm border border-slate-200/60 flex items-center justify-center mx-auto mb-4">
                                     <i className="fas fa-chart-line text-white text-3xl"></i>
                                 </div>
                                 <p className="text-lg font-semibold text-white mb-2">Skor Performance</p>
                                 <p className="text-5xl font-extrabold text-white">{performanceScore}</p>
                                 <p className="text-white font-medium">/ 100</p>
-                                <div className="mt-4 w-full bg-slate-700/30 rounded-full h-3">
+                                <div className="mt-4 w-full bg-slate-50/30 rounded-full h-3">
                                     <div 
-                                        className="bg-slate-800 rounded-full h-3 transition-all duration-1000"
+                                        className="bg-white rounded-full h-3 transition-all duration-1000"
                                         style={{ width: `${performanceScore}%` }}
                                     ></div>
                                 </div>
@@ -411,9 +411,9 @@ const ManagerPerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-slate-300">Tasks Completed</p>
-                                    <p className="text-2xl font-bold text-slate-100 mt-1">{completedTasks}</p>
-                                    <p className="text-xs text-slate-400">dari {tasksState.length} total</p>
+                                    <p className="text-sm font-semibold text-slate-600">Tasks Completed</p>
+                                    <p className="text-2xl font-bold text-slate-800 mt-1">{completedTasks}</p>
+                                    <p className="text-xs text-slate-500">dari {tasksState.length} total</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
                                     <i className="fas fa-check-circle text-green-600 text-xl"></i>
@@ -424,9 +424,9 @@ const ManagerPerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-600/20 border border-yellow-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-slate-300">Tasks Pending</p>
-                                    <p className="text-2xl font-bold text-slate-100 mt-1">{pendingTasks}</p>
-                                    <p className="text-xs text-slate-400">perlu penyelesaian</p>
+                                    <p className="text-sm font-semibold text-slate-600">Tasks Pending</p>
+                                    <p className="text-2xl font-bold text-slate-800 mt-1">{pendingTasks}</p>
+                                    <p className="text-xs text-slate-500">perlu penyelesaian</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center">
                                     <i className="fas fa-clock text-yellow-600 text-xl"></i>
@@ -437,9 +437,9 @@ const ManagerPerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-600/20 border border-blue-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-slate-300">Dalam Proses</p>
-                                    <p className="text-2xl font-bold text-slate-100 mt-1">{inProgressTasks}</p>
-                                    <p className="text-xs text-slate-400">sedang dikerjakan</p>
+                                    <p className="text-sm font-semibold text-slate-600">Dalam Proses</p>
+                                    <p className="text-2xl font-bold text-slate-800 mt-1">{inProgressTasks}</p>
+                                    <p className="text-xs text-slate-500">sedang dikerjakan</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
                                     <i className="fas fa-spinner text-blue-600 text-xl animate-spin"></i>
@@ -454,7 +454,7 @@ const ManagerPerformance = ({ user }) => {
                                     <p className="text-2xl font-bold text-white mt-1">{performanceScore}%</p>
                                     <p className="text-xs text-white">dari target</p>
                                 </div>
-                                <div className="w-12 h-12 rounded-xl bg-slate-800/50 border border-indigo-500/10 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-xl bg-white/50 border border-slate-200/60 flex items-center justify-center">
                                     <i className="fas fa-bullseye text-white text-xl"></i>
                                 </div>
                             </div>
@@ -465,7 +465,7 @@ const ManagerPerformance = ({ user }) => {
                 {/* Task List Section */}
                 <div className="mt-8">
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
-                        <h3 className="text-2xl font-bold text-slate-100 flex items-center">
+                        <h3 className="text-2xl font-bold text-slate-800 flex items-center">
                             <i className="fas fa-tasks mr-3 text-black"></i>                             
                             Daftar Tasks
                         </h3>
@@ -481,12 +481,12 @@ const ManagerPerformance = ({ user }) => {
                                     placeholder="Search tasks..."
                                     value={taskSearch}
                                     onChange={(e) => setTaskSearch(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-[#6366F1] rounded-2xl bg-slate-800 focus:outline-none text-black"
+                                    className="w-full p-3 pl-10 border border-[#6366F1] rounded-2xl bg-white focus:outline-none text-black"
                                 />
                             </div>
 
                            {/* Filter Buttons */}
-                            <div className="flex space-x-1 bg-slate-700/30 backdrop-blur-sm p-1 rounded-2xl">
+                            <div className="flex space-x-1 bg-slate-50/30 backdrop-blur-sm p-1 rounded-2xl">
                                 <button
                                     onClick={() => setActiveTaskTab('all')}
                                     className={`
@@ -495,7 +495,7 @@ const ManagerPerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'all' 
                                                 ? 'bg-purple-600 text-white shadow-lg'
-                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
+                                                : 'text-slate-600 hover:text-slate-800 hover:bg-white/50'
                                         }`}
                                 >
                                     All
@@ -508,7 +508,7 @@ const ManagerPerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'completed' 
                                                 ? 'bg-green-600 text-white shadow-lg'
-                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
+                                                : 'text-slate-600 hover:text-slate-800 hover:bg-white/50'
                                         }`}
                                 >
                                     Completed
@@ -521,7 +521,7 @@ const ManagerPerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'pending' 
                                                 ? 'bg-yellow-600 text-white shadow-lg'
-                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
+                                                : 'text-slate-600 hover:text-slate-800 hover:bg-white/50'
                                         }`}
                                 >
                                     Pending
@@ -542,7 +542,7 @@ const ManagerPerformance = ({ user }) => {
                             const priorityTextColor = 
                                 task.priority === 'High' ? 'text-red-700' :
                                 task.priority === 'Medium' ? 'text-orange-700' :
-                                'text-slate-200';
+                                'text-slate-700';
 
                             return (
                                 <div 
@@ -550,7 +550,7 @@ const ManagerPerformance = ({ user }) => {
                                     className={`p-5 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:shadow-md ${getStatusGradient(task.status)}`}
                                 >
                                     <div className="flex justify-between items-start mb-3">
-                                        <h4 className="font-bold text-slate-100 text-lg flex-1" style={{ textAlign: 'left' }}>
+                                        <h4 className="font-bold text-slate-800 text-lg flex-1" style={{ textAlign: 'left' }}>
                                             {task.title}
                                         </h4>
                                         <div className="flex space-x-2 ml-3">
@@ -563,12 +563,12 @@ const ManagerPerformance = ({ user }) => {
                                         </div>
                                     </div>
                                     
-                                    <p className="text-slate-300 mb-4 text-sm leading-relaxed" style={{ textAlign: 'left' }}>
+                                    <p className="text-slate-600 mb-4 text-sm leading-relaxed" style={{ textAlign: 'left' }}>
                                         {task.description}
                                     </p>
 
                                     <div className="flex justify-between items-center">
-                                        <div className="flex items-center text-sm text-slate-400">
+                                        <div className="flex items-center text-sm text-slate-500">
                                             <i className="fas fa-calendar-alt mr-2"></i>
                                             <span>{new Date(task.deadline).toLocaleDateString('id-ID')}</span>
                                             {new Date(task.deadline) < new Date() && task.status !== 'Completed' && (
@@ -637,7 +637,7 @@ const ManagerPerformance = ({ user }) => {
                             <div className="w-24 h-24 rounded-2xl bg-gray-200/50 flex items-center justify-center mx-auto mb-4">
                                 <i className="fas fa-tasks text-gray-400 text-3xl"></i>
                             </div>
-                            <p className="text-slate-400 text-lg font-medium">
+                            <p className="text-slate-500 text-lg font-medium">
                                 {taskSearch ? 'No tasks yang sesuai dengan pensearchan.' : 'No tasks.'}
                             </p>
                             <p className="text-gray-400 text-sm mt-2">
@@ -648,18 +648,18 @@ const ManagerPerformance = ({ user }) => {
 
                     {/* Performance Summary */}
                     <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-400/30 backdrop-blur-sm">
-                        <h4 className="text-xl font-bold text-slate-100 mb-4 flex items-center">
+                        <h4 className="text-xl font-bold text-slate-800 mb-4 flex items-center">
                             <i className="fas fa-chart-pie mr-3 text-purple-500"></i>
                             Summary Performance
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-check-circle text-green-600"></i>
                                         </div>
-                                        <span className="font-semibold text-slate-200">Achievement</span>
+                                        <span className="font-semibold text-slate-700">Achievement</span>
                                     </div>
                                     <span className={`font-semibold ${
                                         performanceScore >= 80 ? 'text-green-600' : 
@@ -672,36 +672,36 @@ const ManagerPerformance = ({ user }) => {
                                     </span>
                                 </div>
                                 
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-tasks text-blue-600"></i>
                                         </div>
-                                        <span className="font-semibold text-slate-200">Produktivitas</span>
+                                        <span className="font-semibold text-slate-700">Produktivitas</span>
                                     </div>
-                                    <span className="font-semibold text-slate-100">{completedTasks}/{tasksState.length} tasks</span>
+                                    <span className="font-semibold text-slate-800">{completedTasks}/{tasksState.length} tasks</span>
                                 </div>
                             </div>
                             
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-bullseye text-purple-600"></i>
                                         </div>
-                                        <span className="font-semibold text-slate-200">Target</span>
+                                        <span className="font-semibold text-slate-700">Target</span>
                                     </div>
                                     <span className={`font-semibold ${performanceScore >= 80 ? 'text-green-600' : 'text-yellow-600'}`}>
                                         {performanceScore >= 80 ? 'Terpenuhi' : 'Belum Terpenuhi'}
                                     </span>
                                 </div>
                                 
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-50/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-clock text-yellow-600"></i>
                                         </div>
-                                        <span className="font-semibold text-slate-200">Timeline</span>
+                                        <span className="font-semibold text-slate-700">Timeline</span>
                                     </div>
                                     <span className={`font-semibold ${pendingTasks > 0 ? 'text-yellow-600' : 'text-green-600'}`}>
                                         {pendingTasks > 0 ? 'Ada tasks tertunda' : 'All sesuai jadwal'}

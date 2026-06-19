@@ -1,4 +1,4 @@
-﻿// src/components/Shared/Modals/PermissionModal.jsx
+// src/components/Shared/Modals/PermissionModal.jsx
 import React, { useState } from 'react';
 
 const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, workSettings }) => {
@@ -54,13 +54,13 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-slate-800 rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden border border-slate-700/50">
+      <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden border border-slate-200">
         <div className="flex h-full">
           {/* Left Panel - Info Section */}
           <div className="w-1/3 p-8 bg-gradient-to-br from-indigo-600 to-violet-700 text-white">
             <div className="flex flex-col h-full">
               <div className="mb-6">
-                <div className="w-16 h-16 rounded-2xl bg-slate-700/30 flex items-center justify-center mb-4">
+                <div className="w-16 h-16 rounded-2xl bg-slate-50/30 flex items-center justify-center mb-4">
                   <i className="fas fa-exclamation-triangle text-white text-2xl"></i>
                 </div>
                 <h3 className="text-2xl font-bold mb-2">
@@ -76,7 +76,7 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
                 )}
               </div>
               
-              <div className="bg-slate-700/20 rounded-2xl p-4 mb-6">
+              <div className="bg-slate-50/20 rounded-2xl p-4 mb-6">
                 <div className="flex items-start">
                   <i className="fas fa-info-circle text-white/80 mt-1 mr-3"></i>
                   <div>
@@ -107,7 +107,7 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
               <div className="mt-auto">
                 <button
                   onClick={onClose}
-                  className="w-full py-3 px-4 bg-slate-700/20 text-white rounded-2xl font-medium hover:bg-slate-700/30 border-none focus:outline-none"
+                  className="w-full py-3 px-4 bg-slate-50/20 text-white rounded-2xl font-medium hover:bg-slate-50/30 border-none focus:outline-none"
                   disabled={isSubmitting}
                 >
                   <i className="fas fa-times mr-2"></i>
@@ -118,18 +118,18 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
           </div>
           
           {/* Right Panel - Form Section */}
-          <div className="w-2/3 p-8 bg-slate-800">
+          <div className="w-2/3 p-8 bg-white">
             <form onSubmit={handleSubmit} className="h-full flex flex-col">
               {/* Reason Input */}
               <div className="mb-6">
-                <label className="block text-slate-200 font-medium mb-2">
+                <label className="block text-slate-700 font-medium mb-2">
                   Permission Reason <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
                   placeholder={`Explain your reason for ${type === 'In' ? 'being late' : 'leaving early'}...`}
-                  className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none placeholder-slate-400 text-slate-100"
+                  className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent resize-none placeholder-slate-500 text-slate-700"
                   rows="4"
                   required
                 />
@@ -137,13 +137,13 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
 
               {/* File Upload */}
               <div className="mb-6">
-                <label className="block text-slate-200 font-medium mb-2">
+                <label className="block text-slate-700 font-medium mb-2">
                   Upload Supporting Evidence <span className="text-red-400">*</span>
                 </label>
                 <div className={`border-2 border-dashed rounded-2xl p-4 text-center transition-all ${
                   file 
                     ? 'border-emerald-400 bg-emerald-900/20' 
-                    : 'border-slate-600 bg-slate-700/50 hover:border-indigo-500'
+                    : 'border-slate-200 bg-white hover:border-indigo-500'
                 }`}>
                   <input
                     type="file"
@@ -156,10 +156,10 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
                   <label htmlFor="file-upload" className="cursor-pointer">
                     <div className="flex flex-col items-center justify-center">
                       <i className={`fas fa-cloud-upload-alt text-2xl mb-2 ${
-                        file ? 'text-emerald-400' : 'text-slate-400'
+                        file ? 'text-emerald-400' : 'text-slate-500'
                       }`}></i>
                       <p className={`font-medium ${
-                        file ? 'text-emerald-400' : 'text-slate-300'
+                        file ? 'text-emerald-400' : 'text-slate-600'
                       }`}>
                         {file ? file.name : 'Click to upload file'}
                       </p>
@@ -193,7 +193,7 @@ const PermissionModal = ({ isOpen, onClose, onSubmit, user, permissionData, work
                   className={`w-full py-3 px-4 rounded-2xl font-medium transition-all flex items-center justify-center border-none focus:outline-none ${
                     isFormValid && !isSubmitting
                       ? 'bg-indigo-600 text-white hover:bg-indigo-700 shadow-md'
-                      : 'bg-slate-700 text-slate-500 cursor-not-allowed'
+                      : 'bg-slate-200 text-slate-400 cursor-not-allowed'
                   }`}
                 >
                   {isSubmitting ? (

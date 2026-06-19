@@ -1,4 +1,4 @@
-﻿// src/components/Manager/ManagerLeaveRequest.jsx
+// src/components/Manager/ManagerLeaveRequest.jsx
 import React, { useState } from 'react';
 import { GlassCard } from '../UI/Cards'; 
 import { PrimaryButton, TabButton } from '../UI/Buttons';
@@ -175,9 +175,9 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
     };
 
     return (
-        <div className="bg-slate-800 rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
             <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
-                <h2 className="text-xl font-semibold text-slate-100 flex items-center">
+                <h2 className="text-xl font-semibold text-slate-800 flex items-center">
                     <i className="fas fa-calendar-alt mr-3 text-[#6366F1]"></i> Leave Request & Izin Manager
                 </h2>
                 <div className="bg-blue-50 border border-blue-200 rounded-lg px-3 py-1">
@@ -188,34 +188,34 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
             </div>
 
             {/* Leave Balance Info */}
-            <div className="mb-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
+            <div className="mb-6 p-4 bg-slate-900 border border-slate-200 rounded-lg">
                 <div className="flex justify-between items-center">
                     <div className="text-center flex-1">
-                        <p className="text-xs text-slate-400 font-medium mb-1">Sisa Annual Leave</p>
-                        <p className="text-2xl font-bold text-[#6366F1]">{user.cutiBalance || 18} <span className="text-sm font-normal text-slate-300">hari</span></p>
+                        <p className="text-xs text-slate-500 font-medium mb-1">Sisa Annual Leave</p>
+                        <p className="text-2xl font-bold text-[#6366F1]">{user.cutiBalance || 18} <span className="text-sm font-normal text-slate-600">hari</span></p>
                     </div>
                     <div className="h-8 border-r border-gray-300"></div>
                     <div className="text-center flex-1">
-                        <p className="text-xs text-slate-400 font-medium mb-1">Pending Permintaan</p>
-                        <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-slate-300">pengajuan</span></p>
+                        <p className="text-xs text-slate-500 font-medium mb-1">Pending Permintaan</p>
+                        <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-slate-600">pengajuan</span></p>
                     </div>
                     <div className="h-8 border-r border-gray-300"></div>
                     <div className="text-center flex-1">
-                        <p className="text-xs text-slate-400 font-medium mb-1">Level Perapprovean</p>
+                        <p className="text-xs text-slate-500 font-medium mb-1">Level Perapprovean</p>
                         <p className="text-lg font-bold text-purple-600">Owner</p>
                     </div>
                 </div>
             </div>
 
             {/* Tabs */}
-            <div className="flex border-b border-slate-600 mb-6">
+            <div className="flex border-b border-slate-200 mb-6">
                 <TabButton
                     active={activeLeaveTab === 'request'}
                     onClick={() => setActiveLeaveTab('request')}
                     className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
                         activeLeaveTab === 'request' 
                             ? 'border-[#6366F1] text-[#6366F1]' 
-                            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+                            : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
                     }`}
                 >
                     Ajukan Cuti/Izin
@@ -226,7 +226,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                     className={`px-4 py-2 font-medium text-sm border-b-2${
                         activeLeaveTab === 'history' 
                             ? 'border-[#6366F1] text-[#6366F1]' 
-                            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+                            : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
                     }`}
                 >
                     History Cuti
@@ -251,7 +251,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label htmlFor="leaveType" className="block text-sm font-medium text-slate-200 mb-2">
+                            <label htmlFor="leaveType" className="block text-sm font-medium text-slate-700 mb-2">
                                 Tipe Pengajuan
                             </label>
                             <select
@@ -261,7 +261,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                                     setLeaveType(e.target.value);
                                     setMedicalCertificate(null);
                                 }}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
                                 required
                             >
                                 <option value="Annual Leave">Annual Leave</option>
@@ -272,7 +272,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                         </div>
 
                         <div>
-                            <label htmlFor="title" className="block text-sm font-medium text-slate-200 mb-2">
+                            <label htmlFor="title" className="block text-sm font-medium text-slate-700 mb-2">
                                 Judul Pengajuan
                             </label>
                             <input
@@ -280,7 +280,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                                 id="title"
                                 value={title}
                                 onChange={(e) => setTitle(e.target.value)}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
                                 placeholder="Contoh: Rapat Direksi, Training, Sick Leave, dll."
                                 required
                             />
@@ -289,7 +289,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
-                            <label htmlFor="startDate" className="block text-sm font-medium text-slate-200 mb-2">
+                            <label htmlFor="startDate" className="block text-sm font-medium text-slate-700 mb-2">
                                 Date Mulai
                             </label>
                             <input
@@ -297,12 +297,12 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                                 id="startDate"
                                 value={startDate}
                                 onChange={(e) => setStartDate(e.target.value)}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
                                 required
                             />
                         </div>
                         <div>
-                            <label htmlFor="endDate" className="block text-sm font-medium text-slate-200 mb-2">
+                            <label htmlFor="endDate" className="block text-sm font-medium text-slate-700 mb-2">
                                 Date Berakhir
                             </label>
                             <input
@@ -311,21 +311,21 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                                 value={endDate}
                                 min={startDate}
                                 onChange={(e) => setEndDate(e.target.value)}
-                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+                                className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
                                 required
                             />
                         </div>
                     </div>
 
                     {/* Days Calculation */}
-                    <div className="p-3 bg-slate-900 border border-slate-600 rounded-lg">
+                    <div className="p-3 bg-slate-900 border border-slate-200 rounded-lg">
                         <div className="flex justify-between items-center">
-                            <span className="text-sm text-slate-300">Total Hari Diminta:</span>
+                            <span className="text-sm text-slate-600">Total Hari Diminta:</span>
                             <span className="font-bold text-[#6366F1] text-lg">{daysRequested} hari</span>
                         </div>
                         {leaveType === 'Annual Leave' && (
-                            <div className="flex justify-between items-center mt-2 pt-2 border-t border-slate-600">
-                                <span className="text-sm text-slate-300">Sisa setelah pengajuan:</span>
+                            <div className="flex justify-between items-center mt-2 pt-2 border-t border-slate-200">
+                                <span className="text-sm text-slate-600">Sisa setelah pengajuan:</span>
                                 <span className={`font-bold text-lg ${
                                     user.cutiBalance - daysRequested >= 0 ? 'text-green-600' : 'text-red-600'
                                 }`}>
@@ -337,7 +337,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                     
                     {/* Reason */}
                     <div>
-                        <label htmlFor="reason" className="block text-sm font-medium text-slate-200 mb-2">
+                        <label htmlFor="reason" className="block text-sm font-medium text-slate-700 mb-2">
                             Reason Pengajuan
                         </label>
                         <textarea
@@ -345,7 +345,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                             rows="3"
                             value={reason}
                             onChange={(e) => setReason(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
                             placeholder="Jelaskan reason pengajuan cuti/izin secara detail..."
                             required
                         ></textarea>
@@ -362,7 +362,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                                 id="medicalCertificate"
                                 onChange={handleFileChange}
                                 accept=".pdf, .jpg, .png"
-                                className="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-[#5a727a]"
+                                className="w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-[#5a727a]"
                                 required={leaveType === 'Sick Leave'}
                             />
                             {medicalCertificate && (
@@ -405,49 +405,49 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                             placeholder="Search history cuti (berdasarkan judul/reason/jenis)..."
                             value={searchKeyword}
                             onChange={(e) => setSearchKeyword(e.target.value)}
-                            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black focus:outline-none"
+                            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black focus:outline-none"
                         />
                     </div>
 
                     {/* Leave History Table */}
-                    <div className="overflow-x-auto border border-slate-600 rounded-lg">
+                    <div className="overflow-x-auto border border-slate-200 rounded-lg">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-slate-900">
                                 <tr>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                         Judul
                                     </th>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                         Tipe
                                     </th>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                         Periode
                                     </th>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                         Hari
                                     </th>
-                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                    <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                         Status & Diapprovei Oleh
                                     </th>
                                 </tr>
                             </thead>
-                            <tbody className="bg-slate-800 divide-y divide-gray-200">
+                            <tbody className="bg-white divide-y divide-gray-200">
                                 {filteredLeaveHistory.map((leave) => (
                                     <tr key={leave.id} className="hover:bg-slate-900 transition-colors">
                                         <td className="px-4 py-4">
                                             <div>
-                                                <p className="text-sm font-medium text-slate-100">{leave.title}</p>
-                                                <p className="text-xs text-slate-400 mt-1 line-clamp-2">{leave.reason}</p>
+                                                <p className="text-sm font-medium text-slate-800">{leave.title}</p>
+                                                <p className="text-xs text-slate-500 mt-1 line-clamp-2">{leave.reason}</p>
                                             </div>
                                         </td>
                                         <td className="px-4 py-4 whitespace-nowrap">
-                                            <span className="text-sm text-slate-200">{leave.type}</span>
+                                            <span className="text-sm text-slate-700">{leave.type}</span>
                                         </td>
-                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
+                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">
                                             {leave.startDate} <br className="md:hidden" />
                                             s/d {leave.endDate}
                                         </td>
-                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
+                                        <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">
                                             {leave.days} hari
                                         </td>
                                         <td className="px-4 py-4 whitespace-nowrap text-sm">
@@ -462,7 +462,7 @@ const ManagerLeaveRequest = ({ user, setPendingLeave }) => {
                     {filteredLeaveHistory.length === 0 && (
                         <div className="text-center py-8">
                             <i className="fas fa-inbox text-gray-300 text-4xl mb-3"></i>
-                            <p className="text-slate-400">
+                            <p className="text-slate-500">
                                 {searchKeyword ? 'No history cuti yang sesuai dengan pensearchan.' : 'Belum ada history cuti.'}
                             </p>
                         </div>

@@ -8,7 +8,7 @@ const divisionons = ['Tech', 'Marketing', 'Finance', 'HR', 'Operations'];
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-white/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -18,7 +18,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
-        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-50/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
         ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
@@ -40,7 +40,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
@@ -50,7 +50,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-50/50 border border-[#6366F1]/20 rounded-2xl text-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -58,14 +58,14 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
 // Select input with consistent styling
 const FormSelect = ({ label, icon, value, onChange, name, options, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <select 
             name={name}
             value={value || ''} 
             onChange={onChange}
-            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-50/50 border border-[#6366F1]/20 rounded-2xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -83,13 +83,13 @@ const SupervisorCard = ({ supervisor, isSelected, onClick }) => (
         className={`p-4 rounded-2xl cursor-pointer transition-all duration-200 border-2 ${
             isSelected
                 ? 'bg-indigo-600/10 border-[#6366F1] shadow-sm'
-                : 'bg-white/40 border-indigo-500/20 hover:bg-slate-700/60 hover:border-[#6366F1]/30'
+                : 'bg-white/40 border-indigo-500/20 hover:bg-slate-50/60 hover:border-[#6366F1]/30'
         }`}
     >
         <div className="flex items-start justify-between">
             <div className="flex-1">
-                <p className="font-semibold text-slate-100 text-sm">{supervisor.name}</p>
-                <p className="text-xs text-slate-300 mt-1">{supervisor.divisionon}</p>
+                <p className="font-semibold text-slate-800 text-sm">{supervisor.name}</p>
+                <p className="text-xs text-slate-600 mt-1">{supervisor.divisionon}</p>
             </div>
             <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                 supervisor.status === 'Active' 
@@ -100,7 +100,7 @@ const SupervisorCard = ({ supervisor, isSelected, onClick }) => (
             </span>
         </div>
         <div className="flex justify-between items-center mt-3">
-            <span className="text-xs text-slate-400">ID: {supervisor.id}</span>
+            <span className="text-xs text-slate-500">ID: {supervisor.id}</span>
             <span className="text-xs text-[#6366F1] font-medium">Supervisor</span>
         </div>
     </div>
@@ -216,7 +216,7 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
 
     const renderForm = () => (
         <div className="space-y-5">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-1 sm:grid-cols-2 gap-4">
                 <FormInput
                     label="Name Lengkap"
                     icon="fa-user"
@@ -273,7 +273,7 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
             </div>
             
             <div className="border-t border-[#6366F1]/10 pt-5">
-                <h4 className="text-lg font-semibold text-slate-100 mb-4">Detail Salary (Bulanan)</h4>
+                <h4 className="text-lg font-semibold text-slate-800 mb-4">Detail Salary (Bulanan)</h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <FormInput
                         label="Base Salary"
@@ -312,64 +312,64 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
             <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="space-y-3">
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">ID</p>
-                        <p className="text-slate-100">{selectedSupervisor.id}</p>
+                        <p className="font-medium text-slate-500 text-xs">ID</p>
+                        <p className="text-slate-800">{selectedSupervisor.id}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Name</p>
-                        <p className="text-slate-100">{selectedSupervisor.name}</p>
+                        <p className="font-medium text-slate-500 text-xs">Name</p>
+                        <p className="text-slate-800">{selectedSupervisor.name}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Email</p>
-                        <p className="text-slate-100">{selectedSupervisor.email}</p>
+                        <p className="font-medium text-slate-500 text-xs">Email</p>
+                        <p className="text-slate-800">{selectedSupervisor.email}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Telepon</p>
-                        <p className="text-slate-100">{selectedSupervisor.phone}</p>
+                        <p className="font-medium text-slate-500 text-xs">Telepon</p>
+                        <p className="text-slate-800">{selectedSupervisor.phone}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Division</p>
-                        <p className="text-slate-100">{selectedSupervisor.divisionon}</p>
+                        <p className="font-medium text-slate-500 text-xs">Division</p>
+                        <p className="text-slate-800">{selectedSupervisor.divisionon}</p>
                     </div>
                 </div>
                 <div className="space-y-3">
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Role</p>
-                        <p className="text-slate-100 capitalize">{selectedSupervisor.role}</p>
+                        <p className="font-medium text-slate-500 text-xs">Role</p>
+                        <p className="text-slate-800 capitalize">{selectedSupervisor.role}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Status</p>
-                        <p className="text-slate-100">{selectedSupervisor.status}</p>
+                        <p className="font-medium text-slate-500 text-xs">Status</p>
+                        <p className="text-slate-800">{selectedSupervisor.status}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Bergabung</p>
-                        <p className="text-slate-100">{selectedSupervisor.joinDate}</p>
+                        <p className="font-medium text-slate-500 text-xs">Bergabung</p>
+                        <p className="text-slate-800">{selectedSupervisor.joinDate}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-slate-400 text-xs">Salary Bersih</p>
-                        <p className="text-slate-100">{formattedCurrency(selectedSupervisor.salaryDetails.basic + selectedSupervisor.salaryDetails.allowance - selectedSupervisor.salaryDetails.deductions)}</p>
+                        <p className="font-medium text-slate-500 text-xs">Salary Bersih</p>
+                        <p className="text-slate-800">{formattedCurrency(selectedSupervisor.salaryDetails.basic + selectedSupervisor.salaryDetails.allowance - selectedSupervisor.salaryDetails.deductions)}</p>
                     </div>
                 </div>
             </div>
             
             <div className="border-t border-[#6366F1]/10 pt-4">
-                <h4 className="text-sm font-medium text-slate-200 mb-3">Detail Salary</h4>
+                <h4 className="text-sm font-medium text-slate-700 mb-3">Detail Salary</h4>
                 <div className="grid grid-cols-2 gap-3 text-sm">
                     <div className="flex justify-between">
-                        <span className="text-slate-400">Base Salary:</span>
-                        <span className="text-slate-100">{formattedCurrency(selectedSupervisor.salaryDetails.basic)}</span>
+                        <span className="text-slate-500">Base Salary:</span>
+                        <span className="text-slate-800">{formattedCurrency(selectedSupervisor.salaryDetails.basic)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-slate-400">Allowance:</span>
-                        <span className="text-slate-100">{formattedCurrency(selectedSupervisor.salaryDetails.allowance)}</span>
+                        <span className="text-slate-500">Allowance:</span>
+                        <span className="text-slate-800">{formattedCurrency(selectedSupervisor.salaryDetails.allowance)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-slate-400">Deductions:</span>
-                        <span className="text-slate-100">{formattedCurrency(selectedSupervisor.salaryDetails.deductions)}</span>
+                        <span className="text-slate-500">Deductions:</span>
+                        <span className="text-slate-800">{formattedCurrency(selectedSupervisor.salaryDetails.deductions)}</span>
                     </div>
                     <div className="flex justify-between">
-                        <span className="text-slate-400">Salary Bersih:</span>
-                        <span className="text-slate-100 font-semibold">{formattedCurrency(selectedSupervisor.salaryDetails.basic + selectedSupervisor.salaryDetails.allowance - selectedSupervisor.salaryDetails.deductions)}</span>
+                        <span className="text-slate-500">Salary Bersih:</span>
+                        <span className="text-slate-800 font-semibold">{formattedCurrency(selectedSupervisor.salaryDetails.basic + selectedSupervisor.salaryDetails.allowance - selectedSupervisor.salaryDetails.deductions)}</span>
                     </div>
                 </div>
             </div>
@@ -381,13 +381,13 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                    <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-3">
                         <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-user-shield text-white text-lg"></i>
                         </div>
                         Management Supervisor
                     </h2>
-                    <p className="text-slate-300 text-sm mt-2">Kelola data supervisor dan informasi salary</p>
+                    <p className="text-slate-600 text-sm mt-2">Kelola data supervisor dan informasi salary</p>
                 </div>
                 <ActionButton 
                     onClick={() => { resetState(); setIsCreating(true); }}
@@ -409,14 +409,14 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
                                 placeholder="Search supervisor..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-50/50 border border-[#6366F1]/20 rounded-2xl text-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
                             />
                         </div>
                     </div>
                     
                     <div className="space-y-3 max-h-[65vh] overflow-y-auto pr-2">
                         {filteredSupervisors.length === 0 ? (
-                            <div className="text-center py-8 text-slate-400">
+                            <div className="text-center py-8 text-slate-500">
                                 <i className="fas fa-user-shield text-3xl mb-3 text-gray-300"></i>
                                 <p className="text-sm">No supervisor ditemukan</p>
                             </div>
@@ -438,7 +438,7 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
                     {isCreating ? (
                         <>
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-semibold text-slate-100">Add Supervisor Baru</h3>
+                                <h3 className="text-xl font-semibold text-slate-800">Add Supervisor Baru</h3>
                                 <ActionButton onClick={resetState} variant="ghost">
                                     <i className="fas fa-times"></i>
                                 </ActionButton>
@@ -457,7 +457,7 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
                     ) : selectedSupervisor ? (
                         <>
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-semibold text-slate-100">
+                                <h3 className="text-xl font-semibold text-slate-800">
                                     {isEditing ? 'Edit Data Supervisor' : 'Detail Supervisor'}
                                 </h3>
                                 <div className="flex gap-2">
@@ -502,7 +502,7 @@ const OwnerSupervisorManagement = ({ supervisors, setSupervisors }) => {
                     ) : (
                         <div className="flex flex-col items-center justify-center h-64 text-gray-400">
                             <i className="fas fa-user-shield text-5xl mb-4"></i>
-                            <p className="text-lg font-medium text-slate-400">Select supervisor</p>
+                            <p className="text-lg font-medium text-slate-500">Select supervisor</p>
                             <p className="text-sm text-gray-400 mt-1">Select supervisor dari daftar untuk meview detail</p>
                         </div>
                     )}

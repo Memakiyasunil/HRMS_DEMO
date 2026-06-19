@@ -73,25 +73,25 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
     return (
         <div className="space-y-6">
             {/* Header */}
-            <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-                <h2 className="text-2xl font-bold text-slate-100 flex items-center">
+            <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+                <h2 className="text-2xl font-bold text-slate-800 flex items-center">
                     <div className="bg-gray-100 p-3 rounded-xl mr-4" style={{ backgroundColor: primaryBg }}>
                         <i className="fas fa-tasks text-lg" style={{ color: primaryColor }}></i>
                     </div>
                     Perapprovean Tasks Tim
                 </h2>
-                <p className="text-slate-300 mt-2 text-left">Kelola dan approvei tasks yang diajukan oleh anggota tim Anda</p>
+                <p className="text-slate-600 mt-2 text-left">Kelola dan approvei tasks yang diajukan oleh anggota tim Anda</p>
             </div>
 
             {/* Filter Section */}
-            <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+            <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
                 <div className="flex flex-wrap gap-3">
                     <button 
                         onClick={() => setFilterStatus('Pending')}
                         className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center ${
                             filterStatus === 'Pending' 
                                 ? 'text-white shadow-lg' 
-                                : 'text-slate-200 bg-gray-100 hover:bg-gray-200'
+                                : 'text-slate-700 bg-gray-100 hover:bg-gray-200'
                         }`}
                         style={filterStatus === 'Pending' ? { backgroundColor: primaryColor } : {}}
                     >
@@ -101,7 +101,7 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                     
                     <div className="flex-1"></div>
                     
-                    <div className="flex items-center space-x-2 text-sm text-slate-300">
+                    <div className="flex items-center space-x-2 text-sm text-slate-600">
                         <i className="fas fa-info-circle" style={{ color: primaryColor }}></i>
                         <span>Total: {safePendingTasks.length} tasks pending perapprovean</span>
                     </div>
@@ -111,16 +111,16 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
             {/* Tasks List */}
             <div className="space-y-4">
                 {filteredTasks.length === 0 ? (
-                    <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-12 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+                    <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-12 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
                         <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: primaryBg }}>
                             <i className="fas fa-inbox text-2xl" style={{ color: primaryColor }}></i>
                         </div>
-                        <h3 className="text-xl font-bold text-slate-100 mb-2">No tasks pending</h3>
-                        <p className="text-slate-300">All tasks telah diproses atau tidak ada tasks yang pending perapprovean.</p>
+                        <h3 className="text-xl font-bold text-slate-800 mb-2">No tasks pending</h3>
+                        <p className="text-slate-600">All tasks telah diproses atau tidak ada tasks yang pending perapprovean.</p>
                     </div>
                 ) : (
                     filteredTasks.map(task => (
-                        <div key={task.id} className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] hover:shadow-[0_8px_25px_0_rgba(31,38,135,0.15)] transition-all duration-200">
+                        <div key={task.id} className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] hover:shadow-[0_8px_25px_0_rgba(31,38,135,0.15)] transition-all duration-200">
                             {/* Task Header */}
                             <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-4 gap-4">
                                 <div className="flex-1">
@@ -129,7 +129,7 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                                             <i className="fas fa-clipboard-list" style={{ color: primaryColor }}></i>
                                         </div>
                                         <div>
-                                            <h3 className="text-xl font-bold text-slate-100 mb-1">{task.taskTitle}</h3>
+                                            <h3 className="text-xl font-bold text-slate-800 mb-1">{task.taskTitle}</h3>
                                             <div className="flex flex-wrap gap-2">
                                                 <span className={`px-3 py-1 text-xs font-semibold rounded-full ${
                                                     task.type === 'Submission' 
@@ -138,7 +138,7 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                                                 }`}>
                                                     {task.type}
                                                 </span>
-                                                <span className="px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-slate-100">
+                                                <span className="px-3 py-1 text-xs font-semibold rounded-full bg-gray-100 text-slate-800">
                                                     Priority: {task.priority || 'Medium'}
                                                 </span>
                                             </div>
@@ -147,7 +147,7 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                                 </div>
                                 
                                 <div className="flex flex-col items-end gap-2">
-                                    <span className="text-sm text-slate-400 text-right">
+                                    <span className="text-sm text-slate-500 text-right">
                                         <i className="fas fa-calendar-alt mr-1"></i> 
                                         Diajukan: {task.submittedAt}
                                     </span>
@@ -157,12 +157,12 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                             {/* Task Details */}
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-4">
                                 <div>
-                                    <p className="text-sm text-slate-300 mb-3">
+                                    <p className="text-sm text-slate-600 mb-3">
                                         <i className="fas fa-user mr-2" style={{ color: primaryColor }}></i>
-                                        <span className="font-medium text-slate-100">{task.employeeName}</span> • {task.divisionon}
+                                        <span className="font-medium text-slate-800">{task.employeeName}</span> • {task.divisionon}
                                     </p>
-                                    <p className="text-slate-200 bg-slate-900 rounded-lg p-4 border border-slate-600">
-                                        <i className="fas fa-align-left mr-2 text-slate-400"></i>
+                                    <p className="text-slate-700 bg-slate-900 rounded-lg p-4 border border-slate-200">
+                                        <i className="fas fa-align-left mr-2 text-slate-500"></i>
                                         {task.description}
                                     </p>
                                 </div>
@@ -178,19 +178,19 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
                                         </div>
                                     )}
                                     
-                                    <div className="flex items-center p-3 bg-slate-900 rounded-lg border border-slate-600">
-                                        <i className="fas fa-clock text-slate-400 mr-3"></i>
+                                    <div className="flex items-center p-3 bg-slate-900 rounded-lg border border-slate-200">
+                                        <i className="fas fa-clock text-slate-500 mr-3"></i>
                                         <div>
-                                            <p className="font-medium text-slate-100">Status: Pending</p>
-                                            <p className="text-xs text-slate-300">Pending perapprovean supervisor</p>
+                                            <p className="font-medium text-slate-800">Status: Pending</p>
+                                            <p className="text-xs text-slate-600">Pending perapprovean supervisor</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Action Buttons */}
-                            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-600">
-                                <div className="flex items-center text-sm text-slate-400">
+                            <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-4 border-t border-slate-200">
+                                <div className="flex items-center text-sm text-slate-500">
                                     <i className="fas fa-info-circle mr-2" style={{ color: primaryColor }}></i>
                                     Tinjau tasks sebelum memberikan perapprovean
                                 </div>
@@ -219,25 +219,25 @@ const SupervisorTaskApproval = ({ pendingTasks = [], setPendingTasks = () => {},
 
             {/* Quick Stats */}
             {filteredTasks.length > 0 && (
-                <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+                <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
                             <div className="text-2xl font-bold mb-1" style={{ color: primaryColor }}>
                                 {filteredTasks.length}
                             </div>
-                            <p className="text-sm text-slate-300">Total Pending</p>
+                            <p className="text-sm text-slate-600">Total Pending</p>
                         </div>
-                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
                             <div className="text-2xl font-bold mb-1 text-green-600">
                                 {filteredTasks.filter(t => t.priority === 'High').length}
                             </div>
-                            <p className="text-sm text-slate-300">Prioritas Tinggi</p>
+                            <p className="text-sm text-slate-600">Prioritas Tinggi</p>
                         </div>
-                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+                        <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
                             <div className="text-2xl font-bold mb-1 text-blue-600">
                                 {filteredTasks.filter(t => t.type === 'Submission').length}
                             </div>
-                            <p className="text-sm text-slate-300">Tipe Submission</p>
+                            <p className="text-sm text-slate-600">Tipe Submission</p>
                         </div>
                     </div>
                 </div>

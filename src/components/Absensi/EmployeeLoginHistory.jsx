@@ -292,7 +292,7 @@ const EmployeeLoginHistory = ({ user }) => {
 
     return (
         <GlassCard className="mt-6">
-            <h2 className="text-2xl font-bold mb-6 text-slate-100 flex items-center">
+            <h2 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
                 <i className="fas fa-history mr-3 text-yellow-600"></i> Login History & Absensi
             </h2>
 
@@ -304,7 +304,7 @@ const EmployeeLoginHistory = ({ user }) => {
                         placeholder="Search history (status, lokasi, keterangan)..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="w-full p-3 pl-10 border border-[#6366F1] rounded-full bg-slate-800 focus:outline-none text-black"
+                        className="w-full p-3 pl-10 border border-[#6366F1] rounded-full bg-white focus:outline-none text-black"
                     />
                     <i className="fas fa-search absolute left-3 top-4 text-gray-400"></i>
                 </div>
@@ -340,25 +340,25 @@ const EmployeeLoginHistory = ({ user }) => {
                 <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-slate-900">
                         <tr>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                 Time
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                 Status Login
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                 Status Absensi
                             </th>
-                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                            <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                 Lokasi (IP)
                             </th>
                         </tr>
                     </thead>
-                    <tbody className="bg-slate-800 divide-y divide-gray-200">
+                    <tbody className="bg-white divide-y divide-gray-200">
                         {filteredHistory.map((log) => (
                             <tr key={log.id} className="hover:bg-slate-900">
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-slate-100">
+                                    <div className="text-sm font-medium text-slate-800">
                                         {new Date(log.datetime).toLocaleDateString('id-ID', { 
                                             weekday: 'short',
                                             day: '2-digit',
@@ -366,7 +366,7 @@ const EmployeeLoginHistory = ({ user }) => {
                                             year: 'numeric'
                                         })}
                                     </div>
-                                    <div className="text-sm text-slate-400 font-mono">
+                                    <div className="text-sm text-slate-500 font-mono">
                                         {new Date(log.datetime).toLocaleTimeString('id-ID', { 
                                             hour: '2-digit',
                                             minute: '2-digit'
@@ -383,12 +383,12 @@ const EmployeeLoginHistory = ({ user }) => {
                                         {log.attendanceStatus}
                                     </span>
                                     {log.attendanceStatus !== 'Tepat Time' && (
-                                        <p className="text-xs text-slate-400 mt-1">
+                                        <p className="text-xs text-slate-500 mt-1">
                                             {log.attendanceStatus === 'Terlambat' ? '> 08:00' : '< 17:00'}
                                         </p>
                                     )}
                                 </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">
+                                <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
                                     <div>{log.location}</div>
                                     <div className="text-xs text-gray-400">({log.ip})</div>
                                 </td>
@@ -401,7 +401,7 @@ const EmployeeLoginHistory = ({ user }) => {
             {filteredHistory.length === 0 && (
                 <div className="text-center py-8">
                     <i className="fas fa-history text-4xl text-gray-300 mb-3"></i>
-                    <p className="text-slate-400">
+                    <p className="text-slate-500">
                         {searchTerm ? 'No history yang sesuai dengan pensearchan.' : 'Belum ada history login.'}
                     </p>
                 </div>

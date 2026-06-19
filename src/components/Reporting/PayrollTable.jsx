@@ -1,4 +1,4 @@
-﻿// src/components/PayrollTable.jsx
+// src/components/PayrollTable.jsx
 import React from 'react';
 import { formattedCurrency } from '../../utils/formatters';
 
@@ -13,32 +13,32 @@ const PayrollTable = ({ payrollData, showRole = true, onAdjustSalary }) => {
             <table className="min-w-full divide-y divide-gray-200/50">
                 <thead className="bg-indigo-600/10 backdrop-blur-sm">
                     <tr>
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider rounded-tl-2xl">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider rounded-tl-2xl">
                             Employee
                         </th>
                         {showRole && (
-                            <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider">
+                            <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                                 Role
                             </th>
                         )}
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                             Base Salary
                         </th>
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                             Pendapatan
                         </th>
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                             Deductions
                         </th>
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider">
                             Bersih
                         </th>
-                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-200 uppercase tracking-wider rounded-tr-2xl">
+                        <th className="px-4 py-4 text-left text-xs font-semibold text-slate-700 uppercase tracking-wider rounded-tr-2xl">
                             Action
                         </th>
                     </tr>
                 </thead>
-                <tbody className="bg-slate-800/50 backdrop-blur-sm divide-y divide-gray-200/30">
+                <tbody className="bg-white/50 backdrop-blur-sm divide-y divide-gray-200/30">
                     {payrollData.map((report, index) => (
                         <tr key={report.id || index} className="backdrop-blur-sm">
                             <td className="px-4 py-4 whitespace-nowrap">
@@ -47,25 +47,25 @@ const PayrollTable = ({ payrollData, showRole = true, onAdjustSalary }) => {
                                         <i className="fas fa-user text-[#6366F1] text-xs"></i>
                                     </div>
                                     <div className="ml-3">
-                                        <div className="text-sm font-medium text-slate-100">
+                                        <div className="text-sm font-medium text-slate-800">
                                             {report.name}
                                         </div>
-                                        <div className="text-xs text-slate-400">
+                                        <div className="text-xs text-slate-500">
                                             {report.divisionon}
                                         </div>
                                     </div>
                                 </div>
                             </td>
                             {showRole && (
-                                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-200 capitalize">
+                                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-700 capitalize">
                                     {report.role}
                                 </td>
                             )}
-                            <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-200">
+                            <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-700">
                                 {formattedCurrency(report.basic)}
                             </td>
                             <td className="px-4 py-4 whitespace-nowrap">
-                                <div className="text-sm text-slate-200 space-y-1">
+                                <div className="text-sm text-slate-700 space-y-1">
                                     <div className="text-green-600">+{formattedCurrency(report.allowance)}</div>
                                     <div className="text-green-600">+{formattedCurrency(report.overtimePay)}</div>
                                     <div className="text-green-600">+{formattedCurrency(report.bonus)}</div>
@@ -74,7 +74,7 @@ const PayrollTable = ({ payrollData, showRole = true, onAdjustSalary }) => {
                             <td className="px-4 py-4 whitespace-nowrap">
                                 <div className="text-sm text-red-600 space-y-1">
                                     <div>-{formattedCurrency(report.deductions)}</div>
-                                    <div className="text-xs text-slate-400">
+                                    <div className="text-xs text-slate-500">
                                         {report.lateDeduction > 0 && `Termasuk deductions absensi ${formattedCurrency(report.lateDeduction + report.earlyLeaveDeduction)}`}
                                     </div>
                                 </div>
@@ -83,14 +83,14 @@ const PayrollTable = ({ payrollData, showRole = true, onAdjustSalary }) => {
                                 <div className="text-base font-semibold text-[#6366F1]">
                                     {formattedCurrency(report.net)}
                                 </div>
-                                <div className="text-xs text-slate-400">
+                                <div className="text-xs text-slate-500">
                                     {report.status}
                                 </div>
                             </td>
                             <td className="px-4 py-4 whitespace-nowrap text-sm">
                                 <button
                                     onClick={() => onAdjustSalary(report)}
-                                    className="text-[#6366F1] hover:text-[#5a717b] transition-colors duration-200 p-2 rounded-xl bg-slate-700/50 backdrop-blur-sm"
+                                    className="text-[#6366F1] hover:text-[#5a717b] transition-colors duration-200 p-2 rounded-xl bg-slate-50/50 backdrop-blur-sm"
                                     title="Atur Salary"
                                 >
                                     <i className="fas fa-edit"></i>
@@ -102,10 +102,10 @@ const PayrollTable = ({ payrollData, showRole = true, onAdjustSalary }) => {
                     {/* Footer Total */}
                     {payrollData.length > 0 && (
                         <tr className="bg-indigo-600/10 backdrop-blur-sm font-semibold border-t-2 border-[#6366F1]/20">
-                            <td className={`px-4 py-4 whitespace-nowrap text-slate-100 rounded-bl-2xl ${showRole ? 'col-span-2' : ''}`} colSpan={showRole ? 2 : 1}>
+                            <td className={`px-4 py-4 whitespace-nowrap text-slate-800 rounded-bl-2xl ${showRole ? 'col-span-2' : ''}`} colSpan={showRole ? 2 : 1}>
                                 Total
                             </td>
-                            <td className="px-4 py-4 whitespace-nowrap text-slate-200">
+                            <td className="px-4 py-4 whitespace-nowrap text-slate-700">
                                 {formattedCurrency(payrollData.reduce((sum, item) => sum + item.basic, 0))}
                             </td>
                             <td className="px-4 py-4 whitespace-nowrap text-green-600">

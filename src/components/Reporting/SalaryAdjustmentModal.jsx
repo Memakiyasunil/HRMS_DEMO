@@ -76,7 +76,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center p-4 z-50">
-            <div className="w-full max-w-5xl bg-slate-800 rounded-2xl shadow-2xl overflow-hidden">
+            <div className="w-full max-w-5xl bg-white rounded-2xl shadow-2xl overflow-hidden">
                 {/* Header */}
                 <div className="bg-gradient-to-r from-[#6366F1] to-[#5a717b] p-6">
                     <div className="flex justify-between items-center">
@@ -86,7 +86,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                         </h3>
                         <button
                             onClick={onClose}
-                            className="w-8 h-8 rounded-full bg-slate-700/30 hover:bg-slate-800/50 transition-colors duration-200 flex items-center justify-center"
+                            className="w-8 h-8 rounded-full bg-slate-50/30 hover:bg-white/50 transition-colors duration-200 flex items-center justify-center"
                         >
                             <i className="fas fa-times text-white"></i>
                         </button>
@@ -99,7 +99,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                         <div className="w-1/3 space-y-5">
                             {/* Type Selection */}
                             <div>
-                                <h4 className="text-sm font-medium text-slate-200 mb-3">Jenis Penyesuaian</h4>
+                                <h4 className="text-sm font-medium text-slate-700 mb-3">Jenis Penyesuaian</h4>
                                 <div className="space-y-3">
                                     <button
                                         type="button"
@@ -107,12 +107,12 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                         className={`w-full p-4 rounded-xl border-2 transition-all duration-200 ${
                                             adjustmentType === 'raise' 
                                                 ? 'border-[#6366F1] bg-indigo-600/5' 
-                                                : 'border-slate-600 bg-slate-900 hover:bg-gray-100'
+                                                : 'border-slate-200 bg-slate-900 hover:bg-gray-100'
                                         }`}
                                     >
                                         <i className={`fas fa-arrow-up text-2xl mb-2 ${adjustmentType === 'raise' ? 'text-[#6366F1]' : 'text-gray-400'}`}></i>
-                                        <div className={`font-medium ${adjustmentType === 'raise' ? 'text-[#6366F1]' : 'text-slate-200'}`}>Kenaikan Salary</div>
-                                        <div className="text-xs text-slate-400 mt-1">Add pendapatan</div>
+                                        <div className={`font-medium ${adjustmentType === 'raise' ? 'text-[#6366F1]' : 'text-slate-700'}`}>Kenaikan Salary</div>
+                                        <div className="text-xs text-slate-500 mt-1">Add pendapatan</div>
                                     </button>
                                     <button
                                         type="button"
@@ -120,23 +120,23 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                         className={`w-full p-4 rounded-xl border-2 transition-all duration-200 ${
                                             adjustmentType === 'deduction' 
                                                 ? 'border-[#6366F1] bg-indigo-600/5' 
-                                                : 'border-slate-600 bg-slate-900 hover:bg-gray-100'
+                                                : 'border-slate-200 bg-slate-900 hover:bg-gray-100'
                                         }`}
                                     >
                                         <i className={`fas fa-arrow-down text-2xl mb-2 ${adjustmentType === 'deduction' ? 'text-[#6366F1]' : 'text-gray-400'}`}></i>
-                                        <div className={`font-medium ${adjustmentType === 'deduction' ? 'text-[#6366F1]' : 'text-slate-200'}`}>Deductions Salary</div>
-                                        <div className="text-xs text-slate-400 mt-1">Kurangi salary bersih</div>
+                                        <div className={`font-medium ${adjustmentType === 'deduction' ? 'text-[#6366F1]' : 'text-slate-700'}`}>Deductions Salary</div>
+                                        <div className="text-xs text-slate-500 mt-1">Kurangi salary bersih</div>
                                     </button>
                                 </div>
                             </div>
 
                             {/* Scope Selection */}
                             <div>
-                                <h4 className="text-sm font-medium text-slate-200 mb-3">Select Division</h4>
+                                <h4 className="text-sm font-medium text-slate-700 mb-3">Select Division</h4>
                                 <select
                                     value={selectedDivisionon}
                                     onChange={(e) => setSelectedDivisionon(e.target.value)}
-                                    className="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
+                                    className="w-full p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
                                 >
                                     {divisionons.map(div => (
                                         <option key={div} value={div.toLowerCase()}>
@@ -148,10 +148,10 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
 
                             {/* Employee Selection - Updated */}
                             <div>
-                                <h4 className="text-sm font-medium text-slate-200 mb-3">Select Employee</h4>
-                                <div className="max-h-48 overflow-y-auto space-y-2 p-3 border border-slate-600 rounded-xl bg-slate-900">
+                                <h4 className="text-sm font-medium text-slate-700 mb-3">Select Employee</h4>
+                                <div className="max-h-48 overflow-y-auto space-y-2 p-3 border border-slate-200 rounded-xl bg-slate-900">
                                     {employeesList.map(emp => (
-                                        <label key={emp.id} className="flex items-center justify-between p-2 hover:bg-slate-800 rounded-lg cursor-pointer transition-colors duration-150">
+                                        <label key={emp.id} className="flex items-center justify-between p-2 hover:bg-white rounded-lg cursor-pointer transition-colors duration-150">
                                             <div className="flex items-center space-x-3">
                                                 <input
                                                     type="checkbox"
@@ -169,7 +169,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                                     {emp.name} <span className="text-gray-400">({emp.divisionon})</span>
                                                 </span>
                                             </div>
-                                            <div className="text-sm text-slate-300">
+                                            <div className="text-sm text-slate-600">
                                                 Rp {emp.currentSalary.toLocaleString('id-ID')}
                                             </div>
                                         </label>
@@ -180,14 +180,14 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
 
                         {/* Right Column - Amount, Reason and Actions */}
                         <div className="w-2/3 space-y-5">
-                            <div className="grid grid-cols-2 gap-4">
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                 <div>
-                                    <h4 className="text-sm font-medium text-slate-200 mb-3">
+                                    <h4 className="text-sm font-medium text-slate-700 mb-3">
                                         <i className="fas fa-money-bill-wave mr-2 text-[#6366F1]"></i>
                                         Jumlah {adjustmentType === 'raise' ? 'Kenaikan' : 'Deductions'}
                                     </h4>
                                     <div className="relative">
-                                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 font-medium">
+                                        <span className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-500 font-medium">
                                             Rp
                                         </span>
                                         <input
@@ -195,7 +195,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                             value={amount}
                                             onChange={handleAmountChange}
                                             placeholder="0"
-                                            className="w-full pl-10 pr-3 py-3 bg-slate-800 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
+                                            className="w-full pl-10 pr-3 py-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
                                             required
                                             max={adjustmentType === 'raise' ? '999999999999' : ''} // 12 digits max for raise
                                         />
@@ -204,7 +204,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
 
                                 {adjustmentType === 'deduction' && (
                                     <div>
-                                        <h4 className="text-sm font-medium text-slate-200 mb-3">
+                                        <h4 className="text-sm font-medium text-slate-700 mb-3">
                                             <i className="fas fa-list mr-2 text-[#6366F1]"></i>
                                             Jenis Deductions
                                         </h4>
@@ -216,7 +216,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                                     setOtherDeductionReason('');
                                                 }
                                             }}
-                                            className="w-full p-3 bg-slate-800 border border-slate-600 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
+                                            className="w-full p-3 bg-white border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#6366F1] focus:border-transparent transition-all duration-200 text-black"
                                         >
                                             <option value="">Select jenis deductions</option>
                                             {deductionTypes.map(type => (
@@ -241,7 +241,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                         value={otherDeductionReason}
                                         onChange={(e) => setOtherDeductionReason(e.target.value)}
                                         placeholder="Contoh: Menyebabkan kerugian perusahaan, Kehilangan inventaris, dll."
-                                        className="w-full p-3 bg-slate-800 border border-yellow-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 text-black"
+                                        className="w-full p-3 bg-white border border-yellow-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:border-transparent transition-all duration-200 text-black"
                                         required
                                     />
                                 </div>
@@ -257,7 +257,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                         const deductionPercentage = ((parseFloat(amount) || 0) / emp.currentSalary * 100).toFixed(1);
                                         return (
                                             <div key={emp.id} className="flex justify-between items-center mb-2">
-                                                <span className="text-sm text-slate-300">{emp.name}</span>
+                                                <span className="text-sm text-slate-600">{emp.name}</span>
                                                 <div className="text-sm">
                                                     <span className="text-blue-600 font-medium">Rp {afterDeduction.toLocaleString('id-ID')}</span>
                                                     <span className="text-xs text-gray-400 ml-2">
@@ -275,14 +275,14 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
 
                             {/* Summary Section */}
                             <div className="bg-slate-900 rounded-xl p-4">
-                                <h4 className="text-sm font-medium text-slate-200 mb-3">Summary Penyesuaian</h4>
+                                <h4 className="text-sm font-medium text-slate-700 mb-3">Summary Penyesuaian</h4>
                                 <div className="flex justify-between items-center">
                                     <div>
-                                        <p className="text-sm text-slate-300">Jenis: <span className="font-medium text-black">{adjustmentType === 'raise' ? 'Kenaikan Salary' : 'Deductions Salary'}</span></p>
-                                        <p className="text-sm text-slate-300">Jumlah Employee: <span className="font-medium text-black">{selectedEmployees.length}</span></p>
+                                        <p className="text-sm text-slate-600">Jenis: <span className="font-medium text-black">{adjustmentType === 'raise' ? 'Kenaikan Salary' : 'Deductions Salary'}</span></p>
+                                        <p className="text-sm text-slate-600">Jumlah Employee: <span className="font-medium text-black">{selectedEmployees.length}</span></p>
                                     </div>
                                     <div className="text-right">
-                                        <p className="text-sm text-slate-300">Total {adjustmentType === 'raise' ? 'Kenaikan' : 'Deductions'}:</p>
+                                        <p className="text-sm text-slate-600">Total {adjustmentType === 'raise' ? 'Kenaikan' : 'Deductions'}:</p>
                                         <p className="text-xl font-bold text-[#6366F1]">
                                             Rp {amount ? (parseFloat(amount) * selectedEmployees.length).toLocaleString('id-ID') : '0'}
                                         </p>
@@ -295,7 +295,7 @@ const SalaryAdjustmentModal = ({ employee, onClose, onSave }) => {
                                 <button
                                     type="button"
                                     onClick={onClose}
-                                    className="flex-1 py-3 px-4 bg-gray-100 text-slate-200 rounded-xl font-medium hover:bg-gray-200 transition-colors duration-200"
+                                    className="flex-1 py-3 px-4 bg-gray-100 text-slate-700 rounded-xl font-medium hover:bg-gray-200 transition-colors duration-200"
                                 >
                                     <i className="fas fa-times mr-2"></i>
                                     Cancel

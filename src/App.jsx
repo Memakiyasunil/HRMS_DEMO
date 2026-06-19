@@ -71,11 +71,11 @@ const App = () => {
 
 
  return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-slate-50">
         {isLoading && (
-            <div className="fixed inset-0 bg-[#0F172A]/90 backdrop-blur-sm flex items-center justify-center z-50 transition-opacity duration-300">
+            <div className="fixed inset-0 bg-white/90 backdrop-blur-sm flex items-center justify-center z-50 animate-fade-in">
                 <div className="flex flex-col items-center justify-center"> 
-                    <div className="h-48 w-48 mb-4">
+                    <div className="h-48 w-48 mb-4 animate-scale-in">
                         <DotLottieReact
                             src="https://lottie.host/9581a0e7-e2e2-4ac9-afbd-7d4cface4c28/O3EfZ0vhqK.lottie"
                             loop
@@ -83,7 +83,7 @@ const App = () => {
                         />
                     </div>
                     
-                    <p className="mt-2 text-lg font-bold text-indigo-400 tracking-wider text-shadow-sm">
+                    <p className="mt-2 text-lg font-bold text-blue-500 tracking-wider animate-pulse-soft">
                         LOADING...
                     </p>
                 </div>

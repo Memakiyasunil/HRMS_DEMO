@@ -1,4 +1,4 @@
-﻿// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceReport.jsx
+// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceReport.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard } from "../../../components/Shared/Modals/componentsUtilityUI.jsx";
 import ReportGenerator from '../../../components/Reporting/ReportGenerator';
@@ -8,7 +8,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
-        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-50/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
         ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
@@ -30,7 +30,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
@@ -40,7 +40,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-white border border-[#6366F1]/20 rounded-2xl text-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -48,14 +48,14 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
 // Select input with consistent styling
 const FormSelect = ({ label, icon, value, onChange, name, options, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <select 
             name={name}
             value={value || ''} 
             onChange={onChange}
-            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-white border border-[#6366F1]/20 rounded-2xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -72,17 +72,17 @@ const PhotoModal = ({ isOpen, onClose, photoData, employeeName, dateTime }) => {
 
     return (
         <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 backdrop-blur-sm bg-black bg-opacity-50" onClick={onClose}>
-            <div className="bg-white/90 backdrop-blur-xl rounded-3xl max-w-xl w-full p-6 border border-slate-600/30 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]" onClick={(e) => e.stopPropagation()}>
+            <div className="bg-white/90 backdrop-blur-xl rounded-3xl max-w-xl w-full p-6 border border-slate-200/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)]" onClick={(e) => e.stopPropagation()}>
                 <div className="flex justify-between items-center mb-4">
-                    <h3 className="text-xl font-bold text-slate-100">Attendance Photo - {employeeName}</h3>
+                    <h3 className="text-xl font-bold text-slate-800">Attendance Photo - {employeeName}</h3>
                     <button
                         onClick={onClose}
                         className="p-2 rounded-full hover:bg-gray-100 transition-colors"
                     >
-                        <i className="fas fa-times text-slate-400"></i>
+                        <i className="fas fa-times text-slate-500"></i>
                     </button>
                 </div>
-                <p className="text-sm text-slate-400 mb-4">{dateTime}</p>
+                <p className="text-sm text-slate-500 mb-4">{dateTime}</p>
                 
                 <div className="relative w-full aspect-video bg-gray-200 rounded-2xl overflow-hidden">
                     {photoData ? (
@@ -92,7 +92,7 @@ const PhotoModal = ({ isOpen, onClose, photoData, employeeName, dateTime }) => {
                             className="w-full h-full object-cover" 
                         />
                     ) : (
-                        <div className="flex items-center justify-center h-full text-slate-400">
+                        <div className="flex items-center justify-center h-full text-slate-500">
                             <div className="text-center">
                                 <i className="fas fa-camera text-4xl mb-2"></i>
                                 <p>Photo Not Available</p>
@@ -170,17 +170,17 @@ const OwnerAttendanceReport = ({ employees, managers, supervisors }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                    <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-3">
                         <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-camera-retro text-white text-lg"></i>
                         </div>
                         Attendance Photo Report
                     </h2>
-                    <p className="text-slate-300 text-sm mt-2">View and verify attendance photos</p>
+                    <p className="text-slate-600 text-sm mt-2">View and verify attendance photos</p>
                 </div>
             </div>
 
-            <div className="bg-slate-800/50 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#6366F1]/20 p-6">
+            <div className="bg-white/50 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#6366F1]/20 p-6">
                 {/* Filter Controls */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
@@ -227,17 +227,17 @@ const OwnerAttendanceReport = ({ employees, managers, supervisors }) => {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tr-xl">Selfie Photo</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-slate-800 divide-y divide-gray-200">
+                        <tbody className="bg-white divide-y divide-gray-200">
                             {filteredData.map((d, index) => (
                                 <tr key={index} className="hover:bg-slate-900 transition-colors">
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm font-medium text-slate-100">{d.employeeName}</div>
-                                        <div className="text-xs text-slate-400">{d.divisionon} ({d.role})</div>
+                                        <div className="text-sm font-medium text-slate-800">{d.employeeName}</div>
+                                        <div className="text-xs text-slate-500">{d.divisionon} ({d.role})</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">
-                                        <span className="font-semibold text-slate-200">{d.time}</span> ({d.type})
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                        <span className="font-semibold text-slate-700">{d.time}</span> ({d.type})
                                     </td>
-                                    <td className="px-6 py-4 text-xs text-slate-400 max-w-xs truncate">
+                                    <td className="px-6 py-4 text-xs text-slate-500 max-w-xs truncate">
                                         {d.location.split(' (')[1]?.replace(')', '') || 'Location not available'}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -259,7 +259,7 @@ const OwnerAttendanceReport = ({ employees, managers, supervisors }) => {
                 {filteredData.length === 0 && (
                     <div className="text-center py-12">
                         <i className="fas fa-camera text-4xl text-gray-400 mb-3"></i>
-                        <p className="text-slate-400">No attendance photo data found for the selected criteria.</p>
+                        <p className="text-slate-500">No attendance photo data found for the selected criteria.</p>
                     </div>
                 )}
             </div>

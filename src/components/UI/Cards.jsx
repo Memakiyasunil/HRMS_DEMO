@@ -15,18 +15,18 @@ export const StatCard = ({ title, value, icon, color = 'blue' }) => (
   <GlassCard className={`p-4`}>
     <div className="flex justify-between items-start">
       <div>
-        <p className="text-3xl font-bold text-slate-100">
+        <p className="text-3xl font-bold text-slate-800">
           {typeof value === 'number' ? formattedCurrency(value) : value}
         </p>
-        <p className="text-sm font-medium text-slate-400 mt-1">{title}</p>
+        <p className="text-sm font-medium text-slate-500 mt-1">{title}</p>
       </div>
 
       {/* Icon Container */}
       <div
         className={`p-3 rounded-full ${
           COLORS[color.charAt(0).toUpperCase() + color.slice(1)]
-            ? `bg-${color}-500/20 text-${color}-400`
-            : 'bg-slate-700 text-slate-400'
+            ? `bg-${color}-100 text-${color}-600`
+            : 'bg-slate-100 text-slate-500'
         }`}
       >
         <i className={`${icon} text-xl`}></i>

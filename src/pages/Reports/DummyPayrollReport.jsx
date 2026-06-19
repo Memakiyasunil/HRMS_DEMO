@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Camera, ClipboardList, TrendingUp, DollarSign, X } from 'lucide-react';
 
 // Data dummy untuk simulasi report
@@ -101,7 +101,7 @@ const ManagerReports = () => {
 
     // Kartu untuk menampilkan status kamera
     const CameraCard = () => (
-        <div className="p-4 bg-slate-800 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center">
+        <div className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col items-center">
             <h3 className="text-xl font-semibold mb-3 text-indigo-700 flex items-center">
                 <Camera className="w-5 h-5 mr-2" />
                 Sistem Presensi
@@ -136,7 +136,7 @@ const ManagerReports = () => {
             <p className={`mt-4 text-sm font-medium text-center p-2 rounded-lg w-full ${
                 cameraStatus.includes('Failed Akses') || cameraStatus.includes('Failed:') || cameraStatus.includes('tidak ditemukan')
                     ? 'bg-red-100 text-red-700' 
-                    : isCameraActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-slate-400'
+                    : isCameraActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-slate-500'
             }`}>
                 {cameraStatus}
             </p>
@@ -151,11 +151,11 @@ const ManagerReports = () => {
     return (
         <div className="min-h-screen bg-slate-900 p-4 sm:p-8 font-sans">
             <header className="mb-8">
-                <h1 className="text-3xl font-extrabold text-slate-100 flex items-center">
+                <h1 className="text-3xl font-extrabold text-slate-800 flex items-center">
                     <ClipboardList className="w-8 h-8 mr-2 text-indigo-600" />
                     Employee Payroll & Access System
                 </h1>
-                <p className="text-slate-400">Dummy Data untuk Report Salary dan Integrasi Kamera Presensi</p>
+                <p className="text-slate-500">Dummy Data untuk Report Salary dan Integrasi Kamera Presensi</p>
             </header>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -166,8 +166,8 @@ const ManagerReports = () => {
 
                 {/* Kolom 2: Report Salary */}
                 <div className="lg:col-span-2">
-                    <div className="bg-slate-800 p-6 rounded-xl shadow-lg">
-                        <h2 className="text-2xl font-bold mb-4 text-slate-100 flex items-center">
+                    <div className="bg-white p-6 rounded-xl shadow-lg">
+                        <h2 className="text-2xl font-bold mb-4 text-slate-800 flex items-center">
                             <TrendingUp className="w-6 h-6 mr-2 text-green-600" />
                             Summary Report Salary (Periode Okt 2025)
                         </h2>
@@ -177,18 +177,18 @@ const ManagerReports = () => {
                                 <thead className="bg-slate-900">
                                     <tr>
                                         {['Name Employee', 'Jabatan', 'Base Salary', 'Deductions', 'Salary Bersih', 'Status'].map(header => (
-                                            <th key={header} className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
+                                            <th key={header} className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
                                                 {header}
                                             </th>
                                         ))}
                                     </tr>
                                 </thead>
-                                <tbody className="bg-slate-800 divide-y divide-gray-200">
+                                <tbody className="bg-white divide-y divide-gray-200">
                                     {reports.map((report) => (
                                         <tr key={report.id}>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-100">{report.name}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">{report.role}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-100 font-semibold">{formatRupiah(report.salary)}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-800">{report.name}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{report.role}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-800 font-semibold">{formatRupiah(report.salary)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500">{formatRupiah(report.deductions)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-bold">{formatRupiah(report.net)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">
@@ -209,7 +209,7 @@ const ManagerReports = () => {
                 </div>
             </div>
 
-            <footer className="mt-8 pt-4 border-t border-slate-600 text-center text-sm text-slate-400">
+            <footer className="mt-8 pt-4 border-t border-slate-200 text-center text-sm text-slate-500">
                 Data ini adalah dummy dan fungsionalitas kamera diaktifkan menggunakan Web Media API.
             </footer>
         </div>

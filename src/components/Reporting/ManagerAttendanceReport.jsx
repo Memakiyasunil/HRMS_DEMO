@@ -1,4 +1,4 @@
-﻿// src/components/Reporting/ManagerAttendanceReport.jsx
+// src/components/Reporting/ManagerAttendanceReport.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard } from '../UI/Cards';
 import { PrimaryButton2 } from '../UI/Buttons';
@@ -51,28 +51,28 @@ const ManagerAttendanceReport = ({ employees }) => {
     };
 
     return (
-        <div className="bg-slate-800 rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded-xl shadow-sm p-6">
             <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
-                <h2 className="text-2xl font-bold text-slate-100 flex items-center">
+                <h2 className="text-2xl font-bold text-slate-800 flex items-center">
                     <i className="fas fa-camera mr-3 text-[#6366F1]"></i> Attendance Report Selfie
                 </h2>
-                <div className="flex items-center space-x-2 text-sm text-slate-400">
+                <div className="flex items-center space-x-2 text-sm text-slate-500">
                     <i className="fas fa-info-circle"></i>
                     <span>Total {filteredPhotos.length} foto absensi</span>
                 </div>
             </div>
 
-            <div className="bg-slate-800 rounded-xl shadow-sm p-6 mb-6">
+            <div className="bg-white rounded-xl shadow-sm p-6 mb-6">
                 <div className="flex flex-col md:flex-row justify-between items-center mb-6 space-y-3 md:space-y-0">
                     {/* Filter Date */}
                     <div className="flex items-center space-x-3 w-full md:w-auto">
-                        <label htmlFor="date-filter" className="font-medium text-slate-200">Select Date:</label>
+                        <label htmlFor="date-filter" className="font-medium text-slate-700">Select Date:</label>
                         <input
                             type="date"
                             id="date-filter"
                             value={filterDate}
                             onChange={(e) => setFilterDate(e.target.value)}
-                            className="p-2 bg-slate-800 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-black"
+                            className="p-2 bg-white border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#6366F1] focus:border-transparent text-black"
                         />
                     </div>
                     {/* Tombol Export */}
@@ -85,7 +85,7 @@ const ManagerAttendanceReport = ({ employees }) => {
                 {filteredPhotos.length === 0 ? (
                     <div className="text-center py-12 bg-slate-900 rounded-lg">
                         <i className="fas fa-calendar-times text-4xl text-gray-300 mb-3"></i>
-                        <p className="text-slate-400">No foto absensi pada date <span className="font-semibold">{filterDate}</span>.</p>
+                        <p className="text-slate-500">No foto absensi pada date <span className="font-semibold">{filterDate}</span>.</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 max-h-[70vh] overflow-y-auto p-2">
@@ -123,13 +123,13 @@ const ManagerAttendanceReport = ({ employees }) => {
                     className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
                     onClick={() => setSelectedPhoto(null)}
                 >
-                    <div className="w-full max-w-2xl bg-slate-800 rounded-xl shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
+                    <div className="w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden" onClick={(e) => e.stopPropagation()}>
                         {/* Header Modal */}
                         <div className="bg-gradient-to-r from-[#6366F1] to-[#5a717b] p-4 flex justify-between items-center">
                             <h3 className="text-xl font-bold text-white">Detail Foto Absensi</h3>
                             <button 
                                 onClick={() => setSelectedPhoto(null)} 
-                                className="w-8 h-8 rounded-full bg-slate-700/30 hover:bg-slate-800/50 transition-colors duration-200 flex items-center justify-center"
+                                className="w-8 h-8 rounded-full bg-slate-50/30 hover:bg-white/50 transition-colors duration-200 flex items-center justify-center"
                             >
                                 <i className="fas fa-times text-white"></i>
                             </button>
@@ -147,8 +147,8 @@ const ManagerAttendanceReport = ({ employees }) => {
                                 </div>
                                 <div className="space-y-4">
                                     <div>
-                                        <h4 className="text-lg font-bold text-slate-100">{selectedPhoto.employeeName}</h4>
-                                        <p className="text-sm text-slate-300">{selectedPhoto.employeeDivisionon}</p>
+                                        <h4 className="text-lg font-bold text-slate-800">{selectedPhoto.employeeName}</h4>
+                                        <p className="text-sm text-slate-600">{selectedPhoto.employeeDivisionon}</p>
                                     </div>
                                     
                                     <div className="space-y-2">
@@ -163,26 +163,26 @@ const ManagerAttendanceReport = ({ employees }) => {
                                         <div className="flex items-center text-sm">
                                             <i className="fas fa-calendar-day w-5 text-[#6366F1]"></i>
                                             <span className="font-medium mr-2">Date:</span>
-                                            <span className="text-slate-200">{selectedPhoto.date}</span>
+                                            <span className="text-slate-700">{selectedPhoto.date}</span>
                                         </div>
                                         
                                         <div className="flex items-center text-sm">
                                             <i className="fas fa-clock w-5 text-[#6366F1]"></i>
                                             <span className="font-medium mr-2">Time:</span>
-                                            <span className="text-slate-200">{selectedPhoto.time}</span>
+                                            <span className="text-slate-700">{selectedPhoto.time}</span>
                                         </div>
                                         
                                         <div className="flex items-start text-sm">
                                             <i className="fas fa-map-marker-alt w-5 text-[#6366F1] mt-0.5"></i>
                                             <span className="font-medium mr-2">Lokasi:</span>
-                                            <span className="text-slate-200 break-words">{selectedPhoto.location}</span>
+                                            <span className="text-slate-700 break-words">{selectedPhoto.location}</span>
                                         </div>
                                     </div>
                                     
                                     <div className="pt-4">
                                         <button 
                                             onClick={() => setSelectedPhoto(null)}
-                                            className="w-full py-2 px-4 bg-gray-100 text-slate-200 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200"
+                                            className="w-full py-2 px-4 bg-gray-100 text-slate-700 rounded-lg font-medium hover:bg-gray-200 transition-colors duration-200"
                                         >
                                             Tutup
                                         </button>

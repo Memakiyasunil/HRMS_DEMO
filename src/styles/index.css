@@ -1,11 +1,11 @@
-/* src/styles/index.css - Dark Theme */
+/* src/styles/index.css - Light Theme */
 :root {
   font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.6;
   font-weight: 400;
-  color-scheme: dark;
-  color: #F1F5F9;
-  background-color: #0F172A;
+  color-scheme: light;
+  color: #1E293B;
+  background-color: #F8FAFC;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,11 +15,12 @@
 
 a {
   font-weight: 500;
-  color: #818CF8;
+  color: #3B82F6;
   text-decoration: inherit;
+  transition: color 0.2s ease-in-out;
 }
 a:hover {
-  color: #6366F1;
+  color: #1D4ED8;
 }
 
 body {
@@ -28,7 +29,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: #0F172A;
+  background-color: #F8FAFC;
   padding-top: 0;
 }
 
@@ -44,13 +45,14 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1E293B;
-  color: #F1F5F9;
+  background-color: #F1F5F9;
+  color: #1E293B;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: all 0.25s ease-in-out;
 }
 button:hover {
-  border-color: #6366F1;
+  border-color: #3B82F6;
+  background-color: #E2E8F0;
 }
 button:focus,
 button:focus-visible {
@@ -60,4 +62,22 @@ button:focus-visible {
 /* Smooth transition for utility classes */
 .smooth-transition {
     transition: all 0.3s ease-in-out;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F1F5F9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
 }

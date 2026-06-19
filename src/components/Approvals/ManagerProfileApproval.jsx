@@ -4,7 +4,7 @@ import { showSwal } from '../../utils/swal';
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-white/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -14,7 +14,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
-        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-50/60",
         success: "bg-emerald-500/90 text-white hover:bg-emerald-600 active:scale-95",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
         ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
@@ -43,7 +43,7 @@ const ChangeTypeBadge = ({ type }) => {
         'personal': { color: 'bg-orange-100 text-orange-700', icon: 'fa-id-card' }
     };
     
-    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-200', icon: 'fa-edit' };
+    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-700', icon: 'fa-edit' };
     
     return (
         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${config.color}`}>
@@ -81,7 +81,7 @@ const ChangeItem = ({ field, oldValue, newValue, type = 'text' }) => {
                 <i className={`fas ${getFieldIcon(field)} text-[#6366F1] text-sm`}></i>
             </div>
             <div className="flex-1">
-                <p className="text-sm font-medium text-slate-200 capitalize">
+                <p className="text-sm font-medium text-slate-700 capitalize">
                     {field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                 </p>
                 <div className="flex items-center gap-2 mt-1 text-xs">
@@ -115,15 +115,15 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
                     <div className="flex items-start justify-between">
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <h3 className="text-lg font-semibold text-slate-100">{request.employeeName}</h3>
+                                <h3 className="text-lg font-semibold text-slate-800">{request.employeeName}</h3>
                                 <ChangeTypeBadge type={changeType} />
                             </div>
-                            <p className="text-sm text-slate-300">
+                            <p className="text-sm text-slate-600">
                                 {changeCount} perubahan • Diajukan {request.requestedAt}
                             </p>
                         </div>
                         <div className="text-right">
-                            <p className="text-sm text-slate-400">Division</p>
+                            <p className="text-sm text-slate-500">Division</p>
                             <p className="text-sm font-medium text-[#6366F1]">{employee?.divisionon || 'N/A'}</p>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
                     </div>
                 </div>
                 {/* Right Section - Action Buttons */}
-                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-200">
+                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-700">
                     <ActionButton 
                         onClick={() => onApprove(request)}
                         variant="success"
@@ -177,8 +177,8 @@ const StatsCard = ({ value, label, color = '[#6366F1]', icon }) => (
             <i className={`fas ${icon} text-${color} text-lg`}></i>
         </div>
         <div>
-            <p className="text-2xl font-bold text-slate-100">{value}</p>
-            <p className="text-sm text-slate-300">{label}</p>
+            <p className="text-2xl font-bold text-slate-800">{value}</p>
+            <p className="text-sm text-slate-600">{label}</p>
         </div>
     </GlassCard>
 );
@@ -189,8 +189,8 @@ const EmptyState = () => (
         <div className="bg-indigo-600/10 p-8 rounded-3xl inline-block mb-6">
             <i className="fas fa-check-circle text-4xl text-[#6366F1]"></i>
         </div>
-        <h3 className="text-xl font-semibold text-slate-200 mb-3">Tidak Ada Perubahan Profile</h3>
-        <p className="text-slate-400 text-sm max-w-md mx-auto">
+        <h3 className="text-xl font-semibold text-slate-700 mb-3">Tidak Ada Perubahan Profile</h3>
+        <p className="text-slate-500 text-sm max-w-md mx-auto">
             All permintaan perubahan profile telah diproses. No perubahan yang pending perapprovean.
         </p>
     </div>
@@ -261,8 +261,8 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                         <i className="fas fa-user-check text-white text-xl"></i>
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-100 text-left">Perapprovean Perubahan Profile</h2>
-                        <p className="text-slate-300 text-sm text-left">Kelola permintaan perubahan data employee</p>
+                        <h2 className="text-2xl font-bold text-slate-800 text-left">Perapprovean Perubahan Profile</h2>
+                        <p className="text-slate-600 text-sm text-left">Kelola permintaan perubahan data employee</p>
                     </div>
                 </div>
                 
@@ -303,8 +303,8 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                     <div className="space-y-4 text-left">
                         <div className="flex justify-between items-center mb-4">
                             <div>
-                                <h3 className="text-lg font-semibold text-slate-100">Permintaan Perubahan</h3>
-                                <p className="text-slate-300 text-sm">{pendingCount} perubahan perlu ditinjau</p>
+                                <h3 className="text-lg font-semibold text-slate-800">Permintaan Perubahan</h3>
+                                <p className="text-slate-600 text-sm">{pendingCount} perubahan perlu ditinjau</p>
                             </div>
                             
                             {/* Bulk Actions */}

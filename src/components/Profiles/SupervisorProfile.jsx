@@ -1,4 +1,4 @@
-﻿// src/components/Profiles/SupervisorProfile.jsx
+// src/components/Profiles/SupervisorProfile.jsx
 import React, { useState, useRef, useEffect } from 'react';
 import { PrimaryButton, PrimaryButton2 } from '../UI/Buttons'; 
 import { GlassCard } from '../UI/Cards'; 
@@ -127,9 +127,9 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
     }, [user]);
 
     return (
-        <div className="bg-slate-800 rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
+        <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mt-6">
             <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
-                <h2 className="text-xl font-semibold text-slate-100 flex items-center">
+                <h2 className="text-xl font-semibold text-slate-800 flex items-center">
                     <i className="fas fa-user-circle mr-3 text-[#6366F1]"></i> Profile Supervisor
                 </h2>
                 
@@ -186,21 +186,21 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                     
                     {/* Informasi Utama */}
                     <div className="text-center w-full">
-                        <h3 className="text-2xl font-bold text-slate-100 mb-1">{user.name}</h3>
+                        <h3 className="text-2xl font-bold text-slate-800 mb-1">{user.name}</h3>
                         <div className="inline-block bg-indigo-600 text-white px-3 py-1 rounded-full text-sm font-medium mb-2">
                             {user.divisionon || 'Supervisi'}
                         </div>
-                        <p className="text-slate-300 text-sm mb-4 capitalize">{user.role}</p>
+                        <p className="text-slate-600 text-sm mb-4 capitalize">{user.role}</p>
                         
                         <div className="space-y-3 w-full max-w-xs">
                             <div className="bg-slate-900 rounded-lg p-3 text-center">
-                                <p className="text-xs text-slate-400 font-medium mb-1">ID Supervisor</p>
-                                <p className="text-slate-100 font-mono">{user.nik || user.id}</p>
+                                <p className="text-xs text-slate-500 font-medium mb-1">ID Supervisor</p>
+                                <p className="text-slate-800 font-mono">{user.nik || user.id}</p>
                             </div>
                             
                             <div className="bg-slate-900 rounded-lg p-3 text-center">
-                                <p className="text-xs text-slate-400 font-medium mb-1">Date Bergabung</p>
-                                <p className="text-slate-100">{user.joinDate}</p>
+                                <p className="text-xs text-slate-500 font-medium mb-1">Date Bergabung</p>
+                                <p className="text-slate-800">{user.joinDate}</p>
                             </div>
                             
                             <div className="bg-green-50 rounded-lg p-3 text-center border border-green-100">
@@ -218,7 +218,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                             <button
                                 onClick={handleCancel}
                                 disabled={!!pendingRequest}
-                                className="px-4 py-2 border border-gray-300 text-slate-200 rounded-lg font-medium hover:bg-slate-900 transition-colors disabled:opacity-50"
+                                className="px-4 py-2 border border-gray-300 text-slate-700 rounded-lg font-medium hover:bg-slate-900 transition-colors disabled:opacity-50"
                             >
                                 <i className="fas fa-times mr-2"></i> Cancel
                             </button>
@@ -236,59 +236,59 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             {/* ID Supervisor (non-editable) */}
                             <div>
-                                <label htmlFor="nik" className="block text-sm font-medium text-slate-200 mb-2">ID Supervisor</label>
+                                <label htmlFor="nik" className="block text-sm font-medium text-slate-700 mb-2">ID Supervisor</label>
                                 <input
                                     type="text"
                                     id="nik"
                                     name="nik"
                                     value={user.nik || user.id || 'SPV001'}
                                     disabled
-                                    className="w-full p-3 bg-slate-900 border border-slate-600 rounded-lg text-black"
+                                    className="w-full p-3 bg-slate-900 border border-slate-200 rounded-lg text-black"
                                 />
                             </div>
 
                             {/* Name (non-editable) */}
                             <div>
-                                <label htmlFor="name" className="block text-sm font-medium text-slate-200 mb-2">Name Lengkap</label>
+                                <label htmlFor="name" className="block text-sm font-medium text-slate-700 mb-2">Name Lengkap</label>
                                 <input
                                     type="text"
                                     id="name"
                                     name="name"
                                     value={user.name || ''}
                                     disabled
-                                    className="w-full p-3 bg-slate-900 border border-slate-600 rounded-lg text-black"
+                                    className="w-full p-3 bg-slate-900 border border-slate-200 rounded-lg text-black"
                                 />
                             </div>
 
                             {/* Division (non-editable) */}
                             <div>
-                                <label htmlFor="divisionon" className="block text-sm font-medium text-slate-200 mb-2">Division</label>
+                                <label htmlFor="divisionon" className="block text-sm font-medium text-slate-700 mb-2">Division</label>
                                 <input
                                     type="text"
                                     id="divisionon"
                                     name="divisionon"
                                     value={user.divisionon || 'Supervisi'}
                                     disabled
-                                    className="w-full p-3 bg-slate-900 border border-slate-600 rounded-lg text-black"
+                                    className="w-full p-3 bg-slate-900 border border-slate-200 rounded-lg text-black"
                                 />
                             </div>
 
                             {/* Role (non-editable) */}
                             <div>
-                                <label htmlFor="role" className="block text-sm font-medium text-slate-200 mb-2">Posisi</label>
+                                <label htmlFor="role" className="block text-sm font-medium text-slate-700 mb-2">Posisi</label>
                                 <input
                                     type="text"
                                     id="role"
                                     name="role"
                                     value={user.role || 'Supervisor'}
                                     disabled
-                                    className="w-full p-3 bg-slate-900 border border-slate-600 rounded-lg text-black"
+                                    className="w-full p-3 bg-slate-900 border border-slate-200 rounded-lg text-black"
                                 />
                             </div>
 
                             {/* Email */}
                             <div>
-                                <label htmlFor="email" className="block text-sm font-medium text-slate-200 mb-2">Email</label>
+                                <label htmlFor="email" className="block text-sm font-medium text-slate-700 mb-2">Email</label>
                                 <input
                                     type="email"
                                     id="email"
@@ -299,7 +299,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                     className={`w-full p-3 border rounded-lg transition-all text-black ${
                                         isEditing 
                                             ? 'border-[#6366F1] focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white' 
-                                            : 'border-slate-600 bg-slate-900'
+                                            : 'border-slate-200 bg-slate-900'
                                     }`}
                                     required
                                     placeholder="Contoh: supervisor@company.com"
@@ -308,7 +308,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                             
                             {/* Telepon */}
                             <div>
-                                <label htmlFor="phone" className="block text-sm font-medium text-slate-200 mb-2">Nomor Telepon</label>
+                                <label htmlFor="phone" className="block text-sm font-medium text-slate-700 mb-2">Nomor Telepon</label>
                                 <input
                                     type="tel"
                                     id="phone"
@@ -319,7 +319,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                     className={`w-full p-3 border rounded-lg transition-all text-black ${
                                         isEditing 
                                             ? 'border-[#6366F1] focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white' 
-                                            : 'border-slate-600 bg-slate-900'
+                                            : 'border-slate-200 bg-slate-900'
                                     }`}
                                     placeholder="Contoh: 081234567890"
                                 />
@@ -327,7 +327,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                             
                             {/* Alamat */}
                             <div className="md:col-span-2">
-                                <label htmlFor="address" className="block text-sm font-medium text-slate-200 mb-2">Alamat Domisili</label>
+                                <label htmlFor="address" className="block text-sm font-medium text-slate-700 mb-2">Alamat Domisili</label>
                                 <textarea
                                     id="address"
                                     name="address"
@@ -338,15 +338,15 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                     className={`w-full p-3 border rounded-lg transition-all text-black ${
                                         isEditing 
                                             ? 'border-[#6366F1] focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white' 
-                                            : 'border-slate-600 bg-slate-900'
+                                            : 'border-slate-200 bg-slate-900'
                                     }`}
                                     placeholder="Contoh: Jalan Raya No. 123, Jakarta Pusat, DKI Jakarta"
                                 />
                             </div>
 
                             {/* Dokumen: CV */}
-                            <div className="md:col-span-2 border border-slate-600 rounded-lg p-4 bg-slate-900">
-                                <label className="block text-sm font-medium text-slate-200 mb-3">Curriculum Vitae (CV)</label>
+                            <div className="md:col-span-2 border border-slate-200 rounded-lg p-4 bg-slate-900">
+                                <label className="block text-sm font-medium text-slate-700 mb-3">Curriculum Vitae (CV)</label>
                                 {isEditing ? (
                                     <div className="flex items-center gap-4">
                                         <button 
@@ -358,7 +358,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                         </button>
                                         <input type="file" ref={cvInputRef} onChange={handleCvChange} accept=".pdf,.doc,.docx" className="hidden" />
                                         {(cvFile || user.cvFile) && (
-                                            <div className="text-sm text-slate-300">
+                                            <div className="text-sm text-slate-600">
                                                 <i className="fas fa-file mr-2 text-[#6366F1]"></i>
                                                 <span className="font-medium">
                                                     {cvFile?.name || user.cvFile?.name || 'Tersave'}
@@ -374,15 +374,15 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                                 <span className="font-medium">{user.cvFile.name}</span>
                                             </div>
                                         ) : (
-                                            <span className="text-slate-400 text-sm">Belum ada file CV</span>
+                                            <span className="text-slate-500 text-sm">Belum ada file CV</span>
                                         )}
                                     </div>
                                 )}
                             </div>
 
                             {/* Dokumen: Ijazah */}
-                            <div className="md:col-span-2 border border-slate-600 rounded-lg p-4 bg-slate-900">
-                                <label className="block text-sm font-medium text-slate-200 mb-3">Ijazah Terakhir</label>
+                            <div className="md:col-span-2 border border-slate-200 rounded-lg p-4 bg-slate-900">
+                                <label className="block text-sm font-medium text-slate-700 mb-3">Ijazah Terakhir</label>
                                 {isEditing ? (
                                     <div className="flex items-center gap-4">
                                         <button 
@@ -394,7 +394,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                         </button>
                                         <input type="file" ref={diplomaInputRef} onChange={handleDiplomaChange} accept=".pdf,.jpg,.png" className="hidden" />
                                         {(diplomaFile || user.diplomaFile) && (
-                                            <div className="text-sm text-slate-300">
+                                            <div className="text-sm text-slate-600">
                                                 <i className="fas fa-file-alt mr-2 text-[#6366F1]"></i>
                                                 <span className="font-medium">
                                                     {diplomaFile?.name || user.diplomaFile?.name || 'Tersave'}
@@ -410,7 +410,7 @@ const SupervisorProfile = ({ user, employees, setEmployees, setAuthUser, pending
                                                 <span className="font-medium">{user.diplomaFile.name}</span>
                                             </div>
                                         ) : (
-                                            <span className="text-slate-400 text-sm">Belum ada file ijazah</span>
+                                            <span className="text-slate-500 text-sm">Belum ada file ijazah</span>
                                         )}
                                     </div>
                                 )}

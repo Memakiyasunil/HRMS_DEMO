@@ -86,7 +86,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
             case 'Baik': return { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-200' };
             case 'Cukup': return { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-yellow-200' };
             case 'Perlu Perbaikan': return { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-200' };
-            default: return { bg: 'bg-gray-100', text: 'text-slate-100', border: 'border-slate-600' };
+            default: return { bg: 'bg-gray-100', text: 'text-slate-800', border: 'border-slate-200' };
         }
     };
     
@@ -102,7 +102,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
     return (
         <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={onClose}>
             <div 
-                className="bg-slate-800 rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center mb-6">
@@ -111,7 +111,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
                         onClick={onClose}
                         className="p-2 rounded-full hover:bg-gray-100 transition-colors"
                     >
-                        <i className="fas fa-times text-slate-400"></i>
+                        <i className="fas fa-times text-slate-500"></i>
                     </button>
                 </div>
                 
@@ -159,7 +159,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
                                         }}
                                     ></div>
                                 </div>
-                                <div className="text-xs text-slate-400 mt-1">
+                                <div className="text-xs text-slate-500 mt-1">
                                     {p.details.totalClockIns}/{p.details.assumedWorkingDays} hari • {p.details.totalLate} terlambat • {p.details.totalEarlyLeave} pulang cepat
                                 </div>
                             </div>
@@ -322,7 +322,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
             case 'Baik': return { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-200' };
             case 'Cukup': return { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-yellow-200' };
             case 'Perlu Perbaikan': return { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-200' };
-            default: return { bg: 'bg-gray-100', text: 'text-slate-100', border: 'border-slate-600' };
+            default: return { bg: 'bg-gray-100', text: 'text-slate-800', border: 'border-slate-200' };
         }
     };
 
@@ -360,7 +360,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
     const topPerformers = performanceData.slice(0, 3);
 
     return (
-        <div className="space-y-6 bg-slate-800 rounded-xl p-6 min-h-screen text-left">
+        <div className="space-y-6 bg-white rounded-xl p-6 min-h-screen text-left">
             {/* Header */}
             <div className="text-left mb-8">
                 <h2 className="text-3xl font-bold mb-2 text-black">
@@ -407,7 +407,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                 id="divisionon-filter"
                                 value={filterDivisionon}
                                 onChange={(e) => setFilterDivisionon(e.target.value)}
-                                className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-slate-800 text-black"
+                                className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-black"
                                 style={{ borderColor: colorPalette.primary }}
                             >
                                 {uniqueDivisionons.map(div => (
@@ -430,7 +430,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                 setSortBy(newSortBy);
                                 setSortOrder(newSortOrder);
                             }}
-                            className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-slate-800 text-black"
+                            className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-black"
                             style={{ borderColor: colorPalette.primary }}
                         >
                             <option value="score-desc">Skor Tertinggi</option>
@@ -443,7 +443,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                 </div>
 
                 {/* Performance Table */}
-                <div className="overflow-hidden rounded-xl">
+                <div className="overflow-x-auto rounded-xl">
                     <table className="min-w-full divide-y" style={{ borderColor: colorPalette.border }}>
                         <thead>
                             <tr style={{ background: colorPalette.primary }}>

@@ -1,4 +1,4 @@
-﻿// src/components/Reporting/EmployeeSalary.jsx
+// src/components/Reporting/EmployeeSalary.jsx
 import React from 'react';
 import { GlassCard, StatCard } from '../UI/Cards'; 
 import { formattedCurrency, calculateTotalSalary } from '../../utils/formatters'; 
@@ -93,7 +93,7 @@ const EmployeeSalary = ({ user }) => {
     };
 
     return (
-        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
+        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-50/20 border border-slate-200/60 rounded-3xl shadow-2xl">
             <div className="p-8">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
@@ -101,7 +101,7 @@ const EmployeeSalary = ({ user }) => {
                         <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
                             Detail Salary
                         </h2>
-                        <p className="text-slate-300 mt-2 flex items-center">
+                        <p className="text-slate-600 mt-2 flex items-center">
                             <i className="fas fa-calendar-alt mr-2 text-[#6366F1]"></i>
                             Periode: {new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}
                         </p>
@@ -112,7 +112,7 @@ const EmployeeSalary = ({ user }) => {
                         onClick={generatePdf}
                         className="mt-4 lg:mt-0 px-6 py-3 rounded-full bg-indigo-600 hover: text-white font-semibold shadow-lg transition-all duration-300 flex items-center group border-none focus:outline-none"
                     >
-                        <div className="w-8 h-8 rounded-full bg-slate-700/30 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                        <div className="w-8 h-8 rounded-full bg-slate-50/30 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                             <i className="fas fa-file-pdf text-white"></i>
                         </div>
                         Download Slip Salary
@@ -147,7 +147,7 @@ const EmployeeSalary = ({ user }) => {
 
                 {/* Salary Components */}
                 <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center">
+                    <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
                         <i className="fas fa-puzzle-piece mr-3 text-blue-500"></i>
                         Komponen Salary
                     </h3>
@@ -164,9 +164,9 @@ const EmployeeSalary = ({ user }) => {
                                             <i className={`${item.icon} text-${item.color}-600 text-lg`}></i>
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-slate-100 text-lg">{item.title}</h4>
+                                            <h4 className="font-bold text-slate-800 text-lg">{item.title}</h4>
                                             {item.subValue && (
-                                                <p className="text-sm text-slate-300 font-medium">{item.subValue}</p>
+                                                <p className="text-sm text-slate-600 font-medium">{item.subValue}</p>
                                             )}
                                         </div>
                                     </div>
@@ -177,8 +177,8 @@ const EmployeeSalary = ({ user }) => {
                                         item.title === 'Deductions' 
                                             ? 'text-red-600' 
                                             : item.title === 'Overtime'
-                                            ? 'text-slate-100'
-                                            : 'text-slate-100'
+                                            ? 'text-slate-800'
+                                            : 'text-slate-800'
                                     }`}>
                                         {item.title === 'Deductions' 
                                             ? `-${formattedCurrency(item.value)}`
@@ -188,7 +188,7 @@ const EmployeeSalary = ({ user }) => {
                                         }
                                     </p>
                                     {item.title === 'Overtime' && (
-                                        <p className="text-lg font-bold text-slate-200 mt-1">
+                                        <p className="text-lg font-bold text-slate-700 mt-1">
                                             {formattedCurrency(salary.overtimeHours * salary.overtimeRate)}
                                         </p>
                                     )}
@@ -199,14 +199,14 @@ const EmployeeSalary = ({ user }) => {
                 </div>
 
                 {/* Additional Information */}
-                <div className="mt-8 pt-6 border-t border-indigo-500/10">
+                <div className="mt-8 pt-6 border-t border-slate-200/60">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="p-5 rounded-2xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30">
-                            <h4 className="font-bold text-slate-100 mb-3 flex items-center">
+                        <div className="p-5 rounded-2xl bg-slate-50/30 backdrop-blur-sm border border-slate-200/60">
+                            <h4 className="font-bold text-slate-800 mb-3 flex items-center">
                                 <i className="fas fa-info-circle mr-2 text-blue-500"></i>
                                 Informasi Salary
                             </h4>
-                            <div className="space-y-2 text-sm text-slate-200">
+                            <div className="space-y-2 text-sm text-slate-700">
                                 <div className="flex justify-between">
                                     <span>Rate Overtime:</span>
                                     <span className="font-semibold">{formattedCurrency(salary.overtimeRate)}/jam</span>
@@ -222,12 +222,12 @@ const EmployeeSalary = ({ user }) => {
                             </div>
                         </div>
                         
-                        <div className="p-5 rounded-2xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30">
-                            <h4 className="font-bold text-slate-100 mb-3 flex items-center">
+                        <div className="p-5 rounded-2xl bg-slate-50/30 backdrop-blur-sm border border-slate-200/60">
+                            <h4 className="font-bold text-slate-800 mb-3 flex items-center">
                                 <i className="fas fa-clock mr-2 text-purple-500"></i>
                                 Timeline
                             </h4>
-                            <div className="space-y-2 text-sm text-slate-200">
+                            <div className="space-y-2 text-sm text-slate-700">
                                 <div className="flex justify-between">
                                     <span>Periode:</span>
                                     <span className="font-semibold">{new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}</span>

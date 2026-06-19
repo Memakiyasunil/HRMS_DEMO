@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import {
   ResponsiveContainer, PieChart, Pie, Tooltip, Legend, Cell,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line
@@ -85,7 +85,7 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-slate-100">Summary Owner Dashboard</h2>
+      <h2 className="text-2xl font-bold text-slate-800">Summary Owner Dashboard</h2>
 
       {/* BARIS 1: STATS UTAMA */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -95,14 +95,14 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
           { icon: 'fa-calendar-check', color: 'purple', label: 'Total Absensi This Month', value: totalAttendanceRecords },
           { icon: 'fa-hourglass-end', color: 'red', label: 'Total Keterlambatan', value: totalLates },
         ].map((item, i) => (
-          <div key={i} className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <div key={i} className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-200/60 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
             <div className="flex items-center">
               <div className={`bg-${item.color}-100 p-3 rounded-xl`}>
                 <i className={`fas ${item.icon} text-${item.color}-600 text-lg`}></i>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-slate-300">{item.label}</p>
-                <p className="text-2xl font-bold text-slate-100">{item.value}</p>
+                <p className="text-sm text-slate-600">{item.label}</p>
+                <p className="text-2xl font-bold text-slate-800">{item.value}</p>
               </div>
             </div>
           </div>
@@ -205,22 +205,22 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
 // --- Small helper components ---
 const SummaryCard = ({ icon, color, label, value }) => (
-  <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+  <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-200/60 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
     <div className="flex items-center">
       <div className={`bg-${color}-100 p-3 rounded-xl`}>
         <i className={`fas ${icon} text-${color}-600 text-lg`}></i>
       </div>
       <div className="ml-4">
-        <p className="text-sm text-slate-300">{label}</p>
-        <p className="text-2xl font-bold text-slate-100">{value}</p>
+        <p className="text-sm text-slate-600">{label}</p>
+        <p className="text-2xl font-bold text-slate-800">{value}</p>
       </div>
     </div>
   </div>
 );
 
 const ChartCard = ({ title, children }) => (
-  <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-    <h3 className="text-lg font-bold text-slate-100 mb-4">{title}</h3>
+  <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/60 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+    <h3 className="text-lg font-bold text-slate-800 mb-4">{title}</h3>
     {children}
   </div>
 );

@@ -1,10 +1,10 @@
-﻿// src/components/Approvals/ManagerLeaveApproval.jsx
+// src/components/Approvals/ManagerLeaveApproval.jsx
 import React from 'react';
 import { showSwal } from '../../utils/swal';
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-white/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -14,7 +14,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
-        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-50/60",
         success: "bg-emerald-500/90 text-white hover:bg-emerald-600 active:scale-95",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
         ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
@@ -44,7 +44,7 @@ const LeaveTypeBadge = ({ type }) => {
         'Cuti Besar': { color: 'bg-orange-100 text-orange-700', icon: 'fa-umbrella-beach' }
     };
     
-    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-200', icon: 'fa-calendar' };
+    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-700', icon: 'fa-calendar' };
     
     return (
         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${config.color}`}>
@@ -85,43 +85,43 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     <div className="flex items-start justify-between">
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <h3 className="text-lg font-semibold text-slate-100">{request.employeeName}</h3>
+                                <h3 className="text-lg font-semibold text-slate-800">{request.employeeName}</h3>
                                 <StatusBadge status={request.status} />
                             </div>
                             <div className="flex items-center gap-3">
                                 <LeaveTypeBadge type={request.type} />
-                                <span className="text-sm text-slate-300 font-medium">
+                                <span className="text-sm text-slate-600 font-medium">
                                     {request.days} hari
                                 </span>
                             </div>
                         </div>
                         <div className="text-right">
-                            <p className="text-sm text-slate-400">Leave Balance</p>
+                            <p className="text-sm text-slate-500">Leave Balance</p>
                             <p className="text-lg font-bold text-[#6366F1]">{employeeDetail.cutiBalance} hari</p>
                         </div>
                     </div>
                     
                     {/* Date Range */}
                     <div className="bg-white/40 rounded-2xl p-4">
-                        <p className="text-sm text-slate-400 mb-3">Periode Cuti</p>
+                        <p className="text-sm text-slate-500 mb-3">Periode Cuti</p>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2 text-sm text-slate-200">
+                            <div className="flex items-center gap-2 text-sm text-slate-700">
                                 <div className="bg-indigo-600/10 p-2 rounded-2xl">
                                     <i className="fas fa-calendar-day text-[#6366F1] text-sm"></i>
                                 </div>
                                 <div>
                                     <p className="font-medium">{request.startDate}</p>
-                                    <p className="text-xs text-slate-400">Mulai</p>
+                                    <p className="text-xs text-slate-500">Mulai</p>
                                 </div>
                             </div>
                             <i className="fas fa-arrow-right text-gray-400 text-sm"></i>
-                            <div className="flex items-center gap-2 text-sm text-slate-200">
+                            <div className="flex items-center gap-2 text-sm text-slate-700">
                                 <div className="bg-indigo-600/10 p-2 rounded-2xl">
                                     <i className="fas fa-calendar-day text-[#6366F1] text-sm"></i>
                                 </div>
                                 <div>
                                     <p className="font-medium">{request.endDate}</p>
-                                    <p className="text-xs text-slate-400">Completed</p>
+                                    <p className="text-xs text-slate-500">Completed</p>
                                 </div>
                             </div>
                         </div>
@@ -129,8 +129,8 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     
                     {/* Reason */}
                     <div className="bg-white/40 rounded-2xl p-4">
-                        <p className="text-sm text-slate-400 mb-2">Reason Cuti</p>
-                        <p className="text-slate-200 text-sm leading-relaxed">
+                        <p className="text-sm text-slate-500 mb-2">Reason Cuti</p>
+                        <p className="text-slate-700 text-sm leading-relaxed">
                             {request.reason}
                         </p>
                     </div>
@@ -142,15 +142,15 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                                 <i className="fas fa-file-medical text-[#6366F1]"></i>
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-slate-200">File Pendukung</p>
-                                <p className="text-xs text-slate-400">Surat dokter tersedia</p>
+                                <p className="text-sm font-medium text-slate-700">File Pendukung</p>
+                                <p className="text-xs text-slate-500">Surat dokter tersedia</p>
                             </div>
                         </div>
                     )}
                 </div>
                 
                 {/* Right Section - Action Buttons */}
-                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-200">
+                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-700">
                     <ActionButton 
                         onClick={() => onApprove(request)}
                         variant="success"
@@ -184,8 +184,8 @@ const StatsCard = ({ value, label, color = '[#6366F1]', icon }) => (
             <i className={`fas ${icon} text-${color} text-lg`}></i>
         </div>
         <div>
-            <p className="text-2xl font-bold text-slate-100">{value}</p>
-            <p className="text-sm text-slate-300">{label}</p>
+            <p className="text-2xl font-bold text-slate-800">{value}</p>
+            <p className="text-sm text-slate-600">{label}</p>
         </div>
     </GlassCard>
 );
@@ -196,8 +196,8 @@ const EmptyState = () => (
         <div className="bg-indigo-600/10 p-8 rounded-3xl inline-block mb-6">
             <i className="fas fa-check-circle text-4xl text-[#6366F1]"></i>
         </div>
-        <h3 className="text-xl font-semibold text-slate-200 mb-3">Tidak Ada Permintaan Cuti</h3>
-        <p className="text-slate-400 text-sm max-w-md mx-auto">
+        <h3 className="text-xl font-semibold text-slate-700 mb-3">Tidak Ada Permintaan Cuti</h3>
+        <p className="text-slate-500 text-sm max-w-md mx-auto">
             All permintaan cuti telah diproses. Tim Anda sedang bekerja dengan produktif.
         </p>
     </div>
@@ -255,8 +255,8 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                         <i className="fas fa-plane-departure text-white text-xl"></i>
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-slate-100 text-left">Perapprovean Cuti</h2>
-                        <p className="text-slate-300 text-sm text-left">Kelola permintaan cuti dari tim Anda</p>
+                        <h2 className="text-2xl font-bold text-slate-800 text-left">Perapprovean Cuti</h2>
+                        <p className="text-slate-600 text-sm text-left">Kelola permintaan cuti dari tim Anda</p>
                     </div>
                 </div>
                 
@@ -291,8 +291,8 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                     <div className="space-y-4 text-left">
                         <div className="flex justify-between items-center mb-4 ">
                             <div>
-                                <h3 className="text-lg font-semibold text-slate-100">Permintaan Cuti</h3>
-                                <p className="text-slate-300 text-sm">{pendingCount} permintaan perlu ditinjau</p>
+                                <h3 className="text-lg font-semibold text-slate-800">Permintaan Cuti</h3>
+                                <p className="text-slate-600 text-sm">{pendingCount} permintaan perlu ditinjau</p>
                             </div>
                             
                             {/* Bulk Actions */}

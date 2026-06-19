@@ -1,4 +1,4 @@
-﻿import React, { useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { GlassCard } from '../UI/Cards';
 import { PrimaryButton, TabButton, PrimaryButton2 } from '../UI/Buttons';
 import { showSwal } from '../../utils/swal';
@@ -57,22 +57,22 @@ const EmployeePermission = ({ user }) => {
   };
 
   return (
-    <div className="bg-slate-800 rounded-2xl shadow-sm border border-gray-100 p-6">
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
       <div className="flex justify-between items-center mb-6 pb-4 border-b border-gray-100">
-        <h2 className="text-xl font-semibold text-slate-100 flex items-center">
+        <h2 className="text-xl font-semibold text-slate-800 flex items-center">
           <i className="fas fa-user-clock mr-3 text-[#6366F1]"></i> Izin Keterlambatan & Pulang Cepat
         </h2>
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-slate-600 mb-6">
+      <div className="flex border-b border-slate-200 mb-6">
         <TabButton
           active={activeType === 'late'}
           onClick={() => setActiveType('late')}
           className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
             activeType === 'late'
               ? 'border-[#6366F1] text-[#6366F1]'
-              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+              : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
           }`}
         >
           Izin Telat Datang
@@ -83,7 +83,7 @@ const EmployeePermission = ({ user }) => {
           className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
             activeType === 'early'
               ? 'border-[#6366F1] text-[#6366F1]'
-              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+              : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
           }`}
         >
           Izin Cepat Pulang
@@ -93,7 +93,7 @@ const EmployeePermission = ({ user }) => {
       {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block text-sm font-medium text-slate-200 mb-2">
+          <label className="block text-sm font-medium text-slate-700 mb-2">
             Deskripsi
           </label>
           <textarea
@@ -105,12 +105,12 @@ const EmployeePermission = ({ user }) => {
                 ? 'Contoh: Terlambat karena macet di jalan...'
                 : 'Contoh: Harus pulang cepat karena urusan keluarga...'
             }
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
           ></textarea>
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-slate-200 mb-2">
+          <label className="block text-sm font-medium text-slate-700 mb-2">
             Evidence Foto
           </label>
           <div className="flex items-center space-x-4">
@@ -150,17 +150,17 @@ const EmployeePermission = ({ user }) => {
 
       {/* History */}
       <div className="mt-8">
-        <h3 className="text-lg font-semibold text-slate-100 mb-4">
+        <h3 className="text-lg font-semibold text-slate-800 mb-4">
           History Pengajuan
         </h3>
         {permissionHistory.length === 0 ? (
-          <p className="text-slate-400 text-sm">Belum ada pengajuan izin.</p>
+          <p className="text-slate-500 text-sm">Belum ada pengajuan izin.</p>
         ) : (
           <div className="space-y-3">
             {permissionHistory.map((p) => (
               <div
                 key={p.id}
-                className="flex items-center justify-between border border-slate-600 rounded-lg p-3"
+                className="flex items-center justify-between border border-slate-200 rounded-lg p-3"
               >
                 <div className="flex items-center space-x-3">
                   <img
@@ -169,8 +169,8 @@ const EmployeePermission = ({ user }) => {
                     className="w-12 h-12 rounded-md object-cover"
                   />
                   <div>
-                    <p className="font-medium text-slate-100">{p.type}</p>
-                    <p className="text-xs text-slate-400">{p.description}</p>
+                    <p className="font-medium text-slate-800">{p.type}</p>
+                    <p className="text-xs text-slate-500">{p.description}</p>
                     <p className="text-xs text-gray-400">{p.date}</p>
                   </div>
                 </div>

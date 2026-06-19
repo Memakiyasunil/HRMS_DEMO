@@ -266,25 +266,25 @@ const SupervisorAttendanceApproval = ({
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-        <h2 className="text-2xl font-bold text-slate-100 flex items-center">
+      <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <h2 className="text-2xl font-bold text-slate-800 flex items-center">
           <div className="bg-gray-100 p-3 rounded-xl mr-4" style={{ backgroundColor: primaryBg }}>
             <i className="fas fa-user-check text-lg" style={{ color: primaryColor }}></i>
           </div>
           Perapprovean Reason Absensi
         </h2>
-        <p className="text-slate-300 mt-2 text-left">Kelola permintaan reason absensi dari anggota tim Anda</p>
+        <p className="text-slate-600 mt-2 text-left">Kelola permintaan reason absensi dari anggota tim Anda</p>
       </div>
 
       {/* Filter Section */}
-      <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+      <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
         <div className="flex flex-wrap gap-3">
           <button 
             onClick={() => setFilterStatus('Pending')}
             className={`px-6 py-3 rounded-xl font-semibold transition-all duration-200 flex items-center ${
               filterStatus === 'Pending' 
                 ? 'text-white shadow-lg' 
-                : 'text-slate-200 bg-gray-100 hover:bg-gray-200'
+                : 'text-slate-700 bg-gray-100 hover:bg-gray-200'
             }`}
             style={filterStatus === 'Pending' ? { backgroundColor: primaryColor } : {}}
           >
@@ -294,7 +294,7 @@ const SupervisorAttendanceApproval = ({
           
           <div className="flex-1"></div>
           
-          <div className="flex items-center space-x-2 text-sm text-slate-300">
+          <div className="flex items-center space-x-2 text-sm text-slate-600">
             <i className="fas fa-info-circle" style={{ color: primaryColor }}></i>
             <span>Total: {safePendingAttendance.length} permintaan reason</span>
           </div>
@@ -302,14 +302,14 @@ const SupervisorAttendanceApproval = ({
       </div>
 
       {/* Attendance Requests List */}
-      <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] overflow-hidden">
+      <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] overflow-hidden">
         {filteredAttendance.length === 0 ? (
           <div className="p-12 text-center">
             <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4" style={{ backgroundColor: primaryBg }}>
               <i className="fas fa-user-check text-2xl" style={{ color: primaryColor }}></i>
             </div>
-            <h3 className="text-xl font-bold text-slate-100 mb-2">No permintaan reason</h3>
-            <p className="text-slate-300">All permintaan reason absensi telah diproses.</p>
+            <h3 className="text-xl font-bold text-slate-800 mb-2">No permintaan reason</h3>
+            <p className="text-slate-600">All permintaan reason absensi telah diproses.</p>
           </div>
         ) : (
           <div className="divide-y divide-gray-200">
@@ -332,7 +332,7 @@ const SupervisorAttendanceApproval = ({
                       
                       <div className="flex-1">
                         <div className="flex items-center gap-2">
-                          <h3 className="font-bold text-slate-100">{req.employee_name}</h3>
+                          <h3 className="font-bold text-slate-800">{req.employee_name}</h3>
                           <span className="px-2 py-1 text-xs font-semibold rounded-full bg-yellow-100 text-yellow-800">
                             {req.reason_type}
                           </span>
@@ -340,7 +340,7 @@ const SupervisorAttendanceApproval = ({
                             {req.type}
                           </span>
                         </div>
-                        <div className="flex items-center gap-4 mt-1 text-sm text-slate-300">
+                        <div className="flex items-center gap-4 mt-1 text-sm text-slate-600">
                           <span><i className="fas fa-calendar-day mr-1"></i> {req.date}</span>
                           <span><i className="fas fa-clock mr-1"></i> {req.time}</span>
                           <span><i className="fas fa-building mr-1"></i> {req.divisionon}</span>
@@ -397,13 +397,13 @@ const SupervisorAttendanceApproval = ({
                 
                 {/* Expanded Details */}
                 {expandedItems[req.id] && (
-                  <div className="px-4 pb-4 bg-slate-900 border-t border-slate-600">
+                  <div className="px-4 pb-4 bg-slate-900 border-t border-slate-200">
                     <div className="pt-4 grid grid-cols-1 lg:grid-cols-2 gap-6">
                       <div className="space-y-4">
                         <div>
-                          <p className="text-sm text-slate-300 mb-2">
+                          <p className="text-sm text-slate-600 mb-2">
                             <i className="fas fa-user mr-2" style={{ color: primaryColor }}></i>
-                            <span className="font-medium text-slate-100">{req.employee_name}</span> • {req.divisionon}
+                            <span className="font-medium text-slate-800">{req.employee_name}</span> • {req.divisionon}
                           </p>
                         </div>
                         
@@ -412,13 +412,13 @@ const SupervisorAttendanceApproval = ({
                             <i className="fas fa-exclamation-circle mr-2"></i>
                             Reason Permintaan
                           </p>
-                          <p className="text-slate-200 italic">"{req.description}"</p>
+                          <p className="text-slate-700 italic">"{req.description}"</p>
                         </div>
 
                         {/* Foto Absensi */}
                         {req.photo_url && (
-                          <div className="bg-slate-900 rounded-lg p-4 border border-slate-600">
-                            <p className="font-semibold text-slate-100 mb-2 flex items-center">
+                          <div className="bg-slate-900 rounded-lg p-4 border border-slate-200">
+                            <p className="font-semibold text-slate-800 mb-2 flex items-center">
                               <i className="fas fa-camera mr-2" style={{ color: primaryColor }}></i>
                               Foto Absensi
                             </p>
@@ -452,11 +452,11 @@ const SupervisorAttendanceApproval = ({
                           </div>
                         </div>
                         
-                        <div className="flex items-center p-3 bg-slate-900 rounded-lg border border-slate-600">
-                          <i className="fas fa-clock text-slate-400 mr-3"></i>
+                        <div className="flex items-center p-3 bg-slate-900 rounded-lg border border-slate-200">
+                          <i className="fas fa-clock text-slate-500 mr-3"></i>
                           <div>
-                            <p className="font-medium text-slate-100">Status: Pending Perapprovean</p>
-                            <p className="text-xs text-slate-300">Review foto dan reason sebelum memberikan keputusan</p>
+                            <p className="font-medium text-slate-800">Status: Pending Perapprovean</p>
+                            <p className="text-xs text-slate-600">Review foto dan reason sebelum memberikan keputusan</p>
                           </div>
                         </div>
                       </div>
@@ -471,25 +471,25 @@ const SupervisorAttendanceApproval = ({
 
       {/* Quick Stats */}
       {filteredAttendance.length > 0 && (
-        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-50/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-200/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
               <div className="text-2xl font-bold mb-1" style={{ color: primaryColor }}>
                 {filteredAttendance.length}
               </div>
-              <p className="text-sm text-slate-300">Total Permintaan</p>
+              <p className="text-sm text-slate-600">Total Permintaan</p>
             </div>
-            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
               <div className="text-2xl font-bold mb-1 text-blue-600">
                 {filteredAttendance.filter(r => r.type === 'Clock In').length}
               </div>
-              <p className="text-sm text-slate-300">Koreksi Clock In</p>
+              <p className="text-sm text-slate-600">Koreksi Clock In</p>
             </div>
-            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-600">
+            <div className="text-center p-4 rounded-xl bg-slate-900 border border-slate-200">
               <div className="text-2xl font-bold mb-1 text-purple-600">
                 {filteredAttendance.filter(r => r.type === 'Clock Out').length}
               </div>
-              <p className="text-sm text-slate-300">Koreksi Pulang</p>
+              <p className="text-sm text-slate-600">Koreksi Pulang</p>
             </div>
           </div>
         </div>

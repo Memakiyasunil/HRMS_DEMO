@@ -129,11 +129,11 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
             {/* Header */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
                 <div className="mb-4 lg:mb-0">
-                    <h2 className="text-2xl font-semibold text-slate-100 flex items-center">
+                    <h2 className="text-2xl font-semibold text-slate-800 flex items-center">
                         <i className="fas fa-clock mr-3 text-[#6366F1]"></i>
                         Perapprovean Izin Employee
                     </h2>
-                    <p className="text-slate-300 text-sm mt-1">Kelola permintaan izin terlambat dan cepat pulang dari tim</p>
+                    <p className="text-slate-600 text-sm mt-1">Kelola permintaan izin terlambat dan cepat pulang dari tim</p>
                 </div>
                 
                 {/* Filters */}
@@ -141,7 +141,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                     <select
                         value={filterType}
                         onChange={(e) => setFilterType(e.target.value)}
-                        className="px-4 py-2 bg-slate-800 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] text-black"
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] text-black"
                     >
                         <option value="all">All Tipe</option>
                         <option value="terlambat">Late Permission</option>
@@ -151,7 +151,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                     <select
                         value={filterStatus}
                         onChange={(e) => setFilterStatus(e.target.value)}
-                        className="px-4 py-2 bg-slate-800 border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] text-black"
+                        className="px-4 py-2 bg-white border border-gray-300 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1] text-black"
                     >
                         <option value="all">All Status</option>
                         <option value="pending">Pending</option>
@@ -161,26 +161,26 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                 </div>
             </div>
 
-            <GlassCard className="bg-slate-800 rounded-xl shadow-sm p-6">
+            <GlassCard className="bg-white rounded-xl shadow-sm p-6">
                 {/* Statistics */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <div className="bg-slate-900 rounded-xl p-4">
                         <div className="text-2xl font-bold text-[#6366F1]">
                             {permissions.filter(p => p.status === 'pending').length}
                         </div>
-                        <div className="text-sm text-slate-300">Pending Perapprovean</div>
+                        <div className="text-sm text-slate-600">Pending Perapprovean</div>
                     </div>
                     <div className="bg-slate-900 rounded-xl p-4">
                         <div className="text-2xl font-bold text-orange-600">
                             {permissions.filter(p => p.type === 'terlambat').length}
                         </div>
-                        <div className="text-sm text-slate-300">Late Permission</div>
+                        <div className="text-sm text-slate-600">Late Permission</div>
                     </div>
                     <div className="bg-slate-900 rounded-xl p-4">
                         <div className="text-2xl font-bold text-blue-600">
                             {permissions.filter(p => p.type === 'cepat_pulang').length}
                         </div>
-                        <div className="text-sm text-slate-300">Izin Cepat Pulang</div>
+                        <div className="text-sm text-slate-600">Izin Cepat Pulang</div>
                     </div>
                 </div>
 
@@ -188,14 +188,14 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                 {filteredPermissions.length === 0 ? (
                     <div className="py-12">
                         <i className="fas fa-inbox text-4xl text-gray-400 mb-3"></i>
-                        <p className="text-slate-400">No permintaan izin</p>
+                        <p className="text-slate-500">No permintaan izin</p>
                     </div>
                 ) : (
                     <div className="space-y-4 text-left">
                         {filteredPermissions.map((permission) => (
                             <div 
                                 key={permission.id}
-                                className="bg-slate-800 border border-slate-600 rounded-xl p-4 transition-all duration-200"
+                                className="bg-white border border-slate-200 rounded-xl p-4 transition-all duration-200"
                             >
                                 <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
                                     {/* Employee Info */}
@@ -205,16 +205,16 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                                         </div>
                                         <div className="flex-1 min-w-0">
                                             <div className="flex items-center space-x-3 mb-1">
-                                                <h3 className="font-semibold text-slate-100 truncate">
+                                                <h3 className="font-semibold text-slate-800 truncate">
                                                     {permission.employeeName}
                                                 </h3>
                                                 {getTypeBadge(permission.type)}
                                                 {getStatusBadge(permission.status)}
                                             </div>
-                                            <p className="text-sm text-slate-300 truncate">
+                                            <p className="text-sm text-slate-600 truncate">
                                                 {permission.employeeDivisionon} • Diajukan pada {permission.submittedAt}
                                             </p>
-                                            <p className="text-sm text-slate-200 mt-1">
+                                            <p className="text-sm text-slate-700 mt-1">
                                                 <i className="fas fa-calendar-day mr-2 text-[#6366F1]"></i>
                                                 {permission.date} • 
                                                 {permission.type === 'terlambat' 
@@ -229,7 +229,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                                     <div className="flex items-center space-x-2">
                                         <button
                                             onClick={() => setSelectedPermission(permission)}
-                                            className="px-4 py-2 bg-gray-100 text-slate-200 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors"
+                                            className="px-4 py-2 bg-gray-100 text-slate-700 rounded-xl text-sm font-medium hover:bg-gray-200 transition-colors"
                                         >
                                             <i className="fas fa-eye mr-2"></i> Detail
                                         </button>
@@ -265,7 +265,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                     onClick={() => setSelectedPermission(null)}
                 >
                     <div 
-                        className="w-full max-w-5xl bg-slate-800 rounded-xl shadow-2xl overflow-hidden"
+                        className="w-full max-w-5xl bg-white rounded-xl shadow-2xl overflow-hidden"
                         onClick={(e) => e.stopPropagation()}
                     >
                         {/* Modal Header */}
@@ -273,7 +273,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                             <h3 className="text-lg font-semibold text-white">Detail Permintaan Izin</h3>
                             <button 
                                 onClick={() => setSelectedPermission(null)}
-                                className="w-8 h-8 rounded-full bg-slate-700/30 hover:bg-slate-800/50 transition-colors flex items-center justify-center"
+                                className="w-8 h-8 rounded-full bg-slate-50/30 hover:bg-white/50 transition-colors flex items-center justify-center"
                             >
                                 <i className="fas fa-times text-white text-sm"></i>
                             </button>
@@ -290,8 +290,8 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                                             <i className="fas fa-user text-[#6366F1] text-xl"></i>
                                         </div>
                                         <div className="text-left">
-                                            <h4 className="font-semibold text-slate-100 text-lg">{selectedPermission.employeeName}</h4>
-                                            <p className="text-slate-300">{selectedPermission.employeeDivisionon}</p>
+                                            <h4 className="font-semibold text-slate-800 text-lg">{selectedPermission.employeeName}</h4>
+                                            <p className="text-slate-600">{selectedPermission.employeeDivisionon}</p>
                                             <div className="flex items-center space-x-2 mt-2">
                                                 {getTypeBadge(selectedPermission.type)}
                                                 {getStatusBadge(selectedPermission.status)}
@@ -301,34 +301,34 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
 
                                     {/* Permission Details */}
                                     <div className="bg-slate-900 rounded-xl p-4">
-                                        <h5 className="font-medium text-slate-200 mb-3">Informasi Permintaan</h5>
+                                        <h5 className="font-medium text-slate-700 mb-3">Informasi Permintaan</h5>
                                         <div className="space-y-2 text-sm">
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Date:</span>
+                                                <span className="text-slate-600">Date:</span>
                                                 <span className="font-medium text-black">{selectedPermission.date}</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Time Normal:</span>
+                                                <span className="text-slate-600">Time Normal:</span>
                                                 <span className="font-medium text-black">{selectedPermission.originalTime}</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Time Permintaan:</span>
+                                                <span className="text-slate-600">Time Permintaan:</span>
                                                 <span className="font-medium text-[#6366F1]">{selectedPermission.requestTime}</span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Tipe:</span>
+                                                <span className="text-slate-600">Tipe:</span>
                                                 <span className="font-medium text-black">
                                                     {selectedPermission.type === 'terlambat' ? 'Late Permission' : 'Izin Cepat Pulang'}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Status:</span>
+                                                <span className="text-slate-600">Status:</span>
                                                 <span className="font-medium text-black">
                                                     {selectedPermission.status === 'pending' ? 'Pending' : selectedPermission.status}
                                                 </span>
                                             </div>
                                             <div className="flex justify-between">
-                                                <span className="text-slate-300">Diajukan:</span>
+                                                <span className="text-slate-600">Diajukan:</span>
                                                 <span className="font-medium text-black">{selectedPermission.submittedAt}</span>
                                             </div>
                                         </div>
@@ -336,15 +336,15 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
 
                                     {/* Reason */}
                                     <div className="bg-slate-900 rounded-xl p-4">
-                                        <h5 className="font-medium text-slate-200 mb-2">Reason Permintaan</h5>
-                                        <p className="text-slate-200 text-left">{selectedPermission.reason}</p>
+                                        <h5 className="font-medium text-slate-700 mb-2">Reason Permintaan</h5>
+                                        <p className="text-slate-700 text-left">{selectedPermission.reason}</p>
                                     </div>
                                 </div>
 
                                 {/* Right Column - Proof Image */}
                                 <div className="space-y-6">
                                     <div className="bg-slate-900 rounded-xl p-4 h-full">
-                                        <h5 className="font-medium text-slate-200 mb-3">Evidence Pendukung</h5>
+                                        <h5 className="font-medium text-slate-700 mb-3">Evidence Pendukung</h5>
                                         <div className="flex justify-center items-center h-full">
                                             <img 
                                                 src={selectedPermission.proof} 
@@ -353,7 +353,7 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
                                                 onClick={() => window.open(selectedPermission.proof, '_blank')}
                                             />
                                         </div>
-                                        <p className="text-xs text-slate-400 mt-2 text-left">Klik gambar untuk meview ukuran penuh</p>
+                                        <p className="text-xs text-slate-500 mt-2 text-left">Klik gambar untuk meview ukuran penuh</p>
                                     </div>
                                 </div>
                             </div>
@@ -361,10 +361,10 @@ const ManagerPermissionApproval = ({ employees, setEmployees, pendingPermissions
 
                         {/* Modal Footer */}
                         {selectedPermission.status === 'pending' && (
-                            <div className="flex gap-3 p-6 border-t border-slate-600">
+                            <div className="flex gap-3 p-6 border-t border-slate-200">
                                 <button
                                     onClick={() => setSelectedPermission(null)}
-                                    className="flex-1 py-3 bg-gray-100 text-slate-200 rounded-xl font-medium transition-all duration-200 hover:bg-gray-200"
+                                    className="flex-1 py-3 bg-gray-100 text-slate-700 rounded-xl font-medium transition-all duration-200 hover:bg-gray-200"
                                 >
                                     Tutup
                                 </button>

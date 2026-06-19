@@ -64,16 +64,16 @@ const formatDate = (dateString) => {
 const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPending, leaveBalance }) => {
   if (viewMode === 'team') {
     return (
-      <div className="mb-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
+      <div className="mb-6 p-4 bg-slate-900 border border-slate-200 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="text-center flex-1">
-            <p className="text-xs text-slate-400 font-medium mb-1">Total Cuti Tim</p>
-            <p className="text-2xl font-bold text-[#6366F1]">{teamBalance} <span className="text-sm font-normal text-slate-300">hari</span></p>
+            <p className="text-xs text-slate-500 font-medium mb-1">Total Cuti Tim</p>
+            <p className="text-2xl font-bold text-[#6366F1]">{teamBalance} <span className="text-sm font-normal text-slate-600">hari</span></p>
           </div>
           <div className="h-8 border-r border-gray-300"></div>
           <div className="text-center flex-1">
-            <p className="text-xs text-slate-400 font-medium mb-1">Pending Tim</p>
-            <p className="text-2xl font-bold text-amber-600">{teamPending} <span className="text-sm font-normal text-slate-300">pengajuan</span></p>
+            <p className="text-xs text-slate-500 font-medium mb-1">Pending Tim</p>
+            <p className="text-2xl font-bold text-amber-600">{teamPending} <span className="text-sm font-normal text-slate-600">pengajuan</span></p>
           </div>
         </div>
       </div>
@@ -84,16 +84,16 @@ const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPe
   const annualLeaveBalance = balanceArray.find(b => b.leave_type_id === 1)?.remaining_days || 0;
 
   return (
-    <div className="mb-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
+    <div className="mb-6 p-4 bg-slate-900 border border-slate-200 rounded-lg">
       <div className="flex justify-between items-center">
         <div className="text-center flex-1">
-          <p className="text-xs text-slate-400 font-medium mb-1">Sisa Annual Leave</p>
-          <p className="text-2xl font-bold text-[#6366F1]">{annualLeaveBalance} <span className="text-sm font-normal text-slate-300">hari</span></p>
+          <p className="text-xs text-slate-500 font-medium mb-1">Sisa Annual Leave</p>
+          <p className="text-2xl font-bold text-[#6366F1]">{annualLeaveBalance} <span className="text-sm font-normal text-slate-600">hari</span></p>
         </div>
         <div className="h-8 border-r border-gray-300"></div>
         <div className="text-center flex-1">
-          <p className="text-xs text-slate-400 font-medium mb-1">Pending Permintaan</p>
-          <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-slate-300">pengajuan</span></p>
+          <p className="text-xs text-slate-500 font-medium mb-1">Pending Permintaan</p>
+          <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-slate-600">pengajuan</span></p>
         </div>
       </div>
     </div>
@@ -103,14 +103,14 @@ const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPe
 // LeaveTabs Component
 const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, canViewTeam }) => {
   return (
-    <div className="flex border-b border-slate-600 mb-6">
+    <div className="flex border-b border-slate-200 mb-6">
       <TabButton
         active={activeLeaveTab === 'request'}
         onClick={() => setActiveLeaveTab('request')}
         className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
           activeLeaveTab === 'request' 
             ? 'border-[#6366F1] text-[#6366F1]' 
-            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+            : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
         }`}
       >
         {viewMode === 'personal' ? 'Ajukan Cuti/Izin' : 'Pengajuan Baru'}
@@ -122,7 +122,7 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
         className={`px-4 py-2 font-medium text-sm border-b-2${
           activeLeaveTab === 'history' 
             ? 'border-[#6366F1] text-[#6366F1]' 
-            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+            : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
         }`}
       >
         History Cuti
@@ -135,7 +135,7 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
           className={`px-4 py-2 font-medium text-sm border-b-2${
             activeLeaveTab === 'approval' 
               ? 'border-[#6366F1] text-[#6366F1]' 
-              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+              : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
           }`}
         >
           Perapprovean
@@ -149,7 +149,7 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
           className={`px-4 py-2 font-medium text-sm border-b-2${
             activeLeaveTab === 'team' 
               ? 'border-[#6366F1] text-[#6366F1]' 
-              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
+              : 'border-transparent text-slate-500 hover:text-slate-700 border-none focus:outline-none'
           }`}
         >
           Tim
@@ -284,14 +284,14 @@ const LeaveRequestForm = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="leaveType" className="block text-sm font-medium text-slate-200 mb-2">
+          <label htmlFor="leaveType" className="block text-sm font-medium text-slate-700 mb-2">
             Tipe Pengajuan
           </label>
           <select
             id="leaveType"
             value={leaveTypeId}
             onChange={(e) => setLeaveTypeId(Number(e.target.value))}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
             required
           >
             <option value="">Select Jenis Cuti</option>
@@ -302,7 +302,7 @@ const LeaveRequestForm = ({
         </div>
 
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-slate-200 mb-2">
+          <label htmlFor="title" className="block text-sm font-medium text-slate-700 mb-2">
             Judul Pengajuan
           </label>
           <input
@@ -310,7 +310,7 @@ const LeaveRequestForm = ({
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
             placeholder="Contoh: Liburan Clock Outga"
             required
           />
@@ -319,7 +319,7 @@ const LeaveRequestForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="startDate" className="block text-sm font-medium text-slate-200 mb-2">
+          <label htmlFor="startDate" className="block text-sm font-medium text-slate-700 mb-2">
             Date Mulai
           </label>
           <input
@@ -327,12 +327,12 @@ const LeaveRequestForm = ({
             id="startDate"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
             required
           />
         </div>
         <div>
-          <label htmlFor="endDate" className="block text-sm font-medium text-slate-200 mb-2">
+          <label htmlFor="endDate" className="block text-sm font-medium text-slate-700 mb-2">
             Date Berakhir
           </label>
           <input
@@ -341,20 +341,20 @@ const LeaveRequestForm = ({
             value={endDate}
             min={startDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
             required
           />
         </div>
       </div>
 
-      <div className="p-3 bg-slate-900 border border-slate-600 rounded-lg">
+      <div className="p-3 bg-slate-900 border border-slate-200 rounded-lg">
         <div className="flex justify-between items-center">
-          <span className="text-sm text-slate-300">Estimasi Hari Kerja:</span>
+          <span className="text-sm text-slate-600">Estimasi Hari Kerja:</span>
           <span className="font-bold text-[#6366F1] text-lg">{estimatedDays || 0} hari</span>
         </div>
         {leaveTypeId === 1 && (
-          <div className="flex justify-between items-center mt-2 pt-2 border-t border-slate-600">
-            <span className="text-sm text-slate-300">Estimasi Sisa Leave:</span>
+          <div className="flex justify-between items-center mt-2 pt-2 border-t border-slate-200">
+            <span className="text-sm text-slate-600">Estimasi Sisa Leave:</span>
             <span className={`font-bold text-lg ${
               (user.cutiBalance || 0) - estimatedDays >= 0 ? 'text-green-600' : 'text-red-600'
             }`}>
@@ -365,7 +365,7 @@ const LeaveRequestForm = ({
       </div>
       
       <div>
-        <label htmlFor="reason" className="block text-sm font-medium text-slate-200 mb-2">
+        <label htmlFor="reason" className="block text-sm font-medium text-slate-700 mb-2">
           Reason Pengajuan
         </label>
         <textarea
@@ -373,14 +373,14 @@ const LeaveRequestForm = ({
           rows="3"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black"
           placeholder="Jelaskan reason..."
           required
         ></textarea>
       </div>
 
       <div>
-        <label htmlFor="attachments" className="block text-sm font-medium text-slate-200 mb-2">
+        <label htmlFor="attachments" className="block text-sm font-medium text-slate-700 mb-2">
           Lampiran Dokumen (Opsional)
         </label>
         <div className="border border-dashed border-gray-300 rounded-lg p-4 bg-slate-900">
@@ -393,20 +393,20 @@ const LeaveRequestForm = ({
           />
           <label htmlFor="attachments" className="cursor-pointer flex flex-col items-center justify-center">
             <i className="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
-            <span className="text-sm text-slate-300">Klik untuk mengunggah dokumen</span>
-            <span className="text-xs text-slate-400 mt-1">PDF, JPG, PNG (Maks. 5MB per file)</span>
+            <span className="text-sm text-slate-600">Klik untuk mengunggah dokumen</span>
+            <span className="text-xs text-slate-500 mt-1">PDF, JPG, PNG (Maks. 5MB per file)</span>
           </label>
         </div>
         
         {attachments.length > 0 && (
           <div className="mt-3 space-y-2">
-            <p className="text-sm font-medium text-slate-200">Dokumen yang akan diunggah:</p>
+            <p className="text-sm font-medium text-slate-700">Dokumen yang akan diunggah:</p>
             {attachments.map((file, index) => (
               <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
                 <div className="flex items-center">
-                  <i className="fas fa-file mr-2 text-slate-400"></i>
-                  <span className="text-sm text-slate-200 truncate max-w-xs">{file.name}</span>
-                  <span className="text-xs text-slate-400 ml-2">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                  <i className="fas fa-file mr-2 text-slate-500"></i>
+                  <span className="text-sm text-slate-700 truncate max-w-xs">{file.name}</span>
+                  <span className="text-xs text-slate-500 ml-2">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                 </div>
                 <button
                   type="button"
@@ -482,7 +482,7 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
           placeholder="Search history cuti..."
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black focus:outline-none"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-white text-black focus:outline-none"
         />
       </div>
 
@@ -495,33 +495,33 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
         </p>
       </div>
 
-      <div className="overflow-x-auto border border-slate-600 rounded-lg">
+      <div className="overflow-x-auto border border-slate-200 rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
           <thead className="bg-slate-900">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Judul</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Tipe</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Periode</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Hari</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Status</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Lampiran</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Action</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Judul</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Tipe</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Periode</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Hari</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Status</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Lampiran</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Action</th>
             </tr>
           </thead>
-          <tbody className="bg-slate-800 divide-y divide-gray-200">
+          <tbody className="bg-white divide-y divide-gray-200">
             {filtered.map((leave, index) => (
               <tr key={leave.id} className="hover:bg-slate-900 transition-colors">
                 <td className="px-4 py-4">
-                  <p className="text-sm font-medium text-slate-100">{leave.title}</p>
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{leave.reason}</p>
+                  <p className="text-sm font-medium text-slate-800">{leave.title}</p>
+                  <p className="text-xs text-slate-500 mt-1 line-clamp-2">{leave.reason}</p>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap">
-                  <span className="text-sm text-slate-200">{leave.type}</span>
+                  <span className="text-sm text-slate-700">{leave.type}</span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">
                   {formatDate(leave.startDate)} s/d {formatDate(leave.endDate)}
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">{leave.days} hari</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">{leave.days} hari</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm">
                   <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                     leave.status === 'Approved' ? 'bg-green-100 text-green-800' :
@@ -569,7 +569,7 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
       {filtered.length === 0 && (
         <div className="text-center py-8">
           <i className="fas fa-inbox text-gray-300 text-4xl mb-3"></i>
-          <p className="text-slate-400">
+          <p className="text-slate-500">
             {searchKeyword ? 'No history yang sesuai.' : 'Belum ada history cuti.'}
           </p>
         </div>
@@ -609,7 +609,7 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
   return (
     <div>
       <div className="mb-4 flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-slate-100">
+        <h3 className="text-lg font-semibold text-slate-800">
           <i className="fas fa-clipboard-check mr-2 text-amber-600"></i>
           Pengajuan Pending Perapprovean
         </h3>
@@ -621,47 +621,47 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
       {pendingArray.length === 0 ? (
         <div className="text-center py-8 bg-slate-900 rounded-lg">
           <i className="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
-          <p className="text-slate-400">No pengajuan pending.</p>
+          <p className="text-slate-500">No pengajuan pending.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto border border-slate-600 rounded-lg">
+        <div className="overflow-x-auto border border-slate-200 rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-slate-900">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Employee</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Judul</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Tipe</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Periode</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Hari</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Lampiran</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Action</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Employee</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Judul</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Tipe</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Periode</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Hari</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Lampiran</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-slate-800 divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200">
               {pendingArray.map((leave) => (
                 <tr key={leave.id} className="hover:bg-slate-900 transition-colors">
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
-                        <i className="fas fa-user text-slate-400 text-xs"></i>
+                        <i className="fas fa-user text-slate-500 text-xs"></i>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-slate-100">{leave.employeeName}</p>
-                        <p className="text-xs text-slate-400">{leave.divisionon}</p>
+                        <p className="text-sm font-medium text-slate-800">{leave.employeeName}</p>
+                        <p className="text-xs text-slate-500">{leave.divisionon}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-4">
-                    <p className="text-sm font-medium text-slate-100">{leave.title}</p>
-                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{leave.reason}</p>
+                    <p className="text-sm font-medium text-slate-800">{leave.title}</p>
+                    <p className="text-xs text-slate-500 mt-1 line-clamp-2">{leave.reason}</p>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
-                    <span className="text-sm text-slate-200">{leave.type}</span>
+                    <span className="text-sm text-slate-700">{leave.type}</span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">
                     {formatDate(leave.startDate)} s/d {formatDate(leave.endDate)}
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">{leave.days} hari</td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-500">{leave.days} hari</td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm">
                     {leave.attachments && leave.attachments.length > 0 ? (
                       <span className="text-blue-600">
@@ -707,28 +707,28 @@ const TeamLeaveList = ({ employees, onEmployeeSelect, viewMode }) => {
 
   return (
     <div className="mt-8">
-      <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center">
+      <h3 className="text-2xl font-bold text-slate-800 mb-6 flex items-center">
         <i className="fas fa-users mr-3 text-blue-500"></i>
         {getListTitle()}
       </h3>
       <div className="overflow-x-auto">
-        <table className="w-full bg-slate-700/30 backdrop-blur-sm rounded-2xl overflow-hidden">
-          <thead className="bg-slate-700/20">
+        <table className="w-full bg-slate-50/30 backdrop-blur-sm rounded-2xl overflow-hidden">
+          <thead className="bg-slate-50/20">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Name</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Division</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Leave Balance</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Pending</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Action</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-800">Name</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-800">Division</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-800">Leave Balance</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-800">Pending</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-800">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/10">
             {employeesArray.map((employee) => (
               <tr key={employee.id} className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 text-sm text-slate-100 font-medium">{employee.name}</td>
-                <td className="px-6 py-4 text-sm text-slate-200">{employee.divisionon}</td>
-                <td className="px-6 py-4 text-sm text-slate-100">{employee.cutiBalance || 0} hari</td>
-                <td className="px-6 py-4 text-sm text-slate-100">
+                <td className="px-6 py-4 text-sm text-slate-800 font-medium">{employee.name}</td>
+                <td className="px-6 py-4 text-sm text-slate-700">{employee.divisionon}</td>
+                <td className="px-6 py-4 text-sm text-slate-800">{employee.cutiBalance || 0} hari</td>
+                <td className="px-6 py-4 text-sm text-slate-800">
                   {employee.leaveHistory ? employee.leaveHistory.filter(l => l.status === 'Pending').length : 0}
                 </td>
                 <td className="px-6 py-4 text-sm">
@@ -998,13 +998,13 @@ const EmployeeLeaveRequest = ({
 
   if (!canRequestLeave && !canApproveLeave && !canViewTeamLeave) {
     return (
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-50/20 border border-slate-200/60 rounded-3xl shadow-2xl">
         <div className="p-8 text-center">
           <div className="w-24 h-24 rounded-2xl bg-red-500/20 flex items-center justify-center mx-auto mb-4">
             <i className="fas fa-exclamation-triangle text-red-500 text-3xl"></i>
           </div>
-          <h3 className="text-xl font-bold text-slate-100 mb-2">Akses Direject</h3>
-          <p className="text-slate-300">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+          <h3 className="text-xl font-bold text-slate-800 mb-2">Akses Direject</h3>
+          <p className="text-slate-600">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
         </div>
       </GlassCard>
     );
@@ -1012,7 +1012,7 @@ const EmployeeLeaveRequest = ({
 
   return (
     <ErrorBoundary>
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-50/20 border border-slate-200/60 rounded-3xl shadow-2xl">
         <div className="p-8">
           {isLoading ? (
             <div className="flex justify-center items-center h-64">
@@ -1025,7 +1025,7 @@ const EmployeeLeaveRequest = ({
                   <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
                     {getViewTitle(viewMode, user.name)}
                   </h2>
-                  <p className="text-slate-300 mt-2 flex items-center">
+                  <p className="text-slate-600 mt-2 flex items-center">
                     <i className="fas fa-calendar-alt mr-2 text-[#6366F1]"></i>
                     Kelola pengajuan cuti dan izin
                   </p>

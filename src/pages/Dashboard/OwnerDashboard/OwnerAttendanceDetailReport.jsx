@@ -1,4 +1,4 @@
-﻿// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceDetailReport.jsx
+// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceDetailReport.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard } from '../../../components/Shared/Modals/componentsUtilityUI';
 import { formattedCurrency } from '../../../utils/formatters';
@@ -10,7 +10,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
         primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
-        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-50/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
         ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
@@ -32,7 +32,7 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
@@ -42,7 +42,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-white border border-[#6366F1]/20 rounded-2xl text-slate-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -50,14 +50,14 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
 // Select input with consistent styling
 const FormSelect = ({ label, icon, value, onChange, name, options, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-700 mb-2">
             <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <select 
             name={name}
             value={value || ''} 
             onChange={onChange}
-            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-white border border-[#6366F1]/20 rounded-2xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -113,17 +113,17 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                    <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-3">
                         <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-list-alt text-white text-lg"></i>
                         </div>
                         Detailed Attendance Report
                     </h2>
-                    <p className="text-slate-300 text-sm mt-2">View and export detailed attendance records</p>
+                    <p className="text-slate-600 text-sm mt-2">View and export detailed attendance records</p>
                 </div>
             </div>
 
-            <div className="bg-slate-800/50 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#6366F1]/20 p-6">
+            <div className="bg-white/50 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#6366F1]/20 p-6">
                 {/* Filter Controls */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
@@ -170,15 +170,15 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tr-xl">Location (Coordinates)</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-slate-800 divide-y divide-gray-200">
+                        <tbody className="bg-white divide-y divide-gray-200">
                             {filteredData.map((d, index) => (
                                 <tr key={index} className="hover:bg-slate-900 transition-colors">
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm font-medium text-slate-100">{d.employeeName}</div>
-                                        <div className="text-xs text-slate-400">{d.divisionon} ({d.role})</div>
+                                        <div className="text-sm font-medium text-slate-800">{d.employeeName}</div>
+                                        <div className="text-xs text-slate-500">{d.divisionon} ({d.role})</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">
-                                        {d.date} <span className="font-semibold text-slate-200">{d.time}</span>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-500">
+                                        {d.date} <span className="font-semibold text-slate-700">{d.time}</span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${d.type === 'Clock In' ? 'bg-blue-100 text-blue-800' : 'bg-orange-100 text-orange-800'}`}>
@@ -190,7 +190,7 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                                             {d.late ? 'Late' : d.earlyLeave ? 'Early Leave' : 'On Time'}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-xs text-slate-400 max-w-xs truncate">
+                                    <td className="px-6 py-4 text-xs text-slate-500 max-w-xs truncate">
                                         {d.location.split(' (')[0]}
                                     </td>
                                 </tr>
@@ -202,7 +202,7 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                 {filteredData.length === 0 && (
                     <div className="text-center py-12">
                         <i className="fas fa-calendar-times text-4xl text-gray-400 mb-3"></i>
-                        <p className="text-slate-400">No attendance data found for the selected criteria.</p>
+                        <p className="text-slate-500">No attendance data found for the selected criteria.</p>
                     </div>
                 )}
             </div>

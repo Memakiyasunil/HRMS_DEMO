@@ -1,4 +1,4 @@
-﻿// src/pages/Dashboard/OwnerDashboard/OwnerPayrollReport.jsx
+// src/pages/Dashboard/OwnerDashboard/OwnerPayrollReport.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard } from '../../../components/Shared/Modals/componentsUtilityUI'; 
 import { formattedCurrency } from '../../../utils/formatters';
@@ -104,18 +104,18 @@ const OwnerPayrollReport = ({ employees, workSettings }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
                 <div className="mb-4 lg:mb-0">
-                    <h2 className="text-2xl font-semibold text-slate-100 flex items-center">
+                    <h2 className="text-2xl font-semibold text-slate-800 flex items-center">
                         <i className="fas fa-file-invoice-dollar mr-3 text-[#6366F1]"></i>
                         Report Pengsalaryan Perusahaan
                     </h2>
-                    <p className="text-slate-300 text-sm mt-1">Kelola dan pantau pengsalaryan seluruh employee</p>
+                    <p className="text-slate-600 text-sm mt-1">Kelola dan pantau pengsalaryan seluruh employee</p>
                 </div>
                 
                 <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
                     <select
                         value={selectedMonth}
                         onChange={(e) => setSelectedMonth(e.target.value)}
-                        className="px-4 py-2 bg-slate-700/60 backdrop-blur-sm border border-gray-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 text-black"
+                        className="px-4 py-2 bg-slate-50/60 backdrop-blur-sm border border-gray-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 text-black"
                     >
                         <option value="2024-08">Agustus 2024</option>
                         <option value="2024-07">Juli 2024</option>
@@ -133,16 +133,16 @@ const OwnerPayrollReport = ({ employees, workSettings }) => {
             </div>
 
             {/* Main Content */}
-            <GlassCard className="backdrop-blur-lg bg-white/40 border border-slate-600/50 rounded-3xl p-6">
+            <GlassCard className="backdrop-blur-lg bg-white/40 border border-slate-200/60 rounded-3xl p-6">
                 {/* Filter and Export Controls */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 space-y-3 md:space-y-0">
                     <div className="flex items-center">
-                        <label htmlFor="divisionon-filter" className="text-sm font-medium text-slate-200 mr-2">Filter Division:</label>
+                        <label htmlFor="divisionon-filter" className="text-sm font-medium text-slate-700 mr-2">Filter Division:</label>
                         <select 
                             id="divisionon-filter"
                             value={filterDivisionon}
                             onChange={(e) => setFilterDivisionon(e.target.value)}
-                            className="px-4 py-2 bg-slate-800 border border-gray-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 text-black"
+                            className="px-4 py-2 bg-white border border-gray-300 rounded-2xl text-sm focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 text-black"
                         >
                             {uniqueDivisionons.map(div => (
                                 <option key={div} value={div}>{div}</option>
@@ -170,7 +170,7 @@ const OwnerPayrollReport = ({ employees, workSettings }) => {
                 {filteredData.length === 0 && (
                     <div className="text-center py-12">
                         <i className="fas fa-inbox text-4xl text-gray-400 mb-3"></i>
-                        <p className="text-slate-400">No data available report salary untuk periode ini.</p>
+                        <p className="text-slate-500">No data available report salary untuk periode ini.</p>
                     </div>
                 )}
             </GlassCard>

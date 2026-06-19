@@ -26,7 +26,7 @@ export const PrimaryButton = ({ onClick, children, className = '', type = 'butto
 export const TabButton = ({ isActive, onClick, children }) => (
     <button
         onClick={onClick}
-        className={`${isActive ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-700 text-slate-300 hover:bg-slate-600 border border-slate-600'} px-5 py-3 font-medium text-sm md:text-base smooth-transition rounded-lg`}
+        className={`${isActive ? 'bg-indigo-600 text-white shadow-sm' : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'} px-5 py-3 font-medium text-sm md:text-base smooth-transition rounded-lg`}
     >
         {children}
     </button>
@@ -43,8 +43,8 @@ export const StatCard = ({ title, value, icon, color = 'blue' }) => (
         <i className={`${icon} text-lg`}></i>
       </div>
       <div>
-        <p className="text-sm font-medium text-slate-400">{title}</p>
-        <p className="text-2xl font-bold text-slate-100">{value}</p>
+        <p className="text-sm font-medium text-slate-500">{title}</p>
+        <p className="text-2xl font-bold text-slate-800">{value}</p>
       </div>
     </div>
   </GlassCard>

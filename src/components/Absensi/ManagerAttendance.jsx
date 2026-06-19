@@ -98,7 +98,7 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-6 text-slate-100 flex items-center">
+            <h2 className="text-2xl font-bold mb-6 text-slate-800 flex items-center">
                 <i className="fas fa-clock mr-3 text-indigo-600"></i> Absensi Saya
             </h2>
 
@@ -107,10 +107,10 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
                 <p className="text-5xl font-extrabold text-blue-600">
                     {currentDateTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                 </p>
-                <p className="text-lg font-medium text-slate-300 mt-1">
+                <p className="text-lg font-medium text-slate-600 mt-1">
                     {currentDateTime.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
-                <p className="text-sm text-slate-400 mt-2">
+                <p className="text-sm text-slate-500 mt-2">
                     Jadwal Kerja: **{safeWorkSettings.startTime}** s/d **{safeWorkSettings.endTime}**
                 </p>
             </GlassCard>
@@ -138,14 +138,14 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
 
             {/* Attendance History This Month */}
             <GlassCard>
-                <h3 className="text-xl font-bold mb-4 text-slate-200 border-b pb-2">Attendance History ({new Date().toLocaleString('id-ID', { month: 'long' })})</h3>
+                <h3 className="text-xl font-bold mb-4 text-slate-700 border-b pb-2">Attendance History ({new Date().toLocaleString('id-ID', { month: 'long' })})</h3>
                 <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
                     {/* Menggunakan user.currentMonthAttendance? untuk menghindari error saat render */}
                     { (user.currentMonthAttendance || []).slice().reverse().map((att, index) => (
                         <div key={index} className={`p-3 rounded-lg shadow-sm flex justify-between items-center ${att.type === 'Clock In' ? (att.late ? 'bg-red-50' : 'bg-green-50') : 'bg-slate-900'}`}>
                             <div className="flex-1">
-                                <p className="font-semibold text-slate-100">{att.date} <span className={`text-xs ml-2 px-2 py-0.5 rounded-full ${att.type === 'Clock In' ? 'bg-blue-200 text-blue-800' : 'bg-orange-200 text-orange-800'}`}>{att.type}</span></p>
-                                <p className="text-sm text-slate-300 mt-1">Pukul: <span className="font-medium">{att.time}</span></p>
+                                <p className="font-semibold text-slate-800">{att.date} <span className={`text-xs ml-2 px-2 py-0.5 rounded-full ${att.type === 'Clock In' ? 'bg-blue-200 text-blue-800' : 'bg-orange-200 text-orange-800'}`}>{att.type}</span></p>
+                                <p className="text-sm text-slate-600 mt-1">Pukul: <span className="font-medium">{att.time}</span></p>
                             </div>
                             <div className="text-right">
                                 {att.late && att.type === 'Clock In' && (
@@ -154,12 +154,12 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
                                 {att.earlyLeave && att.type === 'Clock Out' && (
                                     <p className="text-xs font-bold text-red-600">Pulang Awal!</p>
                                 )}
-                                <p className="text-xs text-slate-400 mt-1" title={att.location}>Lokasi: {att.location.split('(')[0]}</p>
+                                <p className="text-xs text-slate-500 mt-1" title={att.location}>Lokasi: {att.location.split('(')[0]}</p>
                             </div>
                         </div>
                     ))}
                     {user.currentMonthAttendance?.length === 0 && (
-                        <p className="text-center text-slate-400 py-4">Belum ada history absensi bulan ini.</p>
+                        <p className="text-center text-slate-500 py-4">Belum ada history absensi bulan ini.</p>
                     )}
                 </div>
             </GlassCard>
