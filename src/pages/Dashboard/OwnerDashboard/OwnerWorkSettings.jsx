@@ -1,4 +1,4 @@
-// src/pages/Dashboard/OwnerDashboard/OwnerWorkSettings.jsx
+﻿// src/pages/Dashboard/OwnerDashboard/OwnerWorkSettings.jsx
 import React, { useState, useEffect } from 'react';
 import { showSwal } from '../../../utils/swal';
 import { formattedCurrency } from '../../../utils/formatters';
@@ -7,10 +7,10 @@ import { formattedCurrency } from '../../../utils/formatters';
 const ActionButton = ({ onClick, children, variant = 'primary', disabled = false, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
-        primary: "bg-[#708993] text-white hover:bg-[#5a6f7a] active:scale-95",
-        secondary: "bg-white/40 text-[#708993] border border-[#708993]/30 hover:bg-white/60",
+        primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
-        ghost: "bg-transparent text-[#708993] hover:bg-white/40"
+        ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
     
     const disabledClasses = "opacity-50 cursor-not-allowed";
@@ -30,8 +30,8 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
         <input 
@@ -40,7 +40,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-white border border-[#708993]/20 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -66,8 +66,8 @@ const DaysSelector = ({ selectedDays, onChange, label = "Select Days", required 
 
     return (
         <div>
-            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-3">
-                <i className="fas fa-calendar-week text-[#708993] text-xs"></i> {label}
+            <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-3">
+                <i className="fas fa-calendar-week text-[#6366F1] text-xs"></i> {label}
                 {required && <span className="text-red-400">*</span>}
             </label>
             <div className="flex flex-wrap gap-2">
@@ -78,8 +78,8 @@ const DaysSelector = ({ selectedDays, onChange, label = "Select Days", required 
                         onClick={() => handleDayToggle(day.id)}
                         className={`px-3 py-2 rounded-xl text-sm font-medium transition-all ${
                             selectedDays.includes(day.id)
-                                ? 'bg-[#708993] text-white'
-                                : 'bg-white/40 text-[#708993] border border-[#708993]/20 hover:bg-white/60'
+                                ? 'bg-indigo-600 text-white'
+                                : 'bg-white/40 text-[#6366F1] border border-[#6366F1]/20 hover:bg-slate-700/60'
                         }`}
                         title={day.fullLabel}
                     >
@@ -96,7 +96,7 @@ const DaysSelector = ({ selectedDays, onChange, label = "Select Days", required 
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-white/30 border border-[#708993]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -196,7 +196,7 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         
-        // Validasi waktu untuk setiap shift yang diaktifkan
+        // Validasi time untuk setiap shift yang diaktifkan
         for (const shift of formData.shifts) {
             if (!shift.enabled) continue;
             
@@ -233,13 +233,13 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
-                        <div className="bg-[#708993] p-3 rounded-2xl">
+                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                        <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-cog text-white text-lg"></i>
                         </div>
                         Work Settings
                     </h2>
-                    <p className="text-gray-600 text-sm mt-2">Configure work hours and deduction policies</p>
+                    <p className="text-slate-300 text-sm mt-2">Configure work hours and deduction policies</p>
                 </div>
             </div>
 
@@ -248,8 +248,8 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                     {/* Shifts Section */}
                     <div>
                         <div className="flex items-center justify-between mb-4">
-                            <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
-                                <i className="fas fa-clock text-[#708993]"></i>
+                            <h3 className="text-lg font-semibold text-slate-100 flex items-center gap-2">
+                                <i className="fas fa-clock text-[#6366F1]"></i>
                                 Shift Settings
                             </h3>
                             <ActionButton 
@@ -262,7 +262,7 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                         </div>
 
                         {formData.shifts.map((shift, index) => (
-                            <div key={shift.id} className="mb-6 border border-[#708993]/10 rounded-2xl p-4 bg-white/30">
+                            <div key={shift.id} className="mb-6 border border-[#6366F1]/10 rounded-2xl p-4 bg-slate-800/50">
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center gap-3">
                                         <label className="relative inline-flex items-center cursor-pointer">
@@ -272,7 +272,7 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                                                 checked={shift.enabled}
                                                 onChange={(e) => handleShiftChange(index, 'enabled', e.target.checked)}
                                             />
-                                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#708993]/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#708993]"></div>
+                                            <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[#6366F1]/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-slate-800 after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
                                         </label>
                                         <FormInput
                                             label="Shift Name"
@@ -368,8 +368,8 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                                                     required
                                                     min="0"
                                                 />
-                                                <p className="mt-2 text-xs text-gray-500 flex items-center gap-1">
-                                                    <i className="fas fa-info-circle text-[#708993]"></i>
+                                                <p className="mt-2 text-xs text-slate-400 flex items-center gap-1">
+                                                    <i className="fas fa-info-circle text-[#6366F1]"></i>
                                                     Current: {formattedCurrency(shift.lateDeduction || 0)}
                                                 </p>
                                             </div>
@@ -384,8 +384,8 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                                                     required
                                                     min="0"
                                                 />
-                                                <p className="mt-2 text-xs text-gray-500 flex items-center gap-1">
-                                                    <i className="fas fa-info-circle text-[#708993]"></i>
+                                                <p className="mt-2 text-xs text-slate-400 flex items-center gap-1">
+                                                    <i className="fas fa-info-circle text-[#6366F1]"></i>
                                                     Current: {formattedCurrency(shift.earlyLeaveDeduction || 0)}
                                                 </p>
                                             </div>
@@ -404,17 +404,17 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                     </div>
 
                     {/* Additional Settings */}
-                    <div className="border-t border-[#708993]/10 pt-6">
-                        <h3 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
-                            <i className="fas fa-sliders-h text-[#708993]"></i>
+                    <div className="border-t border-[#6366F1]/10 pt-6">
+                        <h3 className="text-lg font-semibold text-slate-100 mb-4 flex items-center gap-2">
+                            <i className="fas fa-sliders-h text-[#6366F1]"></i>
                             Additional Settings
                         </h3>
                         
-                        <div className="bg-[#708993]/5 rounded-2xl p-4 border border-[#708993]/10">
+                        <div className="bg-indigo-600/5 rounded-2xl p-4 border border-[#6366F1]/10">
                             <div className="flex items-start gap-3">
-                                <i className="fas fa-lightbulb text-[#708993] mt-1"></i>
-                                <div className="text-sm text-gray-600">
-                                    <p className="font-medium text-gray-700 mb-1">Work Hours Policy</p>
+                                <i className="fas fa-lightbulb text-[#6366F1] mt-1"></i>
+                                <div className="text-sm text-slate-300">
+                                    <p className="font-medium text-slate-200 mb-1">Work Hours Policy</p>
                                     <p>These settings will be applied to all attendance calculations. Deductions are automatically calculated based on employee check-in and check-out times.</p>
                                     <p className="mt-2">You can create multiple shifts with different time schedules and deduction policies. Enable or disable shifts as needed.</p>
                                     <p className="mt-2">You can also select specific days for each shift to apply. For example, you might have different shifts for weekdays and weekends.</p>
@@ -425,7 +425,7 @@ const OwnerWorkSettings = ({ workSettings, setWorkSettings }) => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex justify-end gap-3 pt-6 border-t border-[#708993]/10">
+                    <div className="flex justify-end gap-3 pt-6 border-t border-[#6366F1]/10">
                         <ActionButton 
                             type="button" 
                             variant="secondary"

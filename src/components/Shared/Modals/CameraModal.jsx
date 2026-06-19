@@ -1,4 +1,4 @@
-// src/components/Shared/Modals/CameraModal.jsx
+﻿// src/components/Shared/Modals/CameraModal.jsx
 import React, { useEffect } from 'react';
 import Webcam from 'react-webcam';
 import { PrimaryButton } from '../../UI/Buttons';
@@ -7,22 +7,22 @@ import { useCamera } from '../../../hooks/useCamera';
 import { useFaceDetection } from '../../../hooks/useFaceDetection';
 import { showSwal } from '../../../utils/swal';
 
-const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Selfie untuk Absensi" }) => {
+const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Take Selfie Photo for Attendance" }) => {
     const { webcamRef, canvasRef, streamReady, startCamera, stopCamera, setStreamReady } = useCamera(isOpen);
     const { isModelLoaded, faceDetected, loadModel, detectFaces } = useFaceDetection(webcamRef);
 
-    // --- Load model AI saat modal terbuka ---
+    // Load AI model when modal opens
     useEffect(() => {
         if (isOpen) loadModel(() => {});
     }, [isOpen, loadModel]);
 
-    // --- Start kamera otomatis ---
+    // Auto-start camera
     useEffect(() => {
         if (isOpen) startCamera();
         else stopCamera();
     }, [isOpen, startCamera, stopCamera]);
 
-    // --- Interval deteksi wajah dan frame kotak ---
+    // Face detection interval and frame drawing
     useEffect(() => {
         let interval;
         const drawFaceFrame = (face) => {
@@ -36,11 +36,9 @@ const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Sel
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Warna frame
             ctx.strokeStyle = face ? 'lime' : 'red';
             ctx.lineWidth = 3;
 
-            // Kotak di tengah (200x200)
             const boxWidth = 200;
             const boxHeight = 200;
             const x = (canvas.width - boxWidth) / 2;
@@ -58,10 +56,10 @@ const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Sel
         return () => clearInterval(interval);
     }, [isOpen, streamReady, isModelLoaded, detectFaces, faceDetected, canvasRef, webcamRef]);
 
-    // --- Capture Foto ---
+    // Capture Photo
     const handleCaptureConfirm = () => {
         if (!faceDetected) {
-            showSwal('Wajah Tidak Terdeteksi', 'Pastikan wajah berada di tengah frame.', 'warning');
+            showSwal('Face Not Detected', 'Make sure your face is in the center of the frame.', 'warning');
             return;
         }
 
@@ -78,21 +76,21 @@ const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Sel
 
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-            <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-md" onClick={onClose}></div>
+            <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-md" onClick={onClose}></div>
 
-            <GlassCard className="relative w-full max-w-lg mx-auto p-6 shadow-2xl bg-white/70">
-                <h2 className="text-xl font-bold mb-4">{title}</h2>
+            <GlassCard className="relative w-full max-w-lg mx-auto p-6 shadow-2xl bg-slate-800/90">
+                <h2 className="text-xl font-bold mb-4 text-slate-100">{title}</h2>
 
                 {/* Webcam + Canvas */}
-                <div className="relative w-full aspect-video bg-gray-900 rounded-lg overflow-hidden border-4 border-gray-700">
+                <div className="relative w-full aspect-video bg-gray-900 rounded-lg overflow-hidden border-4 border-slate-700">
                     <Webcam
                         audio={false}
                         ref={webcamRef}
                         screenshotFormat="image/jpeg"
-                        mirrored={true} // Foto asli normal
+                        mirrored={true}
                         videoConstraints={{ facingMode: 'user' }}
                         onUserMedia={() => setStreamReady(true)}
-                        onUserMediaError={() => showSwal('Gagal Akses Kamera', 'Mohon izinkan kamera.', 'error')}
+                        onUserMediaError={() => showSwal('Camera Access Failed', 'Please allow camera access.', 'error')}
                         className="w-full h-full object-cover"
                         style={{ display: streamReady ? 'block' : 'none' }}
                     />
@@ -104,7 +102,7 @@ const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Sel
                         </div>
                     )}
 
-                    {/* Canvas untuk frame */}
+                    {/* Canvas for frame */}
                     <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
 
                     {/* Overlay Status */}
@@ -112,24 +110,24 @@ const CameraModal = ({ isOpen, onClose, onCapture, user, title = "Ambil Foto Sel
                         {streamReady && isModelLoaded ? (
                             <span className={`font-semibold ${faceDetected ? 'text-green-400' : 'text-red-400'}`}>
                                 <i className={`fas ${faceDetected ? 'fa-check-circle' : 'fa-exclamation-triangle'} mr-1`}></i>
-                                {faceDetected ? 'Wajah Terdeteksi' : 'Wajah Belum Terdeteksi'}
+                                {faceDetected ? 'Face Detected' : 'Face Not Detected'}
                             </span>
                         ) : (
                             <span className="text-yellow-400 font-semibold">
-                                <i className="fas fa-spinner fa-spin mr-1"></i> Memuat AI...
+                                <i className="fas fa-spinner fa-spin mr-1"></i> Loading AI...
                             </span>
                         )}
                         <span className="text-gray-400">{user.name}</span>
                     </div>
                 </div>
 
-                {/* Tombol Aksi */}
+                {/* Action Buttons */}
                 <div className="mt-4 flex justify-end space-x-3">
-                    <PrimaryButton onClick={onClose} className="bg-gray-500 hover:bg-gray-600">
-                        Batal
+                    <PrimaryButton onClick={onClose} className="bg-slate-600 hover:bg-slate-700">
+                        Cancel
                     </PrimaryButton>
                     <PrimaryButton onClick={handleCaptureConfirm} disabled={loadingStatus || !faceDetected}>
-                        <i className="fas fa-camera mr-2"></i> Konfirmasi Foto
+                        <i className="fas fa-camera mr-2"></i> Confirm Photo
                     </PrimaryButton>
                 </div>
             </GlassCard>

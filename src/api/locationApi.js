@@ -1,10 +1,11 @@
+// src/api/locationApi.js
 import { showSwal } from '../utils/swal';
 
-// === Fungsi untuk dapatkan lokasi user ===
+// === Get user location ===
 export const getCurrentLocation = () => {
   return new Promise((resolve, reject) => {
     if (!navigator.geolocation) {
-      reject(new Error('Geolocation tidak didukung oleh browser ini'));
+      reject(new Error('Geolocation is not supported by this browser'));
       return;
     }
 
@@ -20,7 +21,7 @@ export const getCurrentLocation = () => {
           );
 
           const data = await response.json();
-          const address = data.display_name || 'Lokasi tidak diketahui';
+          const address = data.display_name || 'Unknown location';
 
           resolve({
             latitude,
@@ -29,7 +30,7 @@ export const getCurrentLocation = () => {
             coordinates: `${latitude}, ${longitude}`,
           });
         } catch (error) {
-          showSwal('Gagal Lokasi', 'Gagal mendapatkan alamat: ' + error.message, 'error');
+          showSwal('Location Failed', 'Failed to get address: ' + error.message, 'error');
           reject(error);
         }
       },
@@ -37,18 +38,18 @@ export const getCurrentLocation = () => {
         let message = '';
         switch (error.code) {
           case error.PERMISSION_DENIED:
-            message = 'Izin lokasi ditolak oleh pengguna.';
+            message = 'Location permission denied by user.';
             break;
           case error.POSITION_UNAVAILABLE:
-            message = 'Informasi lokasi tidak tersedia.';
+            message = 'Location information is unavailable.';
             break;
           case error.TIMEOUT:
-            message = 'Permintaan lokasi melebihi batas waktu.';
+            message = 'Location request timed out.';
             break;
           default:
-            message = 'Terjadi kesalahan yang tidak diketahui.';
+            message = 'An unknown error occurred.';
         }
-        showSwal('Gagal Lokasi', `Gagal mendapatkan lokasi: ${message}`, 'error');
+        showSwal('Location Failed', `Failed to get location: ${message}`, 'error');
         reject(new Error(message));
       },
       { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
@@ -56,7 +57,7 @@ export const getCurrentLocation = () => {
   });
 };
 
-// ==== Fungsi menghitung jarak (meter) ====
+// ==== Calculate distance (meters) ====
 export const calculateDistance = (lat1, lon1, lat2, lon2) => {
   const toRad = (value) => (value * Math.PI) / 180;
   const R = 6371e3;
@@ -72,4 +73,3 @@ export const calculateDistance = (lat1, lon1, lat2, lon2) => {
 
   return R * c;
 };
-

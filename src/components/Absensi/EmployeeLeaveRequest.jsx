@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+﻿import React, { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 
 import { GlassCard } from '../UI/Cards'; 
@@ -49,9 +49,9 @@ const getViewMode = (role) => {
 
 const getViewTitle = (viewMode, userName = '') => {
   switch(viewMode) {
-    case 'approver': return 'Manajemen Cuti & Izin';
+    case 'approver': return 'Management Cuti & Izin';
     case 'team': return 'Cuti Tim';
-    default: return `Pengajuan Cuti & Izin${userName ? ' ' + userName : ''}`;
+    default: return `Leave Request & Izin${userName ? ' ' + userName : ''}`;
   }
 };
 
@@ -64,16 +64,16 @@ const formatDate = (dateString) => {
 const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPending, leaveBalance }) => {
   if (viewMode === 'team') {
     return (
-      <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+      <div className="mb-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
         <div className="flex justify-between items-center">
           <div className="text-center flex-1">
-            <p className="text-xs text-gray-500 font-medium mb-1">Total Cuti Tim</p>
-            <p className="text-2xl font-bold text-[#708993]">{teamBalance} <span className="text-sm font-normal text-gray-600">hari</span></p>
+            <p className="text-xs text-slate-400 font-medium mb-1">Total Cuti Tim</p>
+            <p className="text-2xl font-bold text-[#6366F1]">{teamBalance} <span className="text-sm font-normal text-slate-300">hari</span></p>
           </div>
           <div className="h-8 border-r border-gray-300"></div>
           <div className="text-center flex-1">
-            <p className="text-xs text-gray-500 font-medium mb-1">Pending Tim</p>
-            <p className="text-2xl font-bold text-amber-600">{teamPending} <span className="text-sm font-normal text-gray-600">pengajuan</span></p>
+            <p className="text-xs text-slate-400 font-medium mb-1">Pending Tim</p>
+            <p className="text-2xl font-bold text-amber-600">{teamPending} <span className="text-sm font-normal text-slate-300">pengajuan</span></p>
           </div>
         </div>
       </div>
@@ -84,16 +84,16 @@ const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPe
   const annualLeaveBalance = balanceArray.find(b => b.leave_type_id === 1)?.remaining_days || 0;
 
   return (
-    <div className="mb-6 p-4 bg-gray-50 border border-gray-200 rounded-lg">
+    <div className="mb-6 p-4 bg-slate-900 border border-slate-600 rounded-lg">
       <div className="flex justify-between items-center">
         <div className="text-center flex-1">
-          <p className="text-xs text-gray-500 font-medium mb-1">Sisa Cuti Tahunan</p>
-          <p className="text-2xl font-bold text-[#708993]">{annualLeaveBalance} <span className="text-sm font-normal text-gray-600">hari</span></p>
+          <p className="text-xs text-slate-400 font-medium mb-1">Sisa Annual Leave</p>
+          <p className="text-2xl font-bold text-[#6366F1]">{annualLeaveBalance} <span className="text-sm font-normal text-slate-300">hari</span></p>
         </div>
         <div className="h-8 border-r border-gray-300"></div>
         <div className="text-center flex-1">
-          <p className="text-xs text-gray-500 font-medium mb-1">Pending Permintaan</p>
-          <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-gray-600">pengajuan</span></p>
+          <p className="text-xs text-slate-400 font-medium mb-1">Pending Permintaan</p>
+          <p className="text-2xl font-bold text-amber-600">{pendingRequests} <span className="text-sm font-normal text-slate-300">pengajuan</span></p>
         </div>
       </div>
     </div>
@@ -103,14 +103,14 @@ const LeaveBalanceCard = ({ user, pendingRequests, viewMode, teamBalance, teamPe
 // LeaveTabs Component
 const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, canViewTeam }) => {
   return (
-    <div className="flex border-b border-gray-200 mb-6">
+    <div className="flex border-b border-slate-600 mb-6">
       <TabButton
         active={activeLeaveTab === 'request'}
         onClick={() => setActiveLeaveTab('request')}
         className={`px-4 py-2 font-medium text-sm border-b-2 transition-colors ${
           activeLeaveTab === 'request' 
-            ? 'border-[#708993] text-[#708993]' 
-            : 'border-transparent text-gray-500 hover:text-gray-700 border-none focus:outline-none'
+            ? 'border-[#6366F1] text-[#6366F1]' 
+            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
         }`}
       >
         {viewMode === 'personal' ? 'Ajukan Cuti/Izin' : 'Pengajuan Baru'}
@@ -121,11 +121,11 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
         onClick={() => setActiveLeaveTab('history')}
         className={`px-4 py-2 font-medium text-sm border-b-2${
           activeLeaveTab === 'history' 
-            ? 'border-[#708993] text-[#708993]' 
-            : 'border-transparent text-gray-500 hover:text-gray-700 border-none focus:outline-none'
+            ? 'border-[#6366F1] text-[#6366F1]' 
+            : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
         }`}
       >
-        Riwayat Cuti
+        History Cuti
       </TabButton>
       
       {canApprove && (
@@ -134,11 +134,11 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
           onClick={() => setActiveLeaveTab('approval')}
           className={`px-4 py-2 font-medium text-sm border-b-2${
             activeLeaveTab === 'approval' 
-              ? 'border-[#708993] text-[#708993]' 
-              : 'border-transparent text-gray-500 hover:text-gray-700 border-none focus:outline-none'
+              ? 'border-[#6366F1] text-[#6366F1]' 
+              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
           }`}
         >
-          Persetujuan
+          Perapprovean
         </TabButton>
       )}
       
@@ -148,8 +148,8 @@ const LeaveTabs = ({ activeLeaveTab, setActiveLeaveTab, viewMode, canApprove, ca
           onClick={() => setActiveLeaveTab('team')}
           className={`px-4 py-2 font-medium text-sm border-b-2${
             activeLeaveTab === 'team' 
-              ? 'border-[#708993] text-[#708993]' 
-              : 'border-transparent text-gray-500 hover:text-gray-700 border-none focus:outline-none'
+              ? 'border-[#6366F1] text-[#6366F1]' 
+              : 'border-transparent text-slate-400 hover:text-slate-200 border-none focus:outline-none'
           }`}
         >
           Tim
@@ -234,7 +234,7 @@ const LeaveRequestForm = ({
         days: leave.duration_days,
         reason: leave.reason,
         status: leave.status.charAt(0).toUpperCase() + leave.status.slice(1), // "pending" -> "Pending"
-        division: user.division || '—',
+        divisionon: user.divisionon || '—',
         leaveTypeId: leave.leave_type_id,
         attachments: leave.attachments || [],
       };
@@ -242,8 +242,8 @@ const LeaveRequestForm = ({
       onLeaveSubmitted(formattedLeave);
 
       showSwal(
-        'Berhasil!',
-        `Pengajuan ${selectedType.display_name} (${leave.duration_days} hari kerja) telah dikirim untuk persetujuan.`,
+        'Success!',
+        `Pengajuan ${selectedType.display_name} (${leave.duration_days} hari kerja) telah dikirim untuk perapprovean.`,
         'success'
       );
 
@@ -258,7 +258,7 @@ const LeaveRequestForm = ({
       console.error('Error submitting leave:', err);
       const errorMsg = err.response?.data?.message || 
                        err.response?.data?.error || 
-                       'Gagal mengajukan cuti. Silakan coba lagi.';
+                       'Failed mengajukan cuti. Silakan coba lagi.';
       showSwal('Error', errorMsg, 'error');
     } finally {
       setIsSubmitting(false);
@@ -284,17 +284,17 @@ const LeaveRequestForm = ({
     <form onSubmit={handleSubmit} className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="leaveType" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="leaveType" className="block text-sm font-medium text-slate-200 mb-2">
             Tipe Pengajuan
           </label>
           <select
             id="leaveType"
             value={leaveTypeId}
             onChange={(e) => setLeaveTypeId(Number(e.target.value))}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
             required
           >
-            <option value="">Pilih Jenis Cuti</option>
+            <option value="">Select Jenis Cuti</option>
             {typesArray.map(type => (
               <option key={type.id} value={type.id}>{type.display_name}</option>
             ))}
@@ -302,7 +302,7 @@ const LeaveRequestForm = ({
         </div>
 
         <div>
-          <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="title" className="block text-sm font-medium text-slate-200 mb-2">
             Judul Pengajuan
           </label>
           <input
@@ -310,8 +310,8 @@ const LeaveRequestForm = ({
             id="title"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black"
-            placeholder="Contoh: Liburan Keluarga"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+            placeholder="Contoh: Liburan Clock Outga"
             required
           />
         </div>
@@ -319,21 +319,21 @@ const LeaveRequestForm = ({
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label htmlFor="startDate" className="block text-sm font-medium text-gray-700 mb-2">
-            Tanggal Mulai
+          <label htmlFor="startDate" className="block text-sm font-medium text-slate-200 mb-2">
+            Date Mulai
           </label>
           <input
             type="date"
             id="startDate"
             value={startDate}
             onChange={(e) => setStartDate(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
             required
           />
         </div>
         <div>
-          <label htmlFor="endDate" className="block text-sm font-medium text-gray-700 mb-2">
-            Tanggal Berakhir
+          <label htmlFor="endDate" className="block text-sm font-medium text-slate-200 mb-2">
+            Date Berakhir
           </label>
           <input
             type="date"
@@ -341,20 +341,20 @@ const LeaveRequestForm = ({
             value={endDate}
             min={startDate}
             onChange={(e) => setEndDate(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
             required
           />
         </div>
       </div>
 
-      <div className="p-3 bg-gray-50 border border-gray-200 rounded-lg">
+      <div className="p-3 bg-slate-900 border border-slate-600 rounded-lg">
         <div className="flex justify-between items-center">
-          <span className="text-sm text-gray-600">Estimasi Hari Kerja:</span>
-          <span className="font-bold text-[#708993] text-lg">{estimatedDays || 0} hari</span>
+          <span className="text-sm text-slate-300">Estimasi Hari Kerja:</span>
+          <span className="font-bold text-[#6366F1] text-lg">{estimatedDays || 0} hari</span>
         </div>
         {leaveTypeId === 1 && (
-          <div className="flex justify-between items-center mt-2 pt-2 border-t border-gray-200">
-            <span className="text-sm text-gray-600">Estimasi Sisa Cuti:</span>
+          <div className="flex justify-between items-center mt-2 pt-2 border-t border-slate-600">
+            <span className="text-sm text-slate-300">Estimasi Sisa Leave:</span>
             <span className={`font-bold text-lg ${
               (user.cutiBalance || 0) - estimatedDays >= 0 ? 'text-green-600' : 'text-red-600'
             }`}>
@@ -365,25 +365,25 @@ const LeaveRequestForm = ({
       </div>
       
       <div>
-        <label htmlFor="reason" className="block text-sm font-medium text-gray-700 mb-2">
-          Alasan Pengajuan
+        <label htmlFor="reason" className="block text-sm font-medium text-slate-200 mb-2">
+          Reason Pengajuan
         </label>
         <textarea
           id="reason"
           rows="3"
           value={reason}
           onChange={(e) => setReason(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black"
-          placeholder="Jelaskan alasan..."
+          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black"
+          placeholder="Jelaskan reason..."
           required
         ></textarea>
       </div>
 
       <div>
-        <label htmlFor="attachments" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="attachments" className="block text-sm font-medium text-slate-200 mb-2">
           Lampiran Dokumen (Opsional)
         </label>
-        <div className="border border-dashed border-gray-300 rounded-lg p-4 bg-gray-50">
+        <div className="border border-dashed border-gray-300 rounded-lg p-4 bg-slate-900">
           <input
             type="file"
             id="attachments"
@@ -393,20 +393,20 @@ const LeaveRequestForm = ({
           />
           <label htmlFor="attachments" className="cursor-pointer flex flex-col items-center justify-center">
             <i className="fas fa-cloud-upload-alt text-gray-400 text-3xl mb-2"></i>
-            <span className="text-sm text-gray-600">Klik untuk mengunggah dokumen</span>
-            <span className="text-xs text-gray-500 mt-1">PDF, JPG, PNG (Maks. 5MB per file)</span>
+            <span className="text-sm text-slate-300">Klik untuk mengunggah dokumen</span>
+            <span className="text-xs text-slate-400 mt-1">PDF, JPG, PNG (Maks. 5MB per file)</span>
           </label>
         </div>
         
         {attachments.length > 0 && (
           <div className="mt-3 space-y-2">
-            <p className="text-sm font-medium text-gray-700">Dokumen yang akan diunggah:</p>
+            <p className="text-sm font-medium text-slate-200">Dokumen yang akan diunggah:</p>
             {attachments.map((file, index) => (
               <div key={index} className="flex items-center justify-between bg-gray-100 p-2 rounded">
                 <div className="flex items-center">
-                  <i className="fas fa-file mr-2 text-gray-500"></i>
-                  <span className="text-sm text-gray-700 truncate max-w-xs">{file.name}</span>
-                  <span className="text-xs text-gray-500 ml-2">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
+                  <i className="fas fa-file mr-2 text-slate-400"></i>
+                  <span className="text-sm text-slate-200 truncate max-w-xs">{file.name}</span>
+                  <span className="text-xs text-slate-400 ml-2">({(file.size / 1024 / 1024).toFixed(2)} MB)</span>
                 </div>
                 <button
                   type="button"
@@ -423,7 +423,7 @@ const LeaveRequestForm = ({
 
       <button 
         type="submit" 
-        className="w-full mt-6 bg-[#708993] hover:bg-[#5a727a] text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        className="w-full mt-6 bg-indigo-600 hover:bg-[#5a727a] text-white py-3 px-4 rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         disabled={isSubmitting || !startDate || !endDate || !reason || !title || !leaveTypeId}
       >
         {isSubmitting ? (
@@ -479,10 +479,10 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
       <div className="mb-4">
         <input
           type="text"
-          placeholder="Cari riwayat cuti..."
+          placeholder="Search history cuti..."
           value={searchKeyword}
           onChange={(e) => setSearchKeyword(e.target.value)}
-          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#708993] focus:ring-2 focus:ring-[#708993]/20 bg-white text-black focus:outline-none"
+          className="w-full p-3 border border-gray-300 rounded-lg focus:border-[#6366F1] focus:ring-2 focus:ring-[#6366F1]/20 bg-slate-800 text-black focus:outline-none"
         />
       </div>
 
@@ -495,40 +495,40 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
         </p>
       </div>
 
-      <div className="overflow-x-auto border border-gray-200 rounded-lg">
+      <div className="overflow-x-auto border border-slate-600 rounded-lg">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+          <thead className="bg-slate-900">
             <tr>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipe</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periode</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hari</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lampiran</th>
-              <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Judul</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Tipe</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Periode</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Hari</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Status</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Lampiran</th>
+              <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Action</th>
             </tr>
           </thead>
-          <tbody className="bg-white divide-y divide-gray-200">
+          <tbody className="bg-slate-800 divide-y divide-gray-200">
             {filtered.map((leave, index) => (
-              <tr key={leave.id} className="hover:bg-gray-50 transition-colors">
+              <tr key={leave.id} className="hover:bg-slate-900 transition-colors">
                 <td className="px-4 py-4">
-                  <p className="text-sm font-medium text-gray-900">{leave.title}</p>
-                  <p className="text-xs text-gray-500 mt-1 line-clamp-2">{leave.reason}</p>
+                  <p className="text-sm font-medium text-slate-100">{leave.title}</p>
+                  <p className="text-xs text-slate-400 mt-1 line-clamp-2">{leave.reason}</p>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap">
-                  <span className="text-sm text-gray-700">{leave.type}</span>
+                  <span className="text-sm text-slate-200">{leave.type}</span>
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
                   {formatDate(leave.startDate)} s/d {formatDate(leave.endDate)}
                 </td>
-                <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{leave.days} hari</td>
+                <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">{leave.days} hari</td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm">
                   <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${
                     leave.status === 'Approved' ? 'bg-green-100 text-green-800' :
                     leave.status === 'Rejected' ? 'bg-red-100 text-red-800' : 'bg-amber-100 text-amber-800'
                   }`}>
-                    {leave.status === 'Approved' ? 'Disetujui' : 
-                     leave.status === 'Rejected' ? 'Ditolak' : 'Menunggu'}
+                    {leave.status === 'Approved' ? 'Diapprovei' : 
+                     leave.status === 'Rejected' ? 'Direject' : 'Pending'}
                   </span>
                 </td>
                 <td className="px-4 py-4 whitespace-nowrap text-sm">
@@ -545,7 +545,7 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
                 <td className="px-4 py-4 whitespace-nowrap text-sm">
                   <div className="flex space-x-2">
                     {canViewDetails && (
-                      <button className="text-blue-600 hover:text-blue-900" title="Lihat Detail">
+                      <button className="text-blue-600 hover:text-blue-900" title="View Details">
                         <i className="fas fa-eye"></i>
                       </button>
                     )}
@@ -553,7 +553,7 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
                       <button 
                         onClick={() => onCancelLeave(leave.id)} 
                         className="text-red-600 hover:text-red-900" 
-                        title="Batalkan Pengajuan"
+                        title="Cancelkan Pengajuan"
                       >
                         <i className="fas fa-times-circle"></i>
                       </button>
@@ -569,8 +569,8 @@ const LeaveHistory = ({ leaveHistory, searchKeyword, setSearchKeyword, canViewDe
       {filtered.length === 0 && (
         <div className="text-center py-8">
           <i className="fas fa-inbox text-gray-300 text-4xl mb-3"></i>
-          <p className="text-gray-500">
-            {searchKeyword ? 'Tidak ada riwayat yang sesuai.' : 'Belum ada riwayat cuti.'}
+          <p className="text-slate-400">
+            {searchKeyword ? 'No history yang sesuai.' : 'Belum ada history cuti.'}
           </p>
         </div>
       )}
@@ -588,9 +588,9 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
     try {
       await axios.put(`${getBaseUrl()}/api/leaves/${leaveId}/approve`);
       setPendingLeave(prev => prev.map(l => l.id === leaveId ? { ...l, status: 'Approved' } : l));
-      showSwal('Disetujui!', 'Pengajuan cuti telah disetujui.', 'success', 2000);
+      showSwal('Diapprovei!', 'Pengajuan cuti telah diapprovei.', 'success', 2000);
     } catch (err) {
-      const errorMsg = err.response?.data?.message || 'Gagal menyetujui cuti.';
+      const errorMsg = err.response?.data?.message || 'Failed menyetujui cuti.';
       showSwal('Error', errorMsg, 'error');
     }
   };
@@ -599,9 +599,9 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
     try {
       await axios.put(`${getBaseUrl()}/api/leaves/${leaveId}/reject`);
       setPendingLeave(prev => prev.map(l => l.id === leaveId ? { ...l, status: 'Rejected' } : l));
-      showSwal('Ditolak!', 'Pengajuan cuti telah ditolak.', 'success', 2000);
+      showSwal('Direject!', 'Pengajuan cuti telah direject.', 'success', 2000);
     } catch (err) {
-      const errorMsg = err.response?.data?.message || 'Gagal menolak cuti.';
+      const errorMsg = err.response?.data?.message || 'Failed menolak cuti.';
       showSwal('Error', errorMsg, 'error');
     }
   };
@@ -609,9 +609,9 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
   return (
     <div>
       <div className="mb-4 flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-gray-800">
+        <h3 className="text-lg font-semibold text-slate-100">
           <i className="fas fa-clipboard-check mr-2 text-amber-600"></i>
-          Pengajuan Menunggu Persetujuan
+          Pengajuan Pending Perapprovean
         </h3>
         <span className="bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-sm font-medium">
           {pendingArray.length} pengajuan
@@ -619,49 +619,49 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
       </div>
 
       {pendingArray.length === 0 ? (
-        <div className="text-center py-8 bg-gray-50 rounded-lg">
+        <div className="text-center py-8 bg-slate-900 rounded-lg">
           <i className="fas fa-check-circle text-green-500 text-4xl mb-3"></i>
-          <p className="text-gray-500">Tidak ada pengajuan menunggu.</p>
+          <p className="text-slate-400">No pengajuan pending.</p>
         </div>
       ) : (
-        <div className="overflow-x-auto border border-gray-200 rounded-lg">
+        <div className="overflow-x-auto border border-slate-600 rounded-lg">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-slate-900">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Karyawan</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Judul</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tipe</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Periode</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hari</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Lampiran</th>
-                <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Aksi</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Employee</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Judul</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Tipe</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Periode</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Hari</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Lampiran</th>
+                <th className="px-4 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">Action</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-slate-800 divide-y divide-gray-200">
               {pendingArray.map((leave) => (
-                <tr key={leave.id} className="hover:bg-gray-50 transition-colors">
+                <tr key={leave.id} className="hover:bg-slate-900 transition-colors">
                   <td className="px-4 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center mr-3">
-                        <i className="fas fa-user text-gray-500 text-xs"></i>
+                        <i className="fas fa-user text-slate-400 text-xs"></i>
                       </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{leave.employeeName}</p>
-                        <p className="text-xs text-gray-500">{leave.division}</p>
+                        <p className="text-sm font-medium text-slate-100">{leave.employeeName}</p>
+                        <p className="text-xs text-slate-400">{leave.divisionon}</p>
                       </div>
                     </div>
                   </td>
                   <td className="px-4 py-4">
-                    <p className="text-sm font-medium text-gray-900">{leave.title}</p>
-                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">{leave.reason}</p>
+                    <p className="text-sm font-medium text-slate-100">{leave.title}</p>
+                    <p className="text-xs text-slate-400 mt-1 line-clamp-2">{leave.reason}</p>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap">
-                    <span className="text-sm text-gray-700">{leave.type}</span>
+                    <span className="text-sm text-slate-200">{leave.type}</span>
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">
                     {formatDate(leave.startDate)} s/d {formatDate(leave.endDate)}
                   </td>
-                  <td className="px-4 py-4 whitespace-nowrap text-sm text-gray-500">{leave.days} hari</td>
+                  <td className="px-4 py-4 whitespace-nowrap text-sm text-slate-400">{leave.days} hari</td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm">
                     {leave.attachments && leave.attachments.length > 0 ? (
                       <span className="text-blue-600">
@@ -675,10 +675,10 @@ const LeaveApproval = ({ pendingLeaveRequests, setPendingLeave, canApprove }) =>
                   </td>
                   <td className="px-4 py-4 whitespace-nowrap text-sm">
                     <div className="flex space-x-2">
-                      <button onClick={() => handleApprove(leave.id)} className="text-green-600 hover:text-green-900" title="Setujui">
+                      <button onClick={() => handleApprove(leave.id)} className="text-green-600 hover:text-green-900" title="Approvei">
                         <i className="fas fa-check"></i>
                       </button>
-                      <button onClick={() => handleReject(leave.id)} className="text-red-600 hover:text-red-900" title="Tolak">
+                      <button onClick={() => handleReject(leave.id)} className="text-red-600 hover:text-red-900" title="Reject">
                         <i className="fas fa-times"></i>
                       </button>
                     </div>
@@ -698,8 +698,8 @@ const TeamLeaveList = ({ employees, onEmployeeSelect, viewMode }) => {
   const getListTitle = () => {
     switch(viewMode) {
       case 'team': return 'Cuti Tim';
-      case 'approver': return 'Cuti Seluruh Karyawan';
-      default: return 'Cuti Karyawan';
+      case 'approver': return 'Cuti Seluruh Employee';
+      default: return 'Cuti Employee';
     }
   };
 
@@ -707,28 +707,28 @@ const TeamLeaveList = ({ employees, onEmployeeSelect, viewMode }) => {
 
   return (
     <div className="mt-8">
-      <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+      <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center">
         <i className="fas fa-users mr-3 text-blue-500"></i>
         {getListTitle()}
       </h3>
       <div className="overflow-x-auto">
-        <table className="w-full bg-white/20 backdrop-blur-sm rounded-2xl overflow-hidden">
-          <thead className="bg-white/10">
+        <table className="w-full bg-slate-700/30 backdrop-blur-sm rounded-2xl overflow-hidden">
+          <thead className="bg-slate-700/20">
             <tr>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-800">Nama</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-800">Divisi</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-800">Sisa Cuti</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-800">Pending</th>
-              <th className="px-6 py-4 text-left text-sm font-medium text-gray-800">Aksi</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Name</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Division</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Leave Balance</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Pending</th>
+              <th className="px-6 py-4 text-left text-sm font-medium text-slate-100">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/10">
             {employeesArray.map((employee) => (
               <tr key={employee.id} className="hover:bg-white/5 transition-colors">
-                <td className="px-6 py-4 text-sm text-gray-800 font-medium">{employee.name}</td>
-                <td className="px-6 py-4 text-sm text-gray-700">{employee.division}</td>
-                <td className="px-6 py-4 text-sm text-gray-800">{employee.cutiBalance || 0} hari</td>
-                <td className="px-6 py-4 text-sm text-gray-800">
+                <td className="px-6 py-4 text-sm text-slate-100 font-medium">{employee.name}</td>
+                <td className="px-6 py-4 text-sm text-slate-200">{employee.divisionon}</td>
+                <td className="px-6 py-4 text-sm text-slate-100">{employee.cutiBalance || 0} hari</td>
+                <td className="px-6 py-4 text-sm text-slate-100">
                   {employee.leaveHistory ? employee.leaveHistory.filter(l => l.status === 'Pending').length : 0}
                 </td>
                 <td className="px-6 py-4 text-sm">
@@ -797,8 +797,8 @@ const EmployeeLeaveRequest = ({
         const data = res.data?.success?.data || [];
         setLeaveTypes(data);
       } catch (err) {
-        console.error('Gagal fetch jenis cuti:', err);
-        showSwal('Error', 'Gagal memuat jenis cuti.', 'error');
+        console.error('Failed fetch jenis cuti:', err);
+        showSwal('Error', 'Failed memuat jenis cuti.', 'error');
         setLeaveTypes([]);
       }
     };
@@ -813,8 +813,8 @@ const EmployeeLeaveRequest = ({
         const data = res.data?.success?.data?.balances || [];
         setLeaveBalance(data);
       } catch (err) {
-        console.error('Gagal fetch leave balance:', err);
-        showSwal('Error', 'Gagal memuat saldo cuti.', 'error');
+        console.error('Failed fetch leave balance:', err);
+        showSwal('Error', 'Failed memuat saldo cuti.', 'error');
         setLeaveBalance([]);
       }
     };
@@ -847,7 +847,7 @@ const EmployeeLeaveRequest = ({
             status: leave.status
               ? leave.status.charAt(0).toUpperCase() + leave.status.slice(1)
               : 'Unknown',
-            division: user?.division ?? '—',
+            divisionon: user?.divisionon ?? '—',
             attachments: leave.attachments || []
           }));
 
@@ -855,8 +855,8 @@ const EmployeeLeaveRequest = ({
           setLeaveHistory(mappedData);
 
         } catch (err) {
-          console.error('Gagal fetch leave history:', err);
-          showSwal('Error', 'Gagal memuat riwayat cuti.', 'error');
+          console.error('Failed fetch leave history:', err);
+          showSwal('Error', 'Failed memuat history cuti.', 'error');
           setLeaveHistory([]);
         }
       };
@@ -888,14 +888,14 @@ const EmployeeLeaveRequest = ({
             days: leave.duration_days,
             reason: leave.reason,
             status: leave.status.charAt(0).toUpperCase() + leave.status.slice(1), // "pending" -> "Pending"
-            division: user.division || '—',
+            divisionon: user.divisionon || '—',
             attachments: leave.attachments || []
           }));
           
           setPendingLeaveRequests(mappedData);
         } catch (err) {
-          console.error('Gagal fetch pending leaves:', err);
-          showSwal('Error', 'Gagal memuat data pengajuan pending.', 'error');
+          console.error('Failed fetch pending leaves:', err);
+          showSwal('Error', 'Failed memuat data pengajuan pending.', 'error');
           setPendingLeaveRequests([]);
         }
       };
@@ -934,7 +934,7 @@ const EmployeeLeaveRequest = ({
   const handleLeaveSubmitted = (newLeave) => {
     console.log('handleLeaveSubmitted called with:', newLeave);
     
-    // Pastikan data yang ditambahkan ke leaveHistory sesuai format
+    // Make sure data yang ditambahkan ke leaveHistory sesuai format
     const formattedLeave = {
       id: newLeave.id,
       employeeId: newLeave.employeeId,
@@ -945,8 +945,8 @@ const EmployeeLeaveRequest = ({
       endDate: newLeave.endDate,
       days: newLeave.days,
       reason: newLeave.reason,
-      status: newLeave.status, // Pastikan statusnya "Pending" bukan "Menunggu"
-      division: newLeave.division,
+      status: newLeave.status, // Make sure statusnya "Pending" bukan "Pending"
+      divisionon: newLeave.divisionon,
       attachments: newLeave.attachments || []
     };
     
@@ -967,11 +967,11 @@ const EmployeeLeaveRequest = ({
     try {
       // Show confirmation dialog
       const result = await showSwal(
-        'Konfirmasi Pembatalan',
+        'Confirm Pembatalan',
         'Apakah Anda yakin ingin membatalkan pengajuan cuti ini?',
         'warning',
         true,
-        'Ya, Batalkan',
+        'Ya, Cancelkan',
         'Tidak'
       );
       
@@ -987,24 +987,24 @@ const EmployeeLeaveRequest = ({
           )
         );
         
-        showSwal('Dibatalkan!', 'Pengajuan cuti telah berhasil dibatalkan.', 'success', 2000);
+        showSwal('Dibatalkan!', 'Pengajuan cuti telah successfully dibatalkan.', 'success', 2000);
       }
     } catch (err) {
       console.error('Error cancelling leave:', err);
-      const errorMsg = err.response?.data?.message || 'Gagal membatalkan pengajuan cuti.';
+      const errorMsg = err.response?.data?.message || 'Failed membatalkan pengajuan cuti.';
       showSwal('Error', errorMsg, 'error');
     }
   };
 
   if (!canRequestLeave && !canApproveLeave && !canViewTeamLeave) {
     return (
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
         <div className="p-8 text-center">
           <div className="w-24 h-24 rounded-2xl bg-red-500/20 flex items-center justify-center mx-auto mb-4">
             <i className="fas fa-exclamation-triangle text-red-500 text-3xl"></i>
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Akses Ditolak</h3>
-          <p className="text-gray-600">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
+          <h3 className="text-xl font-bold text-slate-100 mb-2">Akses Direject</h3>
+          <p className="text-slate-300">Anda tidak memiliki izin untuk mengakses halaman ini.</p>
         </div>
       </GlassCard>
     );
@@ -1012,21 +1012,21 @@ const EmployeeLeaveRequest = ({
 
   return (
     <ErrorBoundary>
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
         <div className="p-8">
           {isLoading ? (
             <div className="flex justify-center items-center h-64">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#708993]"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-[#6366F1]"></div>
             </div>
           ) : (
             <>
               <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
                 <div>
-                  <h2 className="text-4xl font-bold bg-[#708993] bg-clip-text text-transparent">
+                  <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
                     {getViewTitle(viewMode, user.name)}
                   </h2>
-                  <p className="text-gray-600 mt-2 flex items-center">
-                    <i className="fas fa-calendar-alt mr-2 text-[#708993]"></i>
+                  <p className="text-slate-300 mt-2 flex items-center">
+                    <i className="fas fa-calendar-alt mr-2 text-[#6366F1]"></i>
                     Kelola pengajuan cuti dan izin
                   </p>
                 </div>

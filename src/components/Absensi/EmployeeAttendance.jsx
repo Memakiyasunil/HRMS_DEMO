@@ -2,7 +2,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { GlassCard, StatCard } from '../UI/Cards';
 import { PrimaryButton } from '../UI/Buttons';
-import { handleAttendanceClock, fetchAttendanceHistory, fetchAllAttendanceHistory, approveAttendance } from '../../api/attendanceApi';
+import { handleAttendanceClock } from '../../api/dataApi';
+import { fetchAttendanceHistory, fetchAllAttendanceHistory, approveAttendance } from '../../api/attendanceApi';
 import { useAuth } from '../../hooks/useAuth'; 
 import CameraModal from '../Shared/Modals/CameraModal';
 import PermissionModal from '../Shared/Modals/PermissionModal';
@@ -45,20 +46,20 @@ const checkNoClockOut = (attendanceList, todayDate) => {
 
 const LocationStatusCard = ({ locationStatus, WORK_START, WORK_END, canViewLocation }) => {
   return (
-    <div className="mb-4 p-3 bg-[#708993]/10 rounded-xl border border-[#708993]/20">
+    <div className="mb-4 p-3 bg-indigo-600/10 rounded-xl border border-[#6366F1]/20">
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <div className="w-8 h-8 rounded-lg bg-[#708993] flex items-center justify-center mr-2">
+          <div className="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center mr-2">
             <i className="fas fa-map-marker-alt text-white text-sm"></i>
           </div>
           <div>
-            <p className="font-medium text-[#708993] text-sm">Status Lokasi</p>
-            <p className="text-xs text-gray-600">{locationStatus}</p>
+            <p className="font-medium text-[#6366F1] text-sm">Status Lokasi</p>
+            <p className="text-xs text-slate-300">{locationStatus}</p>
           </div>
         </div>
         <div className="text-right">
-          <p className="text-xs text-gray-600">Jam Kerja</p>
-          <p className="font-medium text-[#708993] text-sm">{WORK_START} - {WORK_END}</p>
+          <p className="text-xs text-slate-300">Work Hours</p>
+          <p className="font-medium text-[#6366F1] text-sm">{WORK_START} - {WORK_END}</p>
         </div>
       </div>
     </div>
@@ -70,7 +71,7 @@ const CurrentStatusCard = ({ lastAttendance, isClockedIn, isSuccessEffect, canVi
     <div className={`text-center mb-6 p-4 rounded-xl transition-all duration-500 ${
       isSuccessEffect 
         ? 'bg-green-100 border border-green-300' 
-        : 'bg-[#708993]/5 border border-[#708993]/10'
+        : 'bg-indigo-600/5 border border-[#6366F1]/10'
     }`}>
       <div className="flex items-center justify-center mb-3">
         <div className={`w-12 h-12 rounded-full flex items-center justify-center ${
@@ -81,18 +82,18 @@ const CurrentStatusCard = ({ lastAttendance, isClockedIn, isSuccessEffect, canVi
           }`}></i>
         </div>
       </div>
-      <p className="text-base font-semibold text-gray-700 mb-1">Status Saat Ini</p>
+      <p className="text-base font-semibold text-slate-200 mb-1">Status Saat Ini</p>
       <p className={`text-xl font-bold mb-2 ${
-        isClockedIn ? 'text-green-600' : hasNoClockOut ? 'text-red-600' : 'text-[#708993]'
+        isClockedIn ? 'text-green-600' : hasNoClockOut ? 'text-red-600' : 'text-[#6366F1]'
       }`}>
         {isClockedIn ? 'SEDANG BEKERJA' : hasNoClockOut ? 'LUPA CLOCK OUT' : 'BELUM CLOCK IN'}
       </p>
       {lastAttendance && canViewDetails && (
-        <p className="text-xs text-gray-500">
+        <p className="text-xs text-slate-400">
           Terakhir: {lastAttendance.type} • {lastAttendance.date} • {lastAttendance.time}
           {lastAttendance.reason && (
             <span className="block text-xs text-gray-400 mt-1">
-              Alasan: {lastAttendance.reason}
+              Reason: {lastAttendance.reason}
             </span>
           )}
         </p>
@@ -116,7 +117,7 @@ const ClockButtons = ({
         className={`flex-1 py-3 px-4 rounded-xl font-medium text-white transition-all duration-300 flex items-center justify-center border-none focus:outline-none ${
           !canClockInToday
             ? 'bg-gray-400 cursor-not-allowed'
-            : 'bg-[#708993] hover:bg-[#5a6f7a] shadow-md hover:shadow-lg'
+            : 'bg-indigo-600 hover:bg-indigo-700 shadow-md hover:shadow-lg'
         }`}
       >
         <i className="fas fa-sign-in-alt mr-2 text-base"></i>
@@ -155,47 +156,47 @@ const AttendanceStats = ({ attendanceHistory, viewMode, teamStats }) => {
   if (viewMode === 'team') {
     return (
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+        <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
           <div className="flex items-center">
             <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-2">
               <i className="fas fa-users text-blue-600 text-sm"></i>
             </div>
             <div>
-              <p className="text-xs text-gray-600">Total Tim</p>
-              <p className="text-lg font-bold text-[#708993]">{teamStats.totalMembers}</p>
+              <p className="text-xs text-slate-300">Total Tim</p>
+              <p className="text-lg font-bold text-[#6366F1]">{teamStats.totalMembers}</p>
             </div>
           </div>
         </div>
-        <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+        <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
           <div className="flex items-center">
             <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center mr-2">
               <i className="fas fa-user-check text-green-600 text-sm"></i>
             </div>
             <div>
-              <p className="text-xs text-gray-600">Hadir Hari Ini</p>
-              <p className="text-lg font-bold text-[#708993]">{teamStats.presentToday}</p>
+              <p className="text-xs text-slate-300">Present Today</p>
+              <p className="text-lg font-bold text-[#6366F1]">{teamStats.presentToday}</p>
             </div>
           </div>
         </div>
-        <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+        <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
           <div className="flex items-center">
             <div className="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center mr-2">
               <i className="fas fa-hourglass-end text-yellow-600 text-sm"></i>
             </div>
             <div>
-              <p className="text-xs text-gray-600">Terlambat</p>
-              <p className="text-lg font-bold text-[#708993]">{teamStats.lateToday}</p>
+              <p className="text-xs text-slate-300">Terlambat</p>
+              <p className="text-lg font-bold text-[#6366F1]">{teamStats.lateToday}</p>
             </div>
           </div>
         </div>
-        <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+        <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
           <div className="flex items-center">
             <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mr-2">
               <i className="fas fa-user-times text-red-600 text-sm"></i>
             </div>
             <div>
-              <p className="text-xs text-gray-600">Tidak Hadir</p>
-              <p className="text-lg font-bold text-[#708993]">{teamStats.absentToday}</p>
+              <p className="text-xs text-slate-300">Tidak Present</p>
+              <p className="text-lg font-bold text-[#6366F1]">{teamStats.absentToday}</p>
             </div>
           </div>
         </div>
@@ -204,47 +205,47 @@ const AttendanceStats = ({ attendanceHistory, viewMode, teamStats }) => {
   }
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-      <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+      <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-lg bg-blue-100 flex items-center justify-center mr-2">
             <i className="fas fa-calendar-alt text-blue-600 text-sm"></i>
           </div>
           <div>
-            <p className="text-xs text-gray-600">Total Hari Kerja</p>
-            <p className="text-lg font-bold text-[#708993]">{totalWorkDays}</p>
+            <p className="text-xs text-slate-300">Total Hari Kerja</p>
+            <p className="text-lg font-bold text-[#6366F1]">{totalWorkDays}</p>
           </div>
         </div>
       </div>
-      <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+      <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-lg bg-yellow-100 flex items-center justify-center mr-2">
             <i className="fas fa-hourglass-end text-yellow-600 text-sm"></i>
           </div>
           <div>
-            <p className="text-xs text-gray-600">Keterlambatan</p>
-            <p className="text-lg font-bold text-[#708993]">{totalLate}</p>
+            <p className="text-xs text-slate-300">Keterlambatan</p>
+            <p className="text-lg font-bold text-[#6366F1]">{totalLate}</p>
           </div>
         </div>
       </div>
-      <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+      <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mr-2">
             <i className="fas fa-door-open text-red-600 text-sm"></i>
           </div>
           <div>
-            <p className="text-xs text-gray-600">Pulang Cepat</p>
-            <p className="text-lg font-bold text-[#708993]">{totalEarlyOut}</p>
+            <p className="text-xs text-slate-300">Pulang Cepat</p>
+            <p className="text-lg font-bold text-[#6366F1]">{totalEarlyOut}</p>
           </div>
         </div>
       </div>
-      <div className="bg-white p-3 rounded-xl border border-[#708993]/10 shadow-sm">
+      <div className="bg-slate-800 p-3 rounded-xl border border-[#6366F1]/10 shadow-sm">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-lg bg-red-100 flex items-center justify-center mr-2">
             <i className="fas fa-times-circle text-red-600 text-sm"></i>
           </div>
           <div>
-            <p className="text-xs text-gray-600">Lupa Clock Out</p>
-            <p className="text-lg font-bold text-[#708993]">{totalNoClockOut}</p>
+            <p className="text-xs text-slate-300">Lupa Clock Out</p>
+            <p className="text-lg font-bold text-[#6366F1]">{totalNoClockOut}</p>
           </div>
         </div>
       </div>
@@ -257,27 +258,27 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
     <div className="p-4 md:p-6">
       <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-4">
         <div className="mb-3 lg:mb-0">
-          <h3 className="text-xl md:text-2xl font-bold text-[#708993] mb-1">Riwayat Absensi Bulan Ini</h3>
-          <p className="text-gray-600 text-sm">Ringkasan kehadiran dan ketidakhadiran</p>
+          <h3 className="text-xl md:text-2xl font-bold text-[#6366F1] mb-1">Attendance History This Month</h3>
+          <p className="text-slate-300 text-sm">Summary kehadiran dan ketidakhadiran</p>
         </div>
         <div className="flex flex-wrap items-center gap-2">
-          <div className="flex items-center text-xs text-gray-600">
+          <div className="flex items-center text-xs text-slate-300">
             <div className="w-2 h-2 rounded-full bg-green-500 mr-1"></div>
-            <span>Tepat Waktu</span>
+            <span>Tepat Time</span>
           </div>
-          <div className="flex items-center text-xs text-gray-600">
+          <div className="flex items-center text-xs text-slate-300">
             <div className="w-2 h-2 rounded-full bg-yellow-500 mr-1"></div>
             <span>Terlambat</span>
           </div>
-          <div className="flex items-center text-xs text-gray-600">
+          <div className="flex items-center text-xs text-slate-300">
             <div className="w-2 h-2 rounded-full bg-purple-500 mr-1"></div>
             <span>Pulang Cepat</span>
           </div>
-          <div className="flex items-center text-xs text-gray-600">
+          <div className="flex items-center text-xs text-slate-300">
             <div className="w-2 h-2 rounded-full bg-blue-500 mr-1"></div>
             <span>Dengan Izin</span>
           </div>
-          <div className="flex items-center text-xs text-gray-600">
+          <div className="flex items-center text-xs text-slate-300">
             <div className="w-2 h-2 rounded-full bg-red-500 mr-1"></div>
             <span>Tidak Clock Out</span>
           </div>
@@ -285,30 +286,30 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
       </div>
       
       {/* Responsive Table */}
-      <div className="overflow-x-auto rounded-xl border border-[#708993]/10 bg-white/20">
+      <div className="overflow-x-auto rounded-xl border border-[#6366F1]/10 bg-slate-700/30">
         <table className="w-full min-w-[600px]">
           <thead>
-            <tr className="bg-[#708993] text-white">
-              <th className="px-4 py-3 text-left font-semibold text-sm rounded-tl-xl">Tanggal</th>
+            <tr className="bg-indigo-600 text-white">
+              <th className="px-4 py-3 text-left font-semibold text-sm rounded-tl-xl">Date</th>
               <th className="px-4 py-3 text-left font-semibold text-sm">Clock In</th>
               <th className="px-4 py-3 text-left font-semibold text-sm">Clock Out</th>
               <th className="px-4 py-3 text-left font-semibold text-sm">Status</th>
               <th className="px-4 py-3 text-left font-semibold text-sm">Izin</th>
               {canApproveAttendance && (
-                <th className="px-4 py-3 text-left font-semibold text-sm rounded-tr-xl">Aksi</th>
+                <th className="px-4 py-3 text-left font-semibold text-sm rounded-tr-xl">Action</th>
               )}
             </tr>
           </thead>
           <tbody className="divide-y divide-gray-100">
             {groupedAttendance.map((record) => (
-              <tr key={record.date} className="hover:bg-gray-50 transition-colors duration-200">
+              <tr key={record.date} className="hover:bg-slate-900 transition-colors duration-200">
                 <td className="px-4 py-3 whitespace-nowrap">
-                  <div className="font-medium text-gray-900 text-sm">{record.date}</div>
+                  <div className="font-medium text-slate-100 text-sm">{record.date}</div>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex flex-col">
                     <div className="flex items-center">
-                      <span className="font-medium text-gray-900 text-sm">{record.clockIn || '-'}</span>
+                      <span className="font-medium text-slate-100 text-sm">{record.clockIn || '-'}</span>
                       {record.isLate && (
                         <span className="ml-2 px-2 py-0.5 text-xs bg-yellow-100 text-yellow-800 rounded-full font-medium">
                           Terlambat
@@ -325,7 +326,7 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex items-center">
-                    <span className="font-medium text-gray-900 text-sm">{record.clockOut || '-'}</span>
+                    <span className="font-medium text-slate-100 text-sm">{record.clockOut || '-'}</span>
                     {record.isEarlyLeave && (
                       <span className="ml-2 px-2 py-0.5 text-xs bg-red-100 text-red-800 rounded-full font-medium">
                         Pulang Cepat
@@ -365,7 +366,7 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
                         ? 'Pulang Cepat' 
                         : record.isNoClockOut 
                           ? 'Tidak Clock Out' 
-                          : 'Tepat Waktu'}
+                          : 'Tepat Time'}
                   </span>
                 </td>
                 <td className="px-4 py-3">
@@ -386,7 +387,7 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
                         className="px-2 py-1 bg-green-500 hover:bg-green-600 text-white rounded-lg text-xs font-medium transition-colors"
                       >
                         <i className="fas fa-check mr-1"></i>
-                        Setujui
+                        Approvei
                       </button>
                     )}
                   </td>
@@ -402,8 +403,8 @@ const AttendanceHistory = ({ groupedAttendance, canViewDetails, canApproveAttend
           <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center mx-auto mb-3">
             <i className="fas fa-clipboard-list text-gray-400 text-2xl"></i>
           </div>
-          <p className="text-gray-500 font-medium mb-1">Belum ada riwayat absensi</p>
-          <p className="text-gray-400 text-sm">Riwayat absensi bulan ini akan muncul di sini</p>
+          <p className="text-slate-400 font-medium mb-1">Belum ada history absensi</p>
+          <p className="text-gray-400 text-sm">History absensi bulan ini akan muncul di sini</p>
         </div>
       )}
     </div>
@@ -414,28 +415,28 @@ const TeamAttendanceList = ({ employees, onEmployeeSelect, viewMode, WORK_START,
   const getListTitle = () => {
     switch(viewMode) {
       case 'team': return 'Absensi Tim';
-      case 'company': return 'Absensi Seluruh Karyawan';
-      default: return 'Absensi Karyawan';
+      case 'company': return 'Absensi Seluruh Employee';
+      default: return 'Absensi Employee';
     }
   };
   const currentTime = new Date().toTimeString().slice(0, 5);
   const isWorkTime = currentTime >= WORK_START && currentTime <= WORK_END;
   return (
     <div className="mt-6">
-      <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+      <h3 className="text-xl font-bold text-slate-100 mb-4 flex items-center">
         <i className="fas fa-users mr-2 text-blue-500"></i>
         {getListTitle()}
       </h3>
-      <div className="overflow-x-auto rounded-xl border border-[#708993]/10 bg-white/20">
+      <div className="overflow-x-auto rounded-xl border border-[#6366F1]/10 bg-slate-700/30">
         <table className="w-full min-w-[600px]">
-          <thead className="bg-white/10">
+          <thead className="bg-slate-700/20">
             <tr>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Nama</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Divisi</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Status</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Clock In</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Clock Out</th>
-              <th className="px-4 py-3 text-left text-sm font-medium text-gray-800">Aksi</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Name</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Division</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Status</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Clock In</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Clock Out</th>
+              <th className="px-4 py-3 text-left text-sm font-medium text-slate-100">Action</th>
             </tr>
           </thead>
           <tbody className="divide-y divide-white/10">
@@ -447,8 +448,8 @@ const TeamAttendanceList = ({ employees, onEmployeeSelect, viewMode, WORK_START,
               const hasNoClockOut = checkNoClockOut(employee.currentMonthAttendance || [], new Date().toISOString().split('T')[0]);
               return (
                 <tr key={employee.id} className="hover:bg-white/5 transition-colors">
-                  <td className="px-4 py-3 text-sm text-gray-800 font-medium">{employee.name}</td>
-                  <td className="px-4 py-3 text-sm text-gray-700">{employee.division}</td>
+                  <td className="px-4 py-3 text-sm text-slate-100 font-medium">{employee.name}</td>
+                  <td className="px-4 py-3 text-sm text-slate-200">{employee.divisionon}</td>
                   <td className="px-4 py-3 text-sm">
                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
                       isClockedIn 
@@ -457,18 +458,18 @@ const TeamAttendanceList = ({ employees, onEmployeeSelect, viewMode, WORK_START,
                         ? 'bg-red-100 text-red-800'
                         : isWorkTime
                         ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-gray-100 text-gray-800'
+                        : 'bg-gray-100 text-slate-100'
                     }`}>
-                      {isClockedIn ? 'Hadir' : hasNoClockOut ? 'Lupa Clock Out' : isWorkTime ? 'Belum Hadir' : 'Tidak Jam Kerja'}
+                      {isClockedIn ? 'Present' : hasNoClockOut ? 'Lupa Clock Out' : isWorkTime ? 'Belum Present' : 'Tidak Work Hours'}
                     </span>
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-800">
+                  <td className="px-4 py-3 text-sm text-slate-100">
                     {lastAttendance && lastAttendance.type === 'Clock In' 
                       ? `${lastAttendance.date} ${lastAttendance.time}`
                       : '-'
                     }
                   </td>
-                  <td className="px-4 py-3 text-sm text-gray-800">
+                  <td className="px-4 py-3 text-sm text-slate-100">
                     {lastAttendance && lastAttendance.type === 'Clock Out' 
                       ? `${lastAttendance.date} ${lastAttendance.time}`
                       : '-'
@@ -583,7 +584,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
       } catch (error) {
         console.error('Failed to fetch attendance:', error);
         if (error.status !== 403) {
-          showSwal('Error', error.payload?.message || error.message || 'Gagal mengambil data absensi.', 'error', 2000);
+          showSwal('Error', error.payload?.message || error.message || 'Failed mengambil data absensi.', 'error', 2000);
         }
       } finally {
         setLoading(false);
@@ -601,7 +602,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
         const shift = shiftData?.shift || shiftData;
         setUserShift(shift);
       } catch (error) {
-        console.error('Gagal mengambil shift user:', error);
+        console.error('Failed mengambil shift user:', error);
       }
     };
     fetchUserShift();
@@ -630,7 +631,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
       } catch (error) {
         console.error('Failed to fetch all attendance:', error);
         if (error.status !== 403) {
-          showSwal('Error', error.payload?.message || error.message || 'Gagal mengambil data absensi tim.', 'error', 2000);
+          showSwal('Error', error.payload?.message || error.message || 'Failed mengambil data absensi tim.', 'error', 2000);
         }
       }
     };
@@ -703,13 +704,13 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
         } else if (rec.isEarlyLeave) {
           status = 'Pulang Cepat';
         } else if (rec.clockIn && rec.clockOut) {
-          status = 'Tepat Waktu';
+          status = 'Tepat Time';
         }
       } else if (date === today) {
         if (rec.clockIn && rec.clockOut) {
           if (rec.isLate) status = 'Terlambat';
           else if (rec.isEarlyLeave) status = 'Pulang Cepat';
-          else status = 'Tepat Waktu';
+          else status = 'Tepat Time';
         } else if (rec.clockIn) {
           status = 'Belum Clock Out';
         } else {
@@ -773,7 +774,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
           const officeLon = 98.7294571;
           const distance = calculateDistance(latitude, longitude, officeLat, officeLon);
           if (distance > 20000) {
-            showSwal('Lokasi Diluar Radius', `Anda berada ${distance.toFixed(0)} meter dari kantor. Maksimal radius 20.000 meter.`, 'error');
+            showSwal('Lokasi Diluar Radius', `Anda berada ${distance.toFixed(0)} meter dari kantor. Mactionmal radius 20.000 meter.`, 'error');
             setIsClocking(false);
             return;
           }
@@ -810,7 +811,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
         { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
       );
     } catch (err) {
-      console.error('Gagal mendapatkan lokasi:', err.message);
+      console.error('Failed mendapatkan lokasi:', err.message);
       setIsClocking(false);
     }
   };
@@ -858,10 +859,10 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
       }
       setIsSuccessEffect(true);
       setTimeout(() => setIsSuccessEffect(false), 2000);
-      showSwal('Success', `Clock ${attendanceType} berhasil!`, 'success', 1500);
+      showSwal('Success', `Clock ${attendanceType} successfully!`, 'success', 1500);
     } catch (err) {
-      console.error('Proses absensi gagal:', err);
-      showSwal('Error', err.payload?.message || err.message || `Gagal melakukan clock ${attendanceType}`, 'error');
+      console.error('Proses absensi failed:', err);
+      showSwal('Error', err.payload?.message || err.message || `Failed melakukan clock ${attendanceType}`, 'error');
     } finally {
       setIsClocking(false);
       setPendingPermission(null);
@@ -870,7 +871,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
 
   const onApproveAttendance = (record) => {
     if (!canApproveAttendance) {
-      showSwal('Izin Ditolak', 'Anda tidak memiliki izin untuk menyetujui absensi.', 'error', 2000);
+      showSwal('Izin Direject', 'Anda tidak memiliki izin untuk menyetujui absensi.', 'error', 2000);
       return;
     }
     const recordId = record.id;
@@ -879,12 +880,12 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
       return;
     }
     showSwal({
-      title: 'Setujui Izin Absensi?',
-      text: `Apakah Anda yakin ingin menyetujui izin absensi untuk tanggal ${record.date}?`,
+      title: 'Approvei Izin Absensi?',
+      text: `Apakah Anda yakin ingin menyetujui izin absensi untuk date ${record.date}?`,
       icon: 'question',
       showCancelButton: true,
-      confirmButtonText: 'Ya, Setujui',
-      cancelButtonText: 'Batal',
+      confirmButtonText: 'Ya, Approvei',
+      cancelButtonText: 'Cancel',
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
@@ -892,13 +893,13 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
           if (response.success) {
             setAttendanceHistory(prev => prev.map(item => item.id === recordId ? { ...item, status: 'approved', needsApproval: false } : item));
             setGroupedAttendance(prev => prev.map(item => item.date === record.date ? { ...item, needsApproval: false } : item));
-            showSwal('Disetujui!', 'Izin absensi telah disetujui.', 'success', 2000);
+            showSwal('Diapprovei!', 'Izin absensi telah diapprovei.', 'success', 2000);
           } else {
-            throw new Error(response.message || 'Gagal menyetujui izin');
+            throw new Error(response.message || 'Failed menyetujui izin');
           }
         } catch (err) {
-          console.error('Gagal menyetujui absensi:', err);
-          const errorMessage = err.payload?.message || err.message || 'Gagal menyetujui izin absensi';
+          console.error('Failed menyetujui absensi:', err);
+          const errorMessage = err.payload?.message || err.message || 'Failed menyetujui izin absensi';
           showSwal('Error', errorMessage, 'error');
         }
       }
@@ -907,13 +908,13 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
 
   if (!canViewAttendance) {
     return (
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
         <div className="p-8 text-center">
           <div className="w-24 h-24 rounded-2xl bg-red-500/20 flex items-center justify-center mx-auto mb-4">
             <i className="fas fa-exclamation-triangle text-red-500 text-3xl"></i>
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Akses Ditolak</h3>
-          <p className="text-gray-600">Anda tidak memiliki izin untuk mengabsen halaman ini.</p>
+          <h3 className="text-xl font-bold text-slate-100 mb-2">Akses Direject</h3>
+          <p className="text-slate-300">Anda tidak memiliki izin untuk mengabsen halaman ini.</p>
         </div>
       </GlassCard>
     );
@@ -921,20 +922,20 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
 
   return (
     <>
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
         {isClocking && (
-          <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-20 rounded-3xl">
+          <div className="absolute inset-0 bg-slate-700/80 backdrop-blur-sm flex items-center justify-center z-20 rounded-3xl">
             <div className="text-center">
-              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-[#708993] mx-auto mb-4"></div>
-              <p className="text-[#708993] font-medium">Memproses absensi...</p>
+              <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-[#6366F1] mx-auto mb-4"></div>
+              <p className="text-[#6366F1] font-medium">Memproses absensi...</p>
             </div>
           </div>
         )}
         <div className="p-4 md:p-6">
           <div className="text-center mb-6">
-            <h2 className="text-2xl md:text-3xl font-bold text-[#708993] mb-2">Halo, {user.name} 👋</h2>
-            <p className="text-gray-600">
-              {viewMode === 'personal' ? 'Silahkan absensi terlebih dahulu' : 'Kelola absensi karyawan'}
+            <h2 className="text-2xl md:text-3xl font-bold text-[#6366F1] mb-2">Halo, {user.name} 👋</h2>
+            <p className="text-slate-300">
+              {viewMode === 'personal' ? 'Silahkan absensi terlebih dahulu' : 'Kelola absensi employee'}
             </p>
           </div>
           <LocationStatusCard locationStatus={locationStatus} WORK_START={WORK_START} WORK_END={WORK_END} canViewLocation={canViewAttendance} />
@@ -945,7 +946,7 @@ const canClockOutToday = canClockOut && hasClockedInToday && !hasClockedOutToday
           <AttendanceStats attendanceHistory={attendanceHistory} viewMode={viewMode} teamStats={teamStats} />
         </div>
       </GlassCard>
-      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+      <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
         <AttendanceHistory groupedAttendance={groupedAttendance} canViewDetails={canViewAttendance} canApproveAttendance={canApproveAttendance} onApproveAttendance={onApproveAttendance} />
       </GlassCard>
       {(canViewTeamAttendance || canViewAttendanceDetail) && (

@@ -1,4 +1,4 @@
-// src/components/Reporting/ManagerSalary.jsx
+﻿// src/components/Reporting/ManagerSalary.jsx
 import React from 'react';
 import { GlassCard, StatCard } from '../UI/Cards'; 
 import { formattedCurrency, calculateTotalSalary } from '../../utils/formatters'; 
@@ -11,7 +11,7 @@ const ManagerSalary = ({ user }) => {
 
     const salaryComponents = [
         { 
-            title: 'Gaji Pokok', 
+            title: 'Base Salary', 
             value: salary.basic, 
             icon: 'fas fa-wallet', 
             color: 'blue',
@@ -19,7 +19,7 @@ const ManagerSalary = ({ user }) => {
             border: 'border-blue-400/30'
         },
         { 
-            title: 'Tunjangan', 
+            title: 'Allowance', 
             value: salary.allowance, 
             icon: 'fas fa-gift', 
             color: 'green',
@@ -27,7 +27,7 @@ const ManagerSalary = ({ user }) => {
             border: 'border-green-400/30'
         },
         { 
-            title: 'Tunjangan Jabatan', 
+            title: 'Allowance Jabatan', 
             value: salary.positionAllowance, 
             icon: 'fas fa-briefcase', 
             color: 'indigo',
@@ -35,7 +35,7 @@ const ManagerSalary = ({ user }) => {
             border: 'border-indigo-400/30'
         },
         { 
-            title: 'Lembur', 
+            title: 'Overtime', 
             value: `${salary.overtimeHours} jam`, 
             subValue: formattedCurrency(salary.overtimeHours * salary.overtimeRate),
             icon: 'fas fa-hourglass-start', 
@@ -52,7 +52,7 @@ const ManagerSalary = ({ user }) => {
             border: 'border-purple-400/30'
         },
         { 
-            title: 'Potongan', 
+            title: 'Deductions', 
             value: salary.deductions, 
             icon: 'fas fa-minus-circle', 
             color: 'red',
@@ -65,22 +65,22 @@ const ManagerSalary = ({ user }) => {
         const doc = new jsPDF();
         
         doc.setFontSize(18);
-        doc.text("Slip Gaji Manager", 14, 22);
+        doc.text("Slip Salary Manager", 14, 22);
         
         doc.setFontSize(10);
         doc.text(`Periode: ${new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}`, 14, 30);
-        doc.text(`Nama: ${user.name}`, 14, 36);
+        doc.text(`Name: ${user.name}`, 14, 36);
         doc.text(`Jabatan: ${user.position || 'Manager'}`, 14, 42);
-        doc.text(`Divisi: ${user.division || 'N/A'}`, 14, 48);
+        doc.text(`Division: ${user.divisionon || 'N/A'}`, 14, 48);
 
         const tableData = [
             ["KOMPONEN PENDAPATAN", "JUMLAH"],
-            ["Gaji Pokok", formattedCurrency(salary.basic)],
-            ["Tunjangan", formattedCurrency(salary.allowance)],
-            ["Tunjangan Jabatan", formattedCurrency(salary.positionAllowance)],
-            ["Lembur", formattedCurrency(salary.overtimeHours * salary.overtimeRate)],
+            ["Base Salary", formattedCurrency(salary.basic)],
+            ["Allowance", formattedCurrency(salary.allowance)],
+            ["Allowance Jabatan", formattedCurrency(salary.positionAllowance)],
+            ["Overtime", formattedCurrency(salary.overtimeHours * salary.overtimeRate)],
             ["Bonus", formattedCurrency(salary.bonus)],
-            ["Potongan", `-${formattedCurrency(salary.deductions)}`],
+            ["Deductions", `-${formattedCurrency(salary.deductions)}`],
             ["GAJI BERSIH (NET SALARY)", formattedCurrency(totalSalary)],
         ];
 
@@ -99,20 +99,20 @@ const ManagerSalary = ({ user }) => {
             }
         });
 
-        doc.save(`Slip_Gaji_${user.name}_${new Date().getMonth() + 1}_${new Date().getFullYear()}.pdf`);
+        doc.save(`Slip_Salary_${user.name}_${new Date().getMonth() + 1}_${new Date().getFullYear()}.pdf`);
     };
 
     return (
-        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
             <div className="p-8">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
                     <div>
-                        <h2 className="text-4xl font-bold bg-[#708993] bg-clip-text text-transparent">
-                            Detail Gaji
+                        <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
+                            Detail Salary
                         </h2>
-                        <p className="text-gray-600 mt-2 flex items-center">
-                            <i className="fas fa-calendar-alt mr-2 text-[#708993]"></i>
+                        <p className="text-slate-300 mt-2 flex items-center">
+                            <i className="fas fa-calendar-alt mr-2 text-[#6366F1]"></i>
                             Periode: {new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}
                         </p>
                     </div>
@@ -120,24 +120,24 @@ const ManagerSalary = ({ user }) => {
                     {/* Download Button */}
                     <button
                         onClick={generatePdf}
-                        className="mt-4 lg:mt-0 px-6 py-3 rounded-full bg-[#708993] hover:bg-[#5a727a] text-white font-semibold shadow-lg transition-all duration-300 flex items-center group border-none focus:outline-none"
+                        className="mt-4 lg:mt-0 px-6 py-3 rounded-full bg-indigo-600 hover:bg-[#5a727a] text-white font-semibold shadow-lg transition-all duration-300 flex items-center group border-none focus:outline-none"
                     >
-                        <div className="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
+                        <div className="w-8 h-8 rounded-full bg-slate-700/30 flex items-center justify-center mr-3 group-hover:scale-110 transition-transform">
                             <i className="fas fa-file-pdf text-white"></i>
                         </div>
-                        Download Slip Gaji
+                        Download Slip Salary
                     </button>
                 </div>
 
                 {/* Net Salary Card */}
-                <div className="mb-8 p-8 rounded-2xl bg-[#708993] backdrop-blur-sm relative overflow-hidden">
+                <div className="mb-8 p-8 rounded-2xl bg-indigo-600 backdrop-blur-sm relative overflow-hidden">
                     <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
                     <div className="relative z-10 text-white">
                         <div className="flex flex-col lg:flex-row justify-between items-center">
                             <div className="text-center lg:text-left mb-6 lg:mb-0">
                                 <p className="text-xl font-semibold opacity-90 mb-2 flex items-center justify-center lg:justify-start">
                                     <i className="fas fa-wallet mr-3 text-2xl"></i>
-                                    Gaji Bersih Bulan Ini
+                                    Salary Bersih This Month
                                 </p>
                                 <p className="text-5xl lg:text-6xl font-extrabold mt-2">
                                     {formattedCurrency(totalSalary)}
@@ -157,16 +157,16 @@ const ManagerSalary = ({ user }) => {
 
                 {/* Salary Components */}
                 <div className="mb-6">
-                    <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+                    <h3 className="text-2xl font-bold text-slate-100 mb-6 flex items-center">
                         <i className="fas fa-puzzle-piece mr-3 text-blue-500"></i>
-                        Komponen Gaji
+                        Komponen Salary
                     </h3>
                     
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {salaryComponents.map((item, index) => (
                             <div 
                                 key={index}
-                                className={`p-6 rounded-2xl bg-[#FBFCFF] border border-[#708993] backdrop-blur-sm hover:shadow-md transition-all duration-300 cursor-pointer`}
+                                className={`p-6 rounded-2xl bg-[#FBFCFF] border border-[#6366F1] backdrop-blur-sm hover:shadow-md transition-all duration-300 cursor-pointer`}
                             >
                                 <div className="flex items-center justify-between mb-4">
                                     <div className="flex items-center">
@@ -174,9 +174,9 @@ const ManagerSalary = ({ user }) => {
                                             <i className={`${item.icon} text-${item.color}-600 text-lg`}></i>
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-gray-800 text-lg">{item.title}</h4>
+                                            <h4 className="font-bold text-slate-100 text-lg">{item.title}</h4>
                                             {item.subValue && (
-                                                <p className="text-sm text-gray-600 font-medium">{item.subValue}</p>
+                                                <p className="text-sm text-slate-300 font-medium">{item.subValue}</p>
                                             )}
                                         </div>
                                     </div>
@@ -184,21 +184,21 @@ const ManagerSalary = ({ user }) => {
                                 
                                 <div className="text-left">
                                     <p className={`text-2xl font-extrabold ${
-                                        item.title === 'Potongan' 
+                                        item.title === 'Deductions' 
                                             ? 'text-red-600' 
-                                            : item.title === 'Lembur'
-                                            ? 'text-gray-800'
-                                            : 'text-gray-900'
+                                            : item.title === 'Overtime'
+                                            ? 'text-slate-100'
+                                            : 'text-slate-100'
                                     }`}>
-                                        {item.title === 'Potongan' 
+                                        {item.title === 'Deductions' 
                                             ? `-${formattedCurrency(item.value)}`
-                                            : item.title === 'Lembur'
+                                            : item.title === 'Overtime'
                                             ? item.value
                                             : formattedCurrency(item.value)
                                         }
                                     </p>
-                                    {item.title === 'Lembur' && (
-                                        <p className="text-lg font-bold text-gray-700 mt-1">
+                                    {item.title === 'Overtime' && (
+                                        <p className="text-lg font-bold text-slate-200 mt-1">
                                             {formattedCurrency(salary.overtimeHours * salary.overtimeRate)}
                                         </p>
                                     )}
@@ -209,45 +209,45 @@ const ManagerSalary = ({ user }) => {
                 </div>
 
                 {/* Additional Information */}
-                <div className="mt-8 pt-6 border-t border-white/20">
+                <div className="mt-8 pt-6 border-t border-indigo-500/10">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div className="p-5 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30">
-                            <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+                        <div className="p-5 rounded-2xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30">
+                            <h4 className="font-bold text-slate-100 mb-3 flex items-center">
                                 <i className="fas fa-info-circle mr-2 text-blue-500"></i>
-                                Informasi Gaji
+                                Informasi Salary
                             </h4>
-                            <div className="space-y-2 text-sm text-gray-700">
+                            <div className="space-y-2 text-sm text-slate-200">
                                 <div className="flex justify-between">
-                                    <span>Rate Lembur:</span>
+                                    <span>Rate Overtime:</span>
                                     <span className="font-semibold">{formattedCurrency(salary.overtimeRate)}/jam</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span>Total Jam Lembur:</span>
+                                    <span>Total Jam Overtime:</span>
                                     <span className="font-semibold">{salary.overtimeHours} jam</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span>Tunjangan Jabatan:</span>
+                                    <span>Allowance Jabatan:</span>
                                     <span className="font-semibold text-green-600">{formattedCurrency(salary.positionAllowance)}</span>
                                 </div>
                                 <div className="flex justify-between">
                                     <span>Status Pembayaran:</span>
-                                    <span className="font-semibold text-green-600">Aktif</span>
+                                    <span className="font-semibold text-green-600">Active</span>
                                 </div>
                             </div>
                         </div>
                         
-                        <div className="p-5 rounded-2xl bg-white/20 backdrop-blur-sm border border-white/30">
-                            <h4 className="font-bold text-gray-800 mb-3 flex items-center">
+                        <div className="p-5 rounded-2xl bg-slate-700/30 backdrop-blur-sm border border-slate-600/30">
+                            <h4 className="font-bold text-slate-100 mb-3 flex items-center">
                                 <i className="fas fa-clock mr-2 text-purple-500"></i>
                                 Timeline
                             </h4>
-                            <div className="space-y-2 text-sm text-gray-700">
+                            <div className="space-y-2 text-sm text-slate-200">
                                 <div className="flex justify-between">
                                     <span>Periode:</span>
                                     <span className="font-semibold">{new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })}</span>
                                 </div>
                                 <div className="flex justify-between">
-                                    <span>Tanggal Transfer:</span>
+                                    <span>Date Transfer:</span>
                                     <span className="font-semibold">25 {new Date().toLocaleDateString('id-ID', { month: 'long' })} {new Date().getFullYear()}</span>
                                 </div>
                                 <div className="flex justify-between">

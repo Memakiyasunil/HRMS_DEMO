@@ -1,10 +1,10 @@
-// src/components/Manager/ManagerEmployeeManagement.jsx
+﻿// src/components/Manager/ManagerEmployeeManagement.jsx
 import React, { useState, useEffect } from 'react';
 import { showSwal } from '../../utils/swal';
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-white/30 border border-[#708993]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -13,10 +13,10 @@ const GlassCard = ({ children, className = '' }) => (
 const ActionButton = ({ onClick, children, variant = 'primary', disabled = false, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
-        primary: "bg-[#708993] text-white hover:bg-[#5a6f7a] active:scale-95",
-        secondary: "bg-white/40 text-[#708993] border border-[#708993]/30 hover:bg-white/60",
+        primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
-        ghost: "bg-transparent text-[#708993] hover:bg-white/40"
+        ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
     
     const disabledClasses = "opacity-50 cursor-not-allowed";
@@ -36,8 +36,8 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
         <input 
@@ -46,7 +46,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-white/50 border border-[#708993]/20 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -54,15 +54,15 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
 // Textarea with consistent styling
 const FormTextarea = ({ label, icon, value, onChange, name, rows = 3, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <textarea 
             name={name}
             value={value || ''} 
             onChange={onChange}
             rows={rows}
-            className="w-full px-4 py-3 bg-white/50 border border-[#708993]/20 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200 resize-none"
+            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200 resize-none"
         />
     </div>
 );
@@ -70,14 +70,14 @@ const FormTextarea = ({ label, icon, value, onChange, name, rows = 3, className 
 // Select input with consistent styling
 const FormSelect = ({ label, icon, value, onChange, name, options, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <select 
             name={name}
             value={value || ''} 
             onChange={onChange}
-            className="w-full px-4 py-3 bg-white/50 border border-[#708993]/20 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -91,15 +91,15 @@ const FormSelect = ({ label, icon, value, onChange, name, options, className = '
 // File input with consistent styling
 const FormFileInput = ({ label, icon, value, onChange, name, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <input 
             type="file" 
             name={name}
             accept="image/jpeg, image/png"
             onChange={onChange}
-            className="w-full px-4 py-3 bg-white/50 border border-[#708993]/20 rounded-2xl text-gray-800 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#708993]/20 file:text-[#708993] hover:file:bg-[#708993]/30 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-600/20 file:text-[#6366F1] hover:file:bg-indigo-600/30 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -110,14 +110,14 @@ const EmployeeCard = ({ employee, isSelected, onClick }) => (
         onClick={onClick}
         className={`p-4 rounded-2xl cursor-pointer transition-all duration-200 border-2 ${
             isSelected
-                ? 'bg-[#708993]/10 border-[#708993] shadow-sm'
-                : 'bg-white/40 border-white/40 hover:bg-white/60 hover:border-[#708993]/30'
+                ? 'bg-indigo-600/10 border-[#6366F1] shadow-sm'
+                : 'bg-white/40 border-indigo-500/20 hover:bg-slate-700/60 hover:border-[#6366F1]/30'
         }`}
     >
         <div className="flex items-start justify-between">
             <div className="flex-1">
-                <p className="font-semibold text-gray-800 text-sm">{employee.name}</p>
-                <p className="text-xs text-gray-600 mt-1">{employee.division}</p>
+                <p className="font-semibold text-slate-100 text-sm">{employee.name}</p>
+                <p className="text-xs text-slate-300 mt-1">{employee.divisionon}</p>
             </div>
             <span className={`text-xs font-medium px-2 py-1 rounded-full ${
                 employee.status === 'Active' 
@@ -130,8 +130,8 @@ const EmployeeCard = ({ employee, isSelected, onClick }) => (
             </span>
         </div>
         <div className="flex justify-between items-center mt-3">
-            <span className="text-xs text-gray-500">NIK: {employee.nik}</span>
-            <span className="text-xs text-[#708993] font-medium">{employee.cutiBalance} hari cuti</span>
+            <span className="text-xs text-slate-400">NIK: {employee.nik}</span>
+            <span className="text-xs text-[#6366F1] font-medium">{employee.cutiBalance} hari cuti</span>
         </div>
     </div>
 );
@@ -143,9 +143,9 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
     return (
         <GlassCard className="p-4 mb-4">
             <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-gray-800 flex items-center gap-2">
-                    <i className="fas fa-filter text-[#708993]"></i>
-                    Filter Karyawan
+                <h3 className="font-semibold text-slate-100 flex items-center gap-2">
+                    <i className="fas fa-filter text-[#6366F1]"></i>
+                    Filter Employee
                 </h3>
                 <div className="flex gap-2">
                     <ActionButton 
@@ -168,7 +168,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
             </div>
 
             {isExpanded && (
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 border-t border-[#708993]/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-4 border-t border-[#6366F1]/10">
                     <FormInput
                         label="ID"
                         icon="fa-hashtag"
@@ -184,7 +184,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         onChange={onFilterChange}
                     />
                     <FormInput
-                        label="Nama"
+                        label="Name"
                         icon="fa-user"
                         name="name"
                         value={filters.name}
@@ -218,7 +218,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         value={filters.gender}
                         onChange={onFilterChange}
                         options={[
-                            { value: '', label: 'Semua' },
+                            { value: '', label: 'All' },
                             { value: 'male', label: 'Laki-laki' },
                             { value: 'female', label: 'Perempuan' }
                         ]}
@@ -230,7 +230,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         value={filters.religion}
                         onChange={onFilterChange}
                         options={[
-                            { value: '', label: 'Semua' },
+                            { value: '', label: 'All' },
                             { value: 'Islam', label: 'Islam' },
                             { value: 'Kristen', label: 'Kristen' },
                             { value: 'Katolik', label: 'Katolik' },
@@ -247,7 +247,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         onChange={onFilterChange}
                     />
                     <FormInput
-                        label="Tanggal Lahir"
+                        label="Date Lahir"
                         icon="fa-calendar"
                         type="date"
                         name="birth_date"
@@ -262,14 +262,14 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         onChange={onFilterChange}
                     />
                     <FormInput
-                        label="Divisi"
+                        label="Division"
                         icon="fa-building"
-                        name="division"
-                        value={filters.division}
+                        name="divisionon"
+                        value={filters.divisionon}
                         onChange={onFilterChange}
                     />
                     <FormInput
-                        label="Tanggal Mulai Kerja"
+                        label="Date Mulai Kerja"
                         icon="fa-calendar-check"
                         type="date"
                         name="hired_at"
@@ -277,20 +277,20 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         onChange={onFilterChange}
                     />
                     <FormSelect
-                        label="Status Karyawan"
+                        label="Status Employee"
                         icon="fa-shield-alt"
                         name="employment_status"
                         value={filters.employment_status}
                         onChange={onFilterChange}
                         options={[
-                            { value: '', label: 'Semua' },
-                            { value: 'Active', label: 'Aktif' },
-                            { value: 'Inactive', label: 'Tidak Aktif' },
+                            { value: '', label: 'All' },
+                            { value: 'Active', label: 'Active' },
+                            { value: 'Inactive', label: 'Tidak Active' },
                             { value: 'On Leave', label: 'Cuti' }
                         ]}
                     />
                     <FormInput
-                        label="Tanggal Berhenti"
+                        label="Date Berhenti"
                         icon="fa-calendar-times"
                         type="date"
                         name="resigned_at"
@@ -298,15 +298,15 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
                         onChange={onFilterChange}
                     />
                     <FormSelect
-                        label="Status Aktif"
+                        label="Status Active"
                         icon="fa-check-circle"
                         name="is_active"
                         value={filters.is_active}
                         onChange={onFilterChange}
                         options={[
-                            { value: '', label: 'Semua' },
-                            { value: 'true', label: 'Aktif' },
-                            { value: 'false', label: 'Tidak Aktif' }
+                            { value: '', label: 'All' },
+                            { value: 'true', label: 'Active' },
+                            { value: 'false', label: 'Tidak Active' }
                         ]}
                     />
                 </div>
@@ -315,7 +315,7 @@ const FilterPanel = ({ filters, onFilterChange, onResetFilters }) => {
     );
 };
 
-// --- B5. Manajemen Karyawan (CRUD) ---
+// --- B5. Management Employee (CRUD) ---
 const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) => {
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [isCreating, setIsCreating] = useState(false);
@@ -334,7 +334,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
         birth_place: '',
         birth_date: '',
         position: '',
-        division: '',
+        divisionon: '',
         hired_at: '',
         employment_status: '',
         resigned_at: '',
@@ -441,7 +441,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             birth_place: '',
             birth_date: '',
             position: '',
-            division: '',
+            divisionon: '',
             hired_at: '',
             employment_status: '',
             resigned_at: '',
@@ -457,7 +457,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             const searchMatch = 
                 employee.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
                 employee.nik?.includes(searchTerm) ||
-                employee.division?.toLowerCase().includes(searchTerm.toLowerCase());
+                employee.divisionon?.toLowerCase().includes(searchTerm.toLowerCase());
 
             // Advanced filters
             const filterMatch = Object.entries(filters).every(([key, value]) => {
@@ -501,7 +501,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
 
     const handleCreateEmployee = () => {
         if (!formData.name || !formData.nik || !formData.password) {
-            showSwal('Error', 'Nama, NIK, dan Password wajib diisi.', 'error');
+            showSwal('Error', 'Name, NIK, dan Password wajib diisi.', 'error');
             return;
         }
         
@@ -524,7 +524,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
         };
         
         setEmployees(prev => [...prev, newEmployee]);
-        showSwal('Berhasil', `Karyawan ${newEmployee.name} berhasil ditambahkan.`, 'success');
+        showSwal('Success', `Employee ${newEmployee.name} successfully ditambahkan.`, 'success');
         resetState();
     };
 
@@ -549,19 +549,19 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             )
         );
         setSelectedEmployee(updatedEmployee);
-        showSwal('Berhasil', `Data ${formData.name} berhasil diperbarui.`, 'success');
+        showSwal('Success', `Data ${formData.name} successfully diperbarui.`, 'success');
         setIsEditing(false);
     };
 
     const handleDeleteEmployee = () => {
         showSwal({
-            title: 'Hapus Karyawan?',
+            title: 'Delete Employee?',
             text: `Data ${selectedEmployee.name} akan dihapus secara permanen.`,
             icon: 'warning',
             buttons: {
-                cancel: "Batal",
+                cancel: "Cancel",
                 confirm: {
-                    text: "Ya, Hapus!",
+                    text: "Ya, Delete!",
                     value: true,
                     className: "bg-red-500"
                 }
@@ -569,7 +569,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
         }).then((willDelete) => {
             if (willDelete) {
                 setEmployees(prev => prev.filter(emp => emp.id !== selectedEmployee.id));
-                showSwal('Berhasil', 'Karyawan berhasil dihapus.', 'success');
+                showSwal('Success', 'Employee successfully dihapus.', 'success');
                 resetState();
             }
         });
@@ -697,10 +697,10 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                     onChange={handleInputChange}
                 />
                 <FormInput
-                    label="Division"
+                    label="Divisionon"
                     icon="fa-building"
-                    name="division"
-                    value={formData.division}
+                    name="divisionon"
+                    value={formData.divisionon}
                     onChange={handleInputChange}
                 />
                 <FormInput
@@ -787,53 +787,53 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             <div className="grid grid-cols-2 gap-4 text-sm">
                 <div className="space-y-3">
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">NIK</p>
-                        <p className="text-gray-800">{selectedEmployee.nik}</p>
+                        <p className="font-medium text-slate-400 text-xs">NIK</p>
+                        <p className="text-slate-100">{selectedEmployee.nik}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Nama</p>
-                        <p className="text-gray-800">{selectedEmployee.name}</p>
+                        <p className="font-medium text-slate-400 text-xs">Name</p>
+                        <p className="text-slate-100">{selectedEmployee.name}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Divisi</p>
-                        <p className="text-gray-800">{selectedEmployee.division}</p>
+                        <p className="font-medium text-slate-400 text-xs">Division</p>
+                        <p className="text-slate-100">{selectedEmployee.divisionon}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Email</p>
-                        <p className="text-gray-800">{selectedEmployee.email}</p>
+                        <p className="font-medium text-slate-400 text-xs">Email</p>
+                        <p className="text-slate-100">{selectedEmployee.email}</p>
                     </div>
                 </div>
                 <div className="space-y-3">
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Telepon</p>
-                        <p className="text-gray-800">{selectedEmployee.phone}</p>
+                        <p className="font-medium text-slate-400 text-xs">Telepon</p>
+                        <p className="text-slate-100">{selectedEmployee.phone}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Status</p>
-                        <p className="text-gray-800">{selectedEmployee.status}</p>
+                        <p className="font-medium text-slate-400 text-xs">Status</p>
+                        <p className="text-slate-100">{selectedEmployee.status}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Bergabung</p>
-                        <p className="text-gray-800">{selectedEmployee.joinDate}</p>
+                        <p className="font-medium text-slate-400 text-xs">Bergabung</p>
+                        <p className="text-slate-100">{selectedEmployee.joinDate}</p>
                     </div>
                     <div>
-                        <p className="font-medium text-gray-500 text-xs">Saldo Cuti</p>
-                        <p className="text-gray-800">{selectedEmployee.cutiBalance} hari</p>
+                        <p className="font-medium text-slate-400 text-xs">Saldo Cuti</p>
+                        <p className="text-slate-100">{selectedEmployee.cutiBalance} hari</p>
                     </div>
                 </div>
             </div>
             <div className="grid grid-cols-2 gap-4 text-sm">
                 <div>
-                    <p className="font-medium text-gray-500 text-xs">Agama</p>
-                    <p className="text-gray-800">{selectedEmployee.agama || '-'}</p>
+                    <p className="font-medium text-slate-400 text-xs">Agama</p>
+                    <p className="text-slate-100">{selectedEmployee.agama || '-'}</p>
                 </div>
                 <div>
-                    <p className="font-medium text-gray-500 text-xs">Cuti Tahunan</p>
-                    <p className="text-gray-800">{selectedEmployee.cutiTahunan || 0} hari</p>
+                    <p className="font-medium text-slate-400 text-xs">Annual Leave</p>
+                    <p className="text-slate-100">{selectedEmployee.cutiTahunan || 0} hari</p>
                 </div>
                 <div>
-                    <p className="font-medium text-gray-500 text-xs">Work Shift</p>
-                    <p className="text-gray-800">
+                    <p className="font-medium text-slate-400 text-xs">Work Shift</p>
+                    <p className="text-slate-100">
                         {selectedEmployee.shift ? 
                             `${selectedEmployee.shift.name} (${selectedEmployee.shift.startTime} - ${selectedEmployee.shift.endTime})` : 
                             'Not assigned'
@@ -843,8 +843,8 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             </div>
             {selectedEmployee.address && (
                 <div>
-                    <p className="font-medium text-gray-500 text-xs mb-1">Alamat</p>
-                    <p className="text-gray-800 text-sm">{selectedEmployee.address}</p>
+                    <p className="font-medium text-slate-400 text-xs mb-1">Alamat</p>
+                    <p className="text-slate-100 text-sm">{selectedEmployee.address}</p>
                 </div>
             )}
         </div>
@@ -855,20 +855,20 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
-                        <div className="bg-[#708993] p-3 rounded-2xl">
+                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                        <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-users text-white text-lg"></i>
                         </div>
                         Kelola Tim
                     </h2>
-                    <p className="text-gray-600 text-sm mt-2">Kelola data karyawan dan informasi tim</p>
+                    <p className="text-slate-300 text-sm mt-2">Kelola data employee dan informasi tim</p>
                 </div>
                 <ActionButton 
                     onClick={() => { resetState(); setIsCreating(true); }}
                     variant="primary"
                 >
                     <i className="fas fa-user-plus"></i>
-                    Tambah Karyawan
+                    Add Employee
                 </ActionButton>
             </div>
 
@@ -887,29 +887,29 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                             <i className="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
                             <input
                                 type="text"
-                                placeholder="Cari karyawan..."
+                                placeholder="Search employee..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full pl-10 pr-4 py-3 bg-white/50 border border-[#708993]/20 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+                                className="w-full pl-10 pr-4 py-3 bg-slate-700/50 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
                             />
                         </div>
                     </div>
                     
                     <div className="space-y-3 max-h-[65vh] overflow-y-auto pr-2">
                         {filteredEmployees.length === 0 ? (
-                            <div className="text-center py-8 text-gray-500">
+                            <div className="text-center py-8 text-slate-400">
                                 <i className="fas fa-users text-3xl mb-3 text-gray-300"></i>
-                                <p className="text-sm">Tidak ada karyawan ditemukan</p>
+                                <p className="text-sm">No employee ditemukan</p>
                                 {(searchTerm || Object.values(filters).some(filter => filter !== '')) && (
                                     <p className="text-xs text-gray-400 mt-1">
-                                        Coba ubah pencarian atau filter
+                                        Coba ubah pensearchan atau filter
                                     </p>
                                 )}
                             </div>
                         ) : (
                             <>
-                                <div className="text-xs text-gray-500 mb-2">
-                                    Menampilkan {filteredEmployees.length} karyawan
+                                <div className="text-xs text-slate-400 mb-2">
+                                    Menampilkan {filteredEmployees.length} employee
                                 </div>
                                 {filteredEmployees.map(employee => (
                                     <EmployeeCard
@@ -929,27 +929,27 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                     {isCreating ? (
                         <>
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-semibold text-gray-800">Tambah Karyawan Baru</h3>
+                                <h3 className="text-xl font-semibold text-slate-100">Add Employee Baru</h3>
                                 <ActionButton onClick={resetState} variant="ghost">
                                     <i className="fas fa-times"></i>
                                 </ActionButton>
                             </div>
                             {renderForm()}
-                            <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-[#708993]/10">
+                            <div className="flex justify-end gap-3 mt-8 pt-6 border-t border-[#6366F1]/10">
                                 <ActionButton onClick={resetState} variant="secondary">
-                                    Batal
+                                    Cancel
                                 </ActionButton>
                                 <ActionButton onClick={handleCreateEmployee}>
                                     <i className="fas fa-save"></i>
-                                    Simpan Karyawan
+                                    Save Employee
                                 </ActionButton>
                             </div>
                         </>
                     ) : selectedEmployee ? (
                         <>
                             <div className="flex justify-between items-center mb-6">
-                                <h3 className="text-xl font-semibold text-gray-800">
-                                    {isEditing ? 'Edit Data Karyawan' : 'Detail Karyawan'}
+                                <h3 className="text-xl font-semibold text-slate-100">
+                                    {isEditing ? 'Edit Data Employee' : 'Detail Employee'}
                                 </h3>
                                 <div className="flex gap-2">
                                     {isEditing ? (
@@ -958,10 +958,10 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                                                 onClick={() => setIsEditing(false)} 
                                                 variant="secondary"
                                             >
-                                                <i className="fas fa-times"></i> Batal
+                                                <i className="fas fa-times"></i> Cancel
                                             </ActionButton>
                                             <ActionButton onClick={handleUpdateEmployee}>
-                                                <i className="fas fa-save"></i> Simpan
+                                                <i className="fas fa-save"></i> Save
                                             </ActionButton>
                                         </>
                                     ) : (
@@ -974,7 +974,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                             {isEditing ? renderForm() : renderEmployeeDetail()}
                             
                             {!isEditing && (
-                                <div className="flex gap-3 mt-8 pt-6 border-t border-[#708993]/10">
+                                <div className="flex gap-3 mt-8 pt-6 border-t border-[#6366F1]/10">
                                     <ActionButton 
                                         onClick={() => setIsEditing(true)}
                                         variant="primary"
@@ -985,7 +985,7 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                                         onClick={handleDeleteEmployee} 
                                         variant="danger"
                                     >
-                                        <i className="fas fa-trash-alt"></i> Hapus Karyawan
+                                        <i className="fas fa-trash-alt"></i> Delete Employee
                                     </ActionButton>
                                 </div>
                             )}
@@ -993,8 +993,8 @@ const ManagerEmployeeManagement = ({ employees = [], setEmployees = () => {} }) 
                     ) : (
                         <div className="flex flex-col items-center justify-center h-64 text-gray-400">
                             <i className="fas fa-user text-5xl mb-4"></i>
-                            <p className="text-lg font-medium text-gray-500">Pilih karyawan</p>
-                            <p className="text-sm text-gray-400 mt-1">Pilih karyawan dari daftar untuk melihat detail</p>
+                            <p className="text-lg font-medium text-slate-400">Select employee</p>
+                            <p className="text-sm text-gray-400 mt-1">Select employee dari daftar untuk meview detail</p>
                         </div>
                     )}
                 </GlassCard>

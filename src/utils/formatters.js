@@ -1,13 +1,13 @@
 // src/utils/formatters.js
 
 /**
- * Memformat angka menjadi mata uang Rupiah (dari constants.js)
+ * Format a number as Indonesian Rupiah currency
  */
 export const formattedCurrency = (amount) =>
     new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', minimumFractionDigits: 0 }).format(amount);
 
 /**
- * Memformat angka menjadi mata uang Rupiah (versi lain dari DummyPayrollReport.jsx)
+ * Format a number as Rupiah (alternate version)
  */
 export const formatRupiah = (number) => {
     if (number === undefined || number === null) return 'Rp 0';
@@ -19,7 +19,7 @@ export const formatRupiah = (number) => {
 };
 
 /**
- * Menghitung Total Gaji Bersih (dari constants.js)
+ * Calculate Net Salary
  */
 export const calculateTotalSalary = (details) => {
     if (!details) return 0;

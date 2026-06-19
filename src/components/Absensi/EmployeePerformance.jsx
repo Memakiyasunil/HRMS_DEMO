@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { GlassCard } from '../UI/Cards';
 import { showSwal } from '../../utils/swal';
 
@@ -16,7 +16,7 @@ const EmployeePerformance = ({ user }) => {
             status: 'Completed',
             deadline: '2024-01-15',
             priority: 'High',
-            submittedFile: 'laporan_absensi.pdf',
+            submittedFile: 'report_absensi.pdf',
             submissionDescription: 'Telah menyelesaikan fitur absensi dengan geolocation dan notifikasi'
         },
         {
@@ -42,7 +42,7 @@ const EmployeePerformance = ({ user }) => {
         {
             id: 4,
             title: 'Performance Optimization',
-            description: 'Optimasi performa aplikasi frontend',
+            description: 'Optimasi performance aplikasi frontend',
             status: 'Pending',
             deadline: '2024-01-30',
             priority: 'High',
@@ -103,38 +103,38 @@ const EmployeePerformance = ({ user }) => {
         }
     };
 
-    // Fungsi untuk handle pengumpulan tugas
+    // Function for handle pengumpulan tasks
     const handleSubmitTask = (task) => {
-        // Buat form HTML untuk SweetAlert
+        // Create form HTML untuk SweetAlert
         const formHtml = `
             <div class="text-left space-y-4">
                 <div>
-                    <label class="block text-white text-sm font-medium mb-2">Judul Tugas</label>
+                    <label class="block text-white text-sm font-medium mb-2">Judul Tasks</label>
                     <input 
                         type="text" 
                         id="taskTitle" 
                         value="${task.title}" 
-                        class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         readonly
                     />
                 </div>
                 
                 <div>
-                    <label class="block text-white text-sm font-medium mb-2">Deskripsi Tugas</label>
+                    <label class="block text-white text-sm font-medium mb-2">Deskripsi Tasks</label>
                     <textarea 
                         id="taskDesc" 
-                        class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                         rows="2"
                         readonly
                     >${task.description}</textarea>
                 </div>
                 
                 <div>
-                    <label class="block text-white text-sm font-medium mb-2">File Tugas <span class="text-red-400">*</span></label>
+                    <label class="block text-white text-sm font-medium mb-2">File Tasks <span class="text-red-400">*</span></label>
                     <input 
                         type="file" 
                         id="taskFile" 
-                        class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
+                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-500 file:text-white hover:file:bg-blue-600"
                         accept=".pdf,.doc,.docx,.zip,.rar,.jpg,.jpeg,.png"
                     />
                     <p class="text-gray-300 text-xs mt-1">Format: PDF, DOC, DOCX, ZIP, RAR, JPG, PNG (Max: 10MB)</p>
@@ -145,8 +145,8 @@ const EmployeePerformance = ({ user }) => {
                     <textarea 
                         id="taskDescription" 
                         rows="4" 
-                        placeholder="Tambahkan deskripsi atau catatan mengenai tugas yang dikumpulkan..."
-                        class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                        placeholder="Addkan deskripsi atau notes mengenai tasks yang dikumpulkan..."
+                        class="w-full p-3 rounded-xl bg-slate-700/20 border border-indigo-500/10 text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
                     ></textarea>
                 </div>
             </div>
@@ -155,12 +155,12 @@ const EmployeePerformance = ({ user }) => {
         // Tampilkan SweetAlert dengan form
         if (typeof Swal !== 'undefined') {
             Swal.fire({
-                title: '<h2 class="text-2xl font-bold text-white">Kumpulkan Tugas</h2>',
+                title: '<h2 class="text-2xl font-bold text-white">Kumpulkan Tasks</h2>',
                 html: formHtml,
                 showCancelButton: true,
-                confirmButtonText: 'Kirim Tugas',
-                cancelButtonText: 'Batal',
-                background: '#708993',
+                confirmButtonText: 'Kirim Tasks',
+                cancelButtonText: 'Cancel',
+                background: '#6366F1',
                 width: '90%',
                 padding: '2rem',
                 customClass: {
@@ -177,14 +177,14 @@ const EmployeePerformance = ({ user }) => {
                     
                     // Validasi
                     if (!fileInput.files[0]) {
-                        Swal.showValidationMessage('Harap unggah file tugas');
+                        Swal.showValidationMessage('Please unggah file tasks');
                         return false;
                     }
 
                     // Validasi ukuran file (max 10MB)
                     const file = fileInput.files[0];
                     if (file.size > 10 * 1024 * 1024) {
-                        Swal.showValidationMessage('Ukuran file maksimal 10MB');
+                        Swal.showValidationMessage('Ukuran file mactionmal 10MB');
                         return false;
                     }
 
@@ -209,10 +209,10 @@ const EmployeePerformance = ({ user }) => {
                             : t
                     ));
 
-                    // Tampilkan konfirmasi sukses
+                    // Tampilkan confirm sukses
                     showSwal(
-                        'Berhasil!', 
-                        `Tugas "${task.title}" berhasil dikumpulkan!`,
+                        'Success!', 
+                        `Tasks "${task.title}" successfully dikumpulkan!`,
                         'success',
                         3000
                     );
@@ -221,7 +221,7 @@ const EmployeePerformance = ({ user }) => {
         }
     };
 
-    // Fungsi untuk melihat detail pengumpulan
+    // Function for meview detail pengumpulan
     const handleViewSubmission = (task) => {
         const submissionHtml = `
             <div class="text-left space-y-4 text-white">
@@ -229,15 +229,15 @@ const EmployeePerformance = ({ user }) => {
                     <h3 class="font-bold text-lg mb-2 text-white">Detail Pengumpulan</h3>
                 </div>
                 
-                <div class="bg-white/10 p-4 rounded-xl">
-                    <label class="block text-sm font-medium mb-1 text-blue-300">Judul Tugas</label>
+                <div class="bg-slate-700/20 p-4 rounded-xl">
+                    <label class="block text-sm font-medium mb-1 text-blue-300">Judul Tasks</label>
                     <p class="text-white font-semibold">${task.title}</p>
                 </div>
                 
-                <div class="bg-white/10 p-4 rounded-xl">
+                <div class="bg-slate-700/20 p-4 rounded-xl">
                     <label class="block text-sm font-medium mb-1 text-blue-300">File Terkirim</label>
                     <div class="flex items-center justify-between">
-                        <p class="text-white">${task.submittedFile || 'Tidak ada file'}</p>
+                        <p class="text-white">${task.submittedFile || 'No file'}</p>
                         ${task.submittedFile ? 
                             '' 
                             : ''
@@ -245,15 +245,15 @@ const EmployeePerformance = ({ user }) => {
                     </div>
                 </div>
                 
-                <div class="bg-white/10 p-4 rounded-xl">
+                <div class="bg-slate-700/20 p-4 rounded-xl">
                     <label class="block text-sm font-medium mb-1 text-blue-300">Deskripsi Pengumpulan</label>
-                    <p class="text-white whitespace-pre-wrap">${task.submissionDescription || 'Tidak ada deskripsi'}</p>
+                    <p class="text-white whitespace-pre-wrap">${task.submissionDescription || 'No deskripsi'}</p>
                 </div>
                 
                 <div class="text-center pt-4">
                     <p class="text-green-400 text-sm font-medium">
                         <i class="fas fa-check-circle mr-2"></i>
-                        Tugas telah dikumpulkan dan disetujui
+                        Tasks telah dikumpulkan dan diapprovei
                     </p>
                 </div>
             </div>
@@ -264,7 +264,7 @@ const EmployeePerformance = ({ user }) => {
                 title: '<h2 class="text-2xl font-bold text-white">Detail Pengumpulan</h2>',
                 html: submissionHtml,
                 icon: 'info',
-                background: '#708993',
+                background: '#6366F1',
                 width: '90%',
                 padding: '2rem',
                 customClass: {
@@ -275,7 +275,7 @@ const EmployeePerformance = ({ user }) => {
                 buttonsStyling: false,
                 confirmButtonText: 'Tutup',
                 didOpen: () => {
-                    // Tambahkan fungsi download jika diperlukan
+                    // Addkan fungsi download jika diperlukan
                     window.downloadFile = () => {
                         showSwal('Info', 'Fitur download akan segera tersedia', 'info', 2000);
                     };
@@ -284,26 +284,26 @@ const EmployeePerformance = ({ user }) => {
         }
     };
 
-    // Fungsi untuk menghapus pengumpulan
+    // Function for menghapus pengumpulan
     const handleDeleteSubmission = (task) => {
         if (typeof Swal !== 'undefined') {
             Swal.fire({
-                title: '<h2 class="text-2xl font-bold text-white">Hapus Pengumpulan?</h2>',
+                title: '<h2 class="text-2xl font-bold text-white">Delete Pengumpulan?</h2>',
                 html: `<div class="text-white text-left">
-                         <p>Apakah Anda yakin ingin menghapus pengumpulan tugas:</p>
+                         <p>Apakah Anda yakin ingin menghapus pengumpulan tasks:</p>
                          <p class="font-bold text-lg mt-2">"${task.title}"</p>
-                         <p class="text-yellow-300 text-sm mt-2"><i class="fas fa-exclamation-triangle mr-1"></i> Tugas akan kembali status "Pending"</p>
+                         <p class="text-yellow-300 text-sm mt-2"><i class="fas fa-exclamation-triangle mr-1"></i> Tasks akan back status "Pending"</p>
                        </div>`,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Ya, Hapus',
-                cancelButtonText: 'Batal',
-                background: '#708993',
+                confirmButtonText: 'Ya, Delete',
+                cancelButtonText: 'Cancel',
+                background: '#6366F1',
                 customClass: {
                     popup: 'rounded-2xl shadow-2xl',
                     title: 'text-white',
                     confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl mr-2 transition-all duration-300 border-none focus:outline-none',
-                    cancelButton: 'bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 border-none focus:outline-none'
+                    cancelButton: 'bg-slate-9000 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 border-none focus:outline-none'
                 },
                 buttonsStyling: false
             }).then((result) => {
@@ -321,7 +321,7 @@ const EmployeePerformance = ({ user }) => {
 
                     showSwal(
                         'Dihapus!', 
-                        'Pengumpulan tugas berhasil dihapus.',
+                        'Pengumpulan tasks successfully dihapus.',
                         'success',
                         2000
                     );
@@ -341,44 +341,44 @@ const EmployeePerformance = ({ user }) => {
     const handleDelete = (taskId) => {
         if (typeof Swal !== 'undefined') {
             Swal.fire({
-                title: '<h2 class="text-2xl font-bold text-white">Hapus Tugas?</h2>',
+                title: '<h2 class="text-2xl font-bold text-white">Delete Tasks?</h2>',
                 html: `<div class="text-white text-left">
-                         <p>Apakah Anda yakin ingin menghapus tugas ini?</p>
+                         <p>Apakah Anda yakin ingin menghapus tasks ini?</p>
                          <p class="text-red-300 text-sm mt-2"><i class="fas fa-exclamation-triangle mr-1"></i> Tindakan ini tidak dapat dibatalkan</p>
                        </div>`,
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Ya, Hapus',
-                cancelButtonText: 'Batal',
-                background: '#708993',
+                confirmButtonText: 'Ya, Delete',
+                cancelButtonText: 'Cancel',
+                background: '#6366F1',
                 customClass: {
                     popup: 'rounded-2xl shadow-2xl',
                     title: 'text-white',
                     confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-bold py-3 px-6 rounded-xl mr-2 transition-all duration-300 border-none focus:outline-none',
-                    cancelButton: 'bg-gray-500 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 border-none focus:outline-none'
+                    cancelButton: 'bg-slate-9000 hover:bg-gray-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 border-none focus:outline-none'
                 },
                 buttonsStyling: false
             }).then((result) => {
                 if (result.isConfirmed) {
                     setTasksState(prev => prev.filter(t => t.id !== taskId));
-                    showSwal('Dihapus!', 'Tugas berhasil dihapus.', 'success', 2000);
+                    showSwal('Dihapus!', 'Tasks successfully dihapus.', 'success', 2000);
                 }
             });
         }
     };
 
     return (
-        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-white/10 border border-white/20 rounded-3xl shadow-2xl">
+        <GlassCard className="mt-6 relative overflow-hidden backdrop-blur-xl bg-slate-700/20 border border-indigo-500/10 rounded-3xl shadow-2xl">
             <div className="p-8">
                 {/* Header Section */}
                 <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8">
                     <div>
-                        <h2 className="text-4xl font-bold bg-[#708993] bg-clip-text text-transparent">
-                            Dashboard Performa
+                        <h2 className="text-4xl font-bold bg-indigo-600 bg-clip-text text-transparent">
+                            Dashboard Performance
                         </h2>
-                        <p className="text-gray-600 mt-2 flex items-center">
-                            <i className="fas fa-user-check mr-2 text-[#708993]"></i>
-                            Tracking produktivitas dan penyelesaian tugas
+                        <p className="text-slate-300 mt-2 flex items-center">
+                            <i className="fas fa-user-check mr-2 text-[#6366F1]"></i>
+                            Tracking produktivitas dan penyelesaian tasks
                         </p>
                     </div>
                 </div>
@@ -386,18 +386,18 @@ const EmployeePerformance = ({ user }) => {
                 <div className="grid grid-cols-1 xl:grid-cols-4 gap-6 mb-8">
                     {/* Main Performance Score */}
                     <div className="xl:col-span-1">
-                        <div className="p-6 rounded-2xl bg-[#708993] backdrop-blur-sm relative overflow-hidden">
+                        <div className="p-6 rounded-2xl bg-indigo-600 backdrop-blur-sm relative overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-r from-white/10 to-transparent"></div>
                             <div className="relative z-10 text-center">
-                                <div className="w-20 h-20 rounded-2xl bg-white/30 backdrop-blur-sm border border-white/20 flex items-center justify-center mx-auto mb-4">
+                                <div className="w-20 h-20 rounded-2xl bg-slate-800/50 backdrop-blur-sm border border-indigo-500/10 flex items-center justify-center mx-auto mb-4">
                                     <i className="fas fa-chart-line text-white text-3xl"></i>
                                 </div>
-                                <p className="text-lg font-semibold text-white mb-2">Skor Performa</p>
+                                <p className="text-lg font-semibold text-white mb-2">Skor Performance</p>
                                 <p className="text-5xl font-extrabold text-white">{performanceScore}</p>
                                 <p className="text-white font-medium">/ 100</p>
-                                <div className="mt-4 w-full bg-white/20 rounded-full h-3">
+                                <div className="mt-4 w-full bg-slate-700/30 rounded-full h-3">
                                     <div 
-                                        className="bg-white rounded-full h-3 transition-all duration-1000"
+                                        className="bg-slate-800 rounded-full h-3 transition-all duration-1000"
                                         style={{ width: `${performanceScore}%` }}
                                     ></div>
                                 </div>
@@ -410,9 +410,9 @@ const EmployeePerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-600/20 border border-green-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-600">Tugas Selesai</p>
-                                    <p className="text-2xl font-bold text-gray-800 mt-1">{completedTasks}</p>
-                                    <p className="text-xs text-gray-500">dari {tasksState.length} total</p>
+                                    <p className="text-sm font-semibold text-slate-300">Tasks Completed</p>
+                                    <p className="text-2xl font-bold text-slate-100 mt-1">{completedTasks}</p>
+                                    <p className="text-xs text-slate-400">dari {tasksState.length} total</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-green-500/20 flex items-center justify-center">
                                     <i className="fas fa-check-circle text-green-600 text-xl"></i>
@@ -423,9 +423,9 @@ const EmployeePerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-amber-600/20 border border-yellow-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-600">Tugas Pending</p>
-                                    <p className="text-2xl font-bold text-gray-800 mt-1">{pendingTasks}</p>
-                                    <p className="text-xs text-gray-500">perlu penyelesaian</p>
+                                    <p className="text-sm font-semibold text-slate-300">Tasks Pending</p>
+                                    <p className="text-2xl font-bold text-slate-100 mt-1">{pendingTasks}</p>
+                                    <p className="text-xs text-slate-400">perlu penyelesaian</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-yellow-500/20 flex items-center justify-center">
                                     <i className="fas fa-clock text-yellow-600 text-xl"></i>
@@ -436,9 +436,9 @@ const EmployeePerformance = ({ user }) => {
                         <div className="p-4 rounded-2xl bg-gradient-to-br from-blue-500/20 to-cyan-600/20 border border-blue-400/30 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
-                                    <p className="text-sm font-semibold text-gray-600">Dalam Proses</p>
-                                    <p className="text-2xl font-bold text-gray-800 mt-1">{inProgressTasks}</p>
-                                    <p className="text-xs text-gray-500">sedang dikerjakan</p>
+                                    <p className="text-sm font-semibold text-slate-300">Dalam Proses</p>
+                                    <p className="text-2xl font-bold text-slate-100 mt-1">{inProgressTasks}</p>
+                                    <p className="text-xs text-slate-400">sedang dikerjakan</p>
                                 </div>
                                 <div className="w-12 h-12 rounded-xl bg-blue-500/20 flex items-center justify-center">
                                     <i className="fas fa-spinner text-blue-600 text-xl animate-spin"></i>
@@ -446,14 +446,14 @@ const EmployeePerformance = ({ user }) => {
                             </div>
                         </div>
 
-                        <div className="p-4 rounded-2xl bg-[#708993] backdrop-blur-sm">
+                        <div className="p-4 rounded-2xl bg-indigo-600 backdrop-blur-sm">
                             <div className="flex items-center justify-between">
                                 <div>
                                     <p className="text-sm font-semibold text-white">Target Tercapai</p>
                                     <p className="text-2xl font-bold text-white mt-1">{performanceScore}%</p>
                                     <p className="text-xs text-white">dari target</p>
                                 </div>
-                                <div className="w-12 h-12 rounded-xl bg-white/30 border border-white/20 flex items-center justify-center">
+                                <div className="w-12 h-12 rounded-xl bg-slate-800/50 border border-indigo-500/10 flex items-center justify-center">
                                     <i className="fas fa-bullseye text-white text-xl"></i>
                                 </div>
                             </div>
@@ -464,9 +464,9 @@ const EmployeePerformance = ({ user }) => {
                 {/* Task List Section */}
                 <div className="mt-8">
                     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-6 gap-4">
-                        <h3 className="text-2xl font-bold text-gray-800 flex items-center">
+                        <h3 className="text-2xl font-bold text-slate-100 flex items-center">
                             <i className="fas fa-tasks mr-3 text-black"></i>                             
-                            Daftar Tugas
+                            Daftar Tasks
                         </h3>
                         
                         <div className="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">
@@ -477,15 +477,15 @@ const EmployeePerformance = ({ user }) => {
                                 </div>
                                 <input
                                     type="text"
-                                    placeholder="Cari tugas..."
+                                    placeholder="Search tasks..."
                                     value={taskSearch}
                                     onChange={(e) => setTaskSearch(e.target.value)}
-                                    className="w-full p-3 pl-10 border border-[#708993] rounded-2xl bg-white focus:outline-none text-black"
+                                    className="w-full p-3 pl-10 border border-[#6366F1] rounded-2xl bg-slate-800 focus:outline-none text-black"
                                 />
                             </div>
 
                            {/* Filter Buttons */}
-                            <div className="flex space-x-1 bg-white/20 backdrop-blur-sm p-1 rounded-2xl">
+                            <div className="flex space-x-1 bg-slate-700/30 backdrop-blur-sm p-1 rounded-2xl">
                                 <button
                                     onClick={() => setActiveTaskTab('all')}
                                     className={`
@@ -494,10 +494,10 @@ const EmployeePerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'all' 
                                                 ? 'bg-purple-600 text-white shadow-lg'
-                                                : 'text-gray-600 hover:text-gray-900 hover:bg-white/30'
+                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
                                         }`}
                                 >
-                                    Semua
+                                    All
                                 </button>
                                 <button
                                     onClick={() => setActiveTaskTab('completed')}
@@ -507,10 +507,10 @@ const EmployeePerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'completed' 
                                                 ? 'bg-green-600 text-white shadow-lg'
-                                                : 'text-gray-600 hover:text-gray-900 hover:bg-white/30'
+                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
                                         }`}
                                 >
-                                    Selesai
+                                    Completed
                                 </button>
                                 <button
                                     onClick={() => setActiveTaskTab('pending')}
@@ -520,7 +520,7 @@ const EmployeePerformance = ({ user }) => {
                                         ${
                                             activeTaskTab === 'pending' 
                                                 ? 'bg-yellow-600 text-white shadow-lg'
-                                                : 'text-gray-600 hover:text-gray-900 hover:bg-white/30'
+                                                : 'text-slate-300 hover:text-slate-100 hover:bg-slate-800/50'
                                         }`}
                                 >
                                     Pending
@@ -532,7 +532,7 @@ const EmployeePerformance = ({ user }) => {
                     {/* Tasks Grid */}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                         {filteredTasks.map((task) => {
-                            const statusText = task.status === 'Completed' ? 'Selesai' : 
+                            const statusText = task.status === 'Completed' ? 'Completed' : 
                                             task.status === 'In Progress' ? 'Dalam Proses' : 'Pending';
                             const statusTextColor = task.status === 'Completed' ? 'text-green-600' :
                                                     task.status === 'In Progress' ? 'text-blue-600' :
@@ -541,7 +541,7 @@ const EmployeePerformance = ({ user }) => {
                             const priorityTextColor = 
                                 task.priority === 'High' ? 'text-red-700' :
                                 task.priority === 'Medium' ? 'text-orange-700' :
-                                'text-gray-700';
+                                'text-slate-200';
 
                             return (
                                 <div 
@@ -549,7 +549,7 @@ const EmployeePerformance = ({ user }) => {
                                     className={`p-5 rounded-2xl backdrop-blur-sm border transition-all duration-300 hover:shadow-md ${getStatusGradient(task.status)}`}
                                 >
                                     <div className="flex justify-between items-start mb-3">
-                                        <h4 className="font-bold text-gray-800 text-lg flex-1" style={{ textAlign: 'left' }}>
+                                        <h4 className="font-bold text-slate-100 text-lg flex-1" style={{ textAlign: 'left' }}>
                                             {task.title}
                                         </h4>
                                         <div className="flex space-x-2 ml-3">
@@ -562,12 +562,12 @@ const EmployeePerformance = ({ user }) => {
                                         </div>
                                     </div>
                                     
-                                    <p className="text-gray-600 mb-4 text-sm leading-relaxed" style={{ textAlign: 'left' }}>
+                                    <p className="text-slate-300 mb-4 text-sm leading-relaxed" style={{ textAlign: 'left' }}>
                                         {task.description}
                                     </p>
 
                                     <div className="flex justify-between items-center">
-                                        <div className="flex items-center text-sm text-gray-500">
+                                        <div className="flex items-center text-sm text-slate-400">
                                             <i className="fas fa-calendar-alt mr-2"></i>
                                             <span>{new Date(task.deadline).toLocaleDateString('id-ID')}</span>
                                             {new Date(task.deadline) < new Date() && task.status !== 'Completed' && (
@@ -577,14 +577,14 @@ const EmployeePerformance = ({ user }) => {
                                             )}
                                         </div>
                                         
-                                        {/* Tombol Aksi */}
+                                        {/* Tombol Action */}
                                         <div className="flex space-x-2">
                                             {/* Tombol Kumpulkan/Edit Pengumpulan */}
                                             {task.status !== 'Completed' ? (
                                                 <button
                                                     onClick={() => handleSubmitTask(task)}
                                                     className="w-8 h-8 rounded-full bg-blue-500/20 hover:bg-blue-500/30 flex items-center justify-center transition-colors border-none focus:outline-none"
-                                                    title="Kumpulkan Tugas"
+                                                    title="Kumpulkan Tasks"
                                                 >
                                                     <i className="fas fa-upload text-blue-600 text-xs"></i>
                                                 </button>
@@ -593,14 +593,14 @@ const EmployeePerformance = ({ user }) => {
                                                     <button
                                                         onClick={() => handleViewSubmission(task)}
                                                         className="w-8 h-8 rounded-full bg-green-500/20 hover:bg-green-500/30 flex items-center justify-center transition-colors focus:outline-none"
-                                                        title="Lihat Pengumpulan"
+                                                        title="View Pengumpulan"
                                                     >
                                                         <i className="fas fa-eye text-green-600 text-xs"></i>
                                                     </button>
                                                     <button
                                                         onClick={() => handleDeleteSubmission(task)}
                                                         className="w-8 h-8 rounded-full bg-red-500/20 hover:bg-red-500/30 flex items-center justify-center transition-colors focus:outline-none"
-                                                        title="Hapus Pengumpulan"
+                                                        title="Delete Pengumpulan"
                                                     >
                                                         <i className="fas fa-trash text-red-600 text-xs"></i>
                                                     </button>
@@ -611,7 +611,7 @@ const EmployeePerformance = ({ user }) => {
                                             <button
                                                 onClick={() => handleToggleComplete(task.id)}
                                                 className={`w-8 h-8 rounded-full flex items-center justify-center transition-colors focus:outline-none ${task.status === 'Completed' ? 'bg-yellow-400/20 hover:bg-yellow-400/30' : 'bg-green-500/20 hover:bg-green-500/30'}`}
-                                                title={task.status === 'Completed' ? 'Tandai Belum Selesai' : 'Tandai Selesai'}
+                                                title={task.status === 'Completed' ? 'Tandai Belum Completed' : 'Tandai Completed'}
                                             >
                                                 <i className={`fas ${task.status === 'Completed' ? 'fa-undo' : 'fa-check'} ${task.status === 'Completed' ? 'text-yellow-600' : 'text-green-600'} text-xs`}></i>
                                             </button>
@@ -620,7 +620,7 @@ const EmployeePerformance = ({ user }) => {
                                             <button
                                                 onClick={() => handleDelete(task.id)}
                                                 className="w-8 h-8 rounded-full bg-red-500/20 hover:bg-red-500/30 flex items-center justify-center transition-colors focus:outline-none"
-                                                title="Hapus Tugas"
+                                                title="Delete Tasks"
                                             >
                                                 <i className="fas fa-times text-red-600 text-xs"></i>
                                             </button>
@@ -636,29 +636,29 @@ const EmployeePerformance = ({ user }) => {
                             <div className="w-24 h-24 rounded-2xl bg-gray-200/50 flex items-center justify-center mx-auto mb-4">
                                 <i className="fas fa-tasks text-gray-400 text-3xl"></i>
                             </div>
-                            <p className="text-gray-500 text-lg font-medium">
-                                {taskSearch ? 'Tidak ada tugas yang sesuai dengan pencarian.' : 'Tidak ada tugas.'}
+                            <p className="text-slate-400 text-lg font-medium">
+                                {taskSearch ? 'No tasks yang sesuai dengan pensearchan.' : 'No tasks.'}
                             </p>
                             <p className="text-gray-400 text-sm mt-2">
-                                {taskSearch ? 'Coba dengan kata kunci lain' : 'Semua tugas telah selesai atau belum ditambahkan'}
+                                {taskSearch ? 'Coba dengan kata kunci lain' : 'All tasks telah completed atau belum ditambahkan'}
                             </p>
                         </div>
                     )}
 
                     {/* Performance Summary */}
                     <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-400/30 backdrop-blur-sm">
-                        <h4 className="text-xl font-bold text-gray-800 mb-4 flex items-center">
+                        <h4 className="text-xl font-bold text-slate-100 mb-4 flex items-center">
                             <i className="fas fa-chart-pie mr-3 text-purple-500"></i>
-                            Ringkasan Performa
+                            Summary Performance
                         </h4>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-green-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-check-circle text-green-600"></i>
                                         </div>
-                                        <span className="font-semibold text-gray-700">Pencapaian</span>
+                                        <span className="font-semibold text-slate-200">Achievement</span>
                                     </div>
                                     <span className={`font-semibold ${
                                         performanceScore >= 80 ? 'text-green-600' : 
@@ -671,39 +671,39 @@ const EmployeePerformance = ({ user }) => {
                                     </span>
                                 </div>
                                 
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-tasks text-blue-600"></i>
                                         </div>
-                                        <span className="font-semibold text-gray-700">Produktivitas</span>
+                                        <span className="font-semibold text-slate-200">Produktivitas</span>
                                     </div>
-                                    <span className="font-semibold text-gray-800">{completedTasks}/{tasksState.length} tugas</span>
+                                    <span className="font-semibold text-slate-100">{completedTasks}/{tasksState.length} tasks</span>
                                 </div>
                             </div>
                             
                             <div className="space-y-3">
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-bullseye text-purple-600"></i>
                                         </div>
-                                        <span className="font-semibold text-gray-700">Target</span>
+                                        <span className="font-semibold text-slate-200">Target</span>
                                     </div>
                                     <span className={`font-semibold ${performanceScore >= 80 ? 'text-green-600' : 'text-yellow-600'}`}>
                                         {performanceScore >= 80 ? 'Terpenuhi' : 'Belum Terpenuhi'}
                                     </span>
                                 </div>
                                 
-                                <div className="flex items-center justify-between p-3 rounded-xl bg-white/20 backdrop-blur-sm">
+                                <div className="flex items-center justify-between p-3 rounded-xl bg-slate-700/30 backdrop-blur-sm">
                                     <div className="flex items-center">
                                         <div className="w-10 h-10 rounded-xl bg-yellow-500/20 flex items-center justify-center mr-3">
                                             <i className="fas fa-clock text-yellow-600"></i>
                                         </div>
-                                        <span className="font-semibold text-gray-700">Timeline</span>
+                                        <span className="font-semibold text-slate-200">Timeline</span>
                                     </div>
                                     <span className={`font-semibold ${pendingTasks > 0 ? 'text-yellow-600' : 'text-green-600'}`}>
-                                        {pendingTasks > 0 ? 'Ada tugas tertunda' : 'Semua sesuai jadwal'}
+                                        {pendingTasks > 0 ? 'Ada tasks tertunda' : 'All sesuai jadwal'}
                                     </span>
                                 </div>
                             </div>

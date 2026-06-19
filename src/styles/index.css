@@ -1,12 +1,11 @@
-/* src/styles/index.css (Kode lengkap yang sudah diperbaiki) */
+/* src/styles/index.css - Dark Theme */
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(255, 0, 0, 0);
-  /* PERBAIKAN: Set background ke warna yang lo mau */
-  background-color: #D3DFFE; 
+  color-scheme: dark;
+  color: #F1F5F9;
+  background-color: #0F172A;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -16,11 +15,11 @@
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #818CF8;
   text-decoration: inherit;
 }
 a:hover {
-  color: #535bf2;
+  color: #6366F1;
 }
 
 body {
@@ -29,9 +28,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  /* PERBAIKAN UTAMA: Set background body ke warna yang lo mau */
-  background-color: #D3DFFE; 
-  padding-top:0;
+  background-color: #0F172A;
+  padding-top: 0;
 }
 
 h1 {
@@ -46,30 +44,17 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #d7d6ff;
+  background-color: #1E293B;
+  color: #F1F5F9;
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #6366F1;
 }
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    /* PERBAIKAN: Pastikan warna tetap sama di Light Mode */
-    background-color: #D3DFFE; 
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
 }
 
 /* Smooth transition for utility classes */

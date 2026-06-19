@@ -1,4 +1,4 @@
-// src/components/Absensi/ManagerAttendance.jsx
+﻿// src/components/Absensi/ManagerAttendance.jsx
 // Kode ini SAMA PERSIS dengan src/components/Absensi/EmployeeAttendance.jsx (jika Anda sudah memecahnya)
 // Tujuannya agar logika absensi untuk Employee dan Manager berada di file yang sama
 import React, { useState, useEffect, useMemo } from 'react';
@@ -7,16 +7,16 @@ import { PrimaryButton } from '../UI/Buttons';
 import CameraModal from '../../components/Shared/Modals/CameraModal';
 import { handleAttendanceClock } from '../../services/DataService'; // Import logic absensi
 import {  formattedCurrency } from '../../utils/formatters';
-import { showSwal } from '../../utils/swal'; // Pastikan showSwal diimpor dari utils/swal.js
+import { showSwal } from '../../utils/swal'; // Make sure showSwal diimpor dari utils/swal.js
 
-// --- A2/B7. Absensi Karyawan/Manajer (Absensi Saya) ---
+// --- A2/B7. Absensi Employee/Manager (Absensi Saya) ---
 const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
     // --- State & Handlers Absensi ---
     const [isCameraModalOpen, setIsCameraModalOpen] = useState(false);
     const [clockType, setClockType] = useState(null); // 'In' atau 'Out'
     const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
-    // Pastikan workSettings tidak null
+    // Make sure workSettings tidak null
     const safeWorkSettings = useMemo(() => workSettings || { 
         startTime: "08:00", 
         endTime: "17:00", 
@@ -24,7 +24,7 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
         earlyLeaveDeduction: 75000 
     }, [workSettings]);
 
-    // Update waktu setiap detik
+    // Update time setiap detik
     useEffect(() => {
         const timer = setInterval(() => {
             setCurrentDateTime(new Date());
@@ -35,7 +35,7 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
     // Info absensi hari ini
     const today = currentDateTime.toLocaleDateString('id-ID');
     // --- PERBAIKAN DI SINI (Line 37) ---
-    // Menggunakan Optional Chaining (?.) untuk mencegah error jika currentMonthAttendance undefined
+    // Using Optional Chaining (?.) untuk mencegah error jika currentMonthAttendance undefined
     const userAttendanceToday = user.currentMonthAttendance?.filter(
         a => a.date === today
     ) || []; // Ditambah || [] untuk memastikan hasilnya array kosong jika data tidak ada
@@ -49,11 +49,11 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
         setIsCameraModalOpen(true);
     };
 
-    // Handler setelah foto berhasil diambil dan dikonfirmasi
+    // Handler setelah foto successfully diambil dan diconfirm
     const handleCaptureConfirm = async (photoData, location) => {
         setIsCameraModalOpen(false);
 
-        // Panggil service untuk memproses absensi
+        // Call service untuk memproses absensi
         const result = await handleAttendanceClock(
             user,
             clockType,
@@ -66,10 +66,10 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
         if (result.success) {
             const { newRecord, newPhotoRecord } = result;
             
-            // 1. Update data karyawan (attendance & photo)
+            // 1. Update data employee (attendance & photo)
             const updatedEmployees = employees.map(emp => {
                 if (emp.id === user.id) {
-                    // Pastikan currentMonthAttendance adalah array saat menambahkan
+                    // Make sure currentMonthAttendance adalah array saat menambahkan
                     const currentAttendance = emp.currentMonthAttendance || [];
                     const currentPhotos = emp.attendancePhotos || [];
                     
@@ -86,7 +86,7 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
             setEmployees(updatedEmployees);
             const updatedUser = updatedEmployees.find(e => e.id === user.id);
             if (updatedUser) {
-                // Hapus logika setAuthUser karena komponen Manager/EmployeeDashboard yang harus menangani update user
+                // Delete logika setAuthUser karena komponen Manager/EmployeeDashboard yang harus menangani update user
                 // Tapi untuk komponen ini, kita tetap update data lokalnya
                 // (Asumsi setAuthUser dipanggil di App.jsx setelah setEmployees)
                 // console.log("User updated:", updatedUser); 
@@ -98,19 +98,19 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-6 text-gray-800 flex items-center">
+            <h2 className="text-2xl font-bold mb-6 text-slate-100 flex items-center">
                 <i className="fas fa-clock mr-3 text-indigo-600"></i> Absensi Saya
             </h2>
 
-            {/* Jam & Tanggal */}
+            {/* Jam & Date */}
             <GlassCard className="text-center mb-6">
                 <p className="text-5xl font-extrabold text-blue-600">
                     {currentDateTime.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit', second: '2-digit' })}
                 </p>
-                <p className="text-lg font-medium text-gray-600 mt-1">
+                <p className="text-lg font-medium text-slate-300 mt-1">
                     {currentDateTime.toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}
                 </p>
-                <p className="text-sm text-gray-500 mt-2">
+                <p className="text-sm text-slate-400 mt-2">
                     Jadwal Kerja: **{safeWorkSettings.startTime}** s/d **{safeWorkSettings.endTime}**
                 </p>
             </GlassCard>
@@ -123,7 +123,7 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
                     className={`text-xl py-4 ${clockIn ? 'bg-gray-400 hover:bg-gray-400' : 'bg-green-600 hover:bg-green-700'}`}
                 >
                     <i className="fas fa-sign-in-alt mr-3"></i> 
-                    {clockIn ? `Clock In: ${clockIn.time} ${clockIn.late ? '(Terlambat)' : '(Tepat Waktu)'}` : 'Clock In'}
+                    {clockIn ? `Clock In: ${clockIn.time} ${clockIn.late ? '(Terlambat)' : '(Tepat Time)'}` : 'Clock In'}
                 </PrimaryButton>
                 
                 <PrimaryButton 
@@ -136,16 +136,16 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
                 </PrimaryButton>
             </div>
 
-            {/* Riwayat Absensi Bulan Ini */}
+            {/* Attendance History This Month */}
             <GlassCard>
-                <h3 className="text-xl font-bold mb-4 text-gray-700 border-b pb-2">Riwayat Absensi ({new Date().toLocaleString('id-ID', { month: 'long' })})</h3>
+                <h3 className="text-xl font-bold mb-4 text-slate-200 border-b pb-2">Attendance History ({new Date().toLocaleString('id-ID', { month: 'long' })})</h3>
                 <div className="space-y-3 max-h-80 overflow-y-auto pr-2">
                     {/* Menggunakan user.currentMonthAttendance? untuk menghindari error saat render */}
                     { (user.currentMonthAttendance || []).slice().reverse().map((att, index) => (
-                        <div key={index} className={`p-3 rounded-lg shadow-sm flex justify-between items-center ${att.type === 'Clock In' ? (att.late ? 'bg-red-50' : 'bg-green-50') : 'bg-gray-50'}`}>
+                        <div key={index} className={`p-3 rounded-lg shadow-sm flex justify-between items-center ${att.type === 'Clock In' ? (att.late ? 'bg-red-50' : 'bg-green-50') : 'bg-slate-900'}`}>
                             <div className="flex-1">
-                                <p className="font-semibold text-gray-800">{att.date} <span className={`text-xs ml-2 px-2 py-0.5 rounded-full ${att.type === 'Clock In' ? 'bg-blue-200 text-blue-800' : 'bg-orange-200 text-orange-800'}`}>{att.type}</span></p>
-                                <p className="text-sm text-gray-600 mt-1">Pukul: <span className="font-medium">{att.time}</span></p>
+                                <p className="font-semibold text-slate-100">{att.date} <span className={`text-xs ml-2 px-2 py-0.5 rounded-full ${att.type === 'Clock In' ? 'bg-blue-200 text-blue-800' : 'bg-orange-200 text-orange-800'}`}>{att.type}</span></p>
+                                <p className="text-sm text-slate-300 mt-1">Pukul: <span className="font-medium">{att.time}</span></p>
                             </div>
                             <div className="text-right">
                                 {att.late && att.type === 'Clock In' && (
@@ -154,12 +154,12 @@ const ManagerAttendance = ({ user, employees, setEmployees, workSettings }) => {
                                 {att.earlyLeave && att.type === 'Clock Out' && (
                                     <p className="text-xs font-bold text-red-600">Pulang Awal!</p>
                                 )}
-                                <p className="text-xs text-gray-500 mt-1" title={att.location}>Lokasi: {att.location.split('(')[0]}</p>
+                                <p className="text-xs text-slate-400 mt-1" title={att.location}>Lokasi: {att.location.split('(')[0]}</p>
                             </div>
                         </div>
                     ))}
                     {user.currentMonthAttendance?.length === 0 && (
-                        <p className="text-center text-gray-500 py-4">Belum ada riwayat absensi bulan ini.</p>
+                        <p className="text-center text-slate-400 py-4">Belum ada history absensi bulan ini.</p>
                     )}
                 </div>
             </GlassCard>

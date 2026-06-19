@@ -1,22 +1,22 @@
-// src/components/ReportGenerator.jsx
+﻿// src/components/ReportGenerator.jsx
 import React from 'react';
 import { PrimaryButton } from '../Shared/Modals/componentsUtilityUI';
-import { showSwal } from '../../utils/swal'; // Pastikan showSwal diimpor dari utils/swal.js
+import { showSwal } from '../../utils/swal'; // Make sure showSwal diimpor dari utils/swal.js
 
-// Pastikan library ini sudah terinstall:
+// Make sure library ini sudah terinstall:
 // npm install jspdf jspdf-autotable xlsx
 import jsPDF from 'jspdf';
 import 'jspdf-autotable';
 import * as XLSX from 'xlsx';
 
 /**
- * Komponen utility untuk menghasilkan dan mendownload laporan dalam format PDF dan Excel.
+ * Komponen utility untuk menghasilkan dan mendownload report dalam format PDF dan Excel.
  *
  * @param {object} props - Properti komponen
- * @param {string} props.title - Judul Laporan
- * @param {Array<object>} props.data - Data array yang akan diekspor
+ * @param {string} props.title - Judul Report
+ * @param {Array<object>} props.data - Data array yang akan diexport
  * @param {Array<{header: string, dataKey: string, format?: (value: any) => string}>} props.columns - Definisi kolom untuk tabel (untuk jsPDF dan data mapping)
- * @param {string} props.filename - Nama file tanpa ekstensi
+ * @param {string} props.filename - Name file tanpa ekstensi
  * @param {string} props.buttonText - Teks pada tombol utama
  * @param {string} props.className - Kelas CSS tambahan untuk tombol
  */
@@ -25,7 +25,7 @@ const ReportGenerator = ({ title, data, columns, filename, buttonText, className
     // --- LOGIC EXPORT PDF (jsPDF + autoTable) ---
     const exportPDF = () => {
         if (!data || data.length === 0) {
-            showSwal('Gagal', 'Tidak ada data untuk diekspor ke PDF.', 'error');
+            showSwal('Failed', 'No data available untuk diexport ke PDF.', 'error');
             return;
         }
         
@@ -43,7 +43,7 @@ const ReportGenerator = ({ title, data, columns, filename, buttonText, className
         doc.setFontSize(18);
         doc.text(title, 14, 20);
         doc.setFontSize(11);
-        doc.text(`Tanggal Cetak: ${new Date().toLocaleDateString('id-ID')}`, 14, 25);
+        doc.text(`Date Print: ${new Date().toLocaleDateString('id-ID')}`, 14, 25);
 
         doc.autoTable({
             startY: 30,
@@ -56,13 +56,13 @@ const ReportGenerator = ({ title, data, columns, filename, buttonText, className
         });
 
         doc.save(`${filename}_${new Date().toISOString().split('T')[0]}.pdf`);
-        showSwal('Sukses!', 'Laporan PDF berhasil di-download.', 'success', 2000);
+        showSwal('Sukses!', 'Report PDF successfully di-download.', 'success', 2000);
     };
 
     // --- LOGIC EXPORT EXCEL (XLSX) ---
     const exportExcel = () => {
         if (!data || data.length === 0) {
-            showSwal('Gagal', 'Tidak ada data untuk diekspor ke Excel.', 'error');
+            showSwal('Failed', 'No data available untuk diexport ke Excel.', 'error');
             return;
         }
 
@@ -83,7 +83,7 @@ const ReportGenerator = ({ title, data, columns, filename, buttonText, className
 
         // 3. Download
         XLSX.writeFile(wb, `${filename}_${new Date().toISOString().split('T')[0]}.xlsx`);
-        showSwal('Sukses!', 'Laporan Excel berhasil di-download.', 'success', 2000);
+        showSwal('Sukses!', 'Report Excel successfully di-download.', 'success', 2000);
     };
 
 

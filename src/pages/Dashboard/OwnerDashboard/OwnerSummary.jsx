@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import {
   ResponsiveContainer, PieChart, Pie, Tooltip, Legend, Cell,
   BarChart, Bar, XAxis, YAxis, CartesianGrid, LineChart, Line
@@ -6,7 +6,7 @@ import {
 import { formattedCurrency, calculateTotalSalary } from '../../../utils/formatters';
 
 const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
-  // --- Gabung semua personil ---
+  // --- Gabung all personil ---
   const allPersonnel = [...(managers || []), ...(employees || []), ...(supervisors || [])];
   const totalPersonnel = allPersonnel.length;
 
@@ -23,20 +23,20 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
     .filter(a => a?.type === 'Clock In' && a?.late)
     .length;
 
-  // --- Statistik Divisi ---
-  const divisionData = allPersonnel.reduce((acc, person) => {
-    const division = person?.division || 'Unassigned';
-    acc[division] = (acc[division] || 0) + 1;
+  // --- Statistik Division ---
+  const divisiononData = allPersonnel.reduce((acc, person) => {
+    const divisionon = person?.divisionon || 'Unassigned';
+    acc[divisionon] = (acc[divisionon] || 0) + 1;
     return acc;
   }, {});
 
-  const pieChartData = Object.keys(divisionData).map((name, index) => ({
+  const pieChartData = Object.keys(divisiononData).map((name, index) => ({
     name,
-    value: divisionData[name],
+    value: divisiononData[name],
     color: getColorByIndex(index),
   }));
 
-  // --- Statistik Gaji ---
+  // --- Statistik Salary ---
   const totalMonthlySalary = allPersonnel.reduce((sum, person) => {
     return sum + (calculateTotalSalary(person?.salaryDetails || {}) || 0);
   }, 0);
@@ -45,8 +45,8 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
   // --- Role Distribution Data ---
   const roleDistributionData = [
-    { name: 'Karyawan', value: employees.length, color: '#4F86C6' },
-    { name: 'Supervisor', value: supervisors.length, color: '#708993' },
+    { name: 'Employee', value: employees.length, color: '#4F86C6' },
+    { name: 'Supervisor', value: supervisors.length, color: '#6366F1' },
     { name: 'Manager', value: managers.length, color: '#6B7AA1' },
   ];
 
@@ -54,7 +54,7 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
   const salaryRangeData = [
     { range: '< 5Jt', count: 0, color: '#A5B9C7' },
     { range: '5-10Jt', count: 0, color: '#8CA3B5' },
-    { range: '10-15Jt', count: 0, color: '#708993' },
+    { range: '10-15Jt', count: 0, color: '#6366F1' },
     { range: '15-20Jt', count: 0, color: '#5A717E' },
     { range: '> 20Jt', count: 0, color: '#445A66' },
   ];
@@ -79,30 +79,30 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
   ];
 
   function getColorByIndex(index) {
-    const colors = ['#708993', '#5A717E', '#445A66', '#8CA3B5', '#A5B9C7'];
+    const colors = ['#6366F1', '#5A717E', '#445A66', '#8CA3B5', '#A5B9C7'];
     return colors[index % colors.length];
   }
 
   return (
     <div className="space-y-6">
-      <h2 className="text-2xl font-bold text-gray-800">Ringkasan Owner Dashboard</h2>
+      <h2 className="text-2xl font-bold text-slate-100">Summary Owner Dashboard</h2>
 
       {/* BARIS 1: STATS UTAMA */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { icon: 'fa-users', color: 'blue', label: 'Total Personil', value: totalPersonnel },
-          { icon: 'fa-user-check', color: 'green', label: 'Personil Aktif', value: activePersonnel },
-          { icon: 'fa-calendar-check', color: 'purple', label: 'Total Absensi Bulan Ini', value: totalAttendanceRecords },
+          { icon: 'fa-user-check', color: 'green', label: 'Personil Active', value: activePersonnel },
+          { icon: 'fa-calendar-check', color: 'purple', label: 'Total Absensi This Month', value: totalAttendanceRecords },
           { icon: 'fa-hourglass-end', color: 'red', label: 'Total Keterlambatan', value: totalLates },
         ].map((item, i) => (
-          <div key={i} className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <div key={i} className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
             <div className="flex items-center">
               <div className={`bg-${item.color}-100 p-3 rounded-xl`}>
                 <i className={`fas ${item.icon} text-${item.color}-600 text-lg`}></i>
               </div>
               <div className="ml-4">
-                <p className="text-sm text-gray-600">{item.label}</p>
-                <p className="text-2xl font-bold text-gray-800">{item.value}</p>
+                <p className="text-sm text-slate-300">{item.label}</p>
+                <p className="text-2xl font-bold text-slate-100">{item.value}</p>
               </div>
             </div>
           </div>
@@ -111,8 +111,8 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
       {/* BARIS 2: STATS KEUANGAN */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        <SummaryCard icon="fa-money-bill-wave" color="indigo" label="Total Gaji Bulanan" value={formattedCurrency(totalMonthlySalary)} />
-        <SummaryCard icon="fa-wallet" color="pink" label="Rata-rata Gaji" value={formattedCurrency(averageSalary)} />
+        <SummaryCard icon="fa-money-bill-wave" color="indigo" label="Total Salary Bulanan" value={formattedCurrency(totalMonthlySalary)} />
+        <SummaryCard icon="fa-wallet" color="pink" label="Average Salary" value={formattedCurrency(averageSalary)} />
         <SummaryCard
           icon="fa-percentage"
           color="yellow"
@@ -127,7 +127,7 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
       {/* BARIS 3: GRAFIK */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <ChartCard title="Distribusi Personil per Divisi">
+        <ChartCard title="Distribusi Personil per Division">
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie
@@ -177,20 +177,20 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="attendance" stroke="#708993" strokeWidth={2} name="Kehadiran (%)" />
+              <Line type="monotone" dataKey="attendance" stroke="#6366F1" strokeWidth={2} name="Kehadiran (%)" />
               <Line type="monotone" dataKey="late" stroke="#EF4444" strokeWidth={2} name="Keterlambatan (%)" />
             </LineChart>
           </ResponsiveContainer>
         </ChartCard>
 
-        <ChartCard title="Distribusi Gaji">
+        <ChartCard title="Distribusi Salary">
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={salaryRangeData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="range" />
               <YAxis />
               <Tooltip />
-              <Bar dataKey="count" name="Jumlah Karyawan" radius={[8, 8, 0, 0]}>
+              <Bar dataKey="count" name="Jumlah Employee" radius={[8, 8, 0, 0]}>
                 {salaryRangeData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={entry.color} />
                 ))}
@@ -205,22 +205,22 @@ const OwnerSummary = ({ managers = [], employees = [], supervisors = [] }) => {
 
 // --- Small helper components ---
 const SummaryCard = ({ icon, color, label, value }) => (
-  <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+  <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
     <div className="flex items-center">
       <div className={`bg-${color}-100 p-3 rounded-xl`}>
         <i className={`fas ${icon} text-${color}-600 text-lg`}></i>
       </div>
       <div className="ml-4">
-        <p className="text-sm text-gray-600">{label}</p>
-        <p className="text-2xl font-bold text-gray-800">{value}</p>
+        <p className="text-sm text-slate-300">{label}</p>
+        <p className="text-2xl font-bold text-slate-100">{value}</p>
       </div>
     </div>
   </div>
 );
 
 const ChartCard = ({ title, children }) => (
-  <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-    <h3 className="text-lg font-bold text-gray-800 mb-4">{title}</h3>
+  <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+    <h3 className="text-lg font-bold text-slate-100 mb-4">{title}</h3>
     {children}
   </div>
 );

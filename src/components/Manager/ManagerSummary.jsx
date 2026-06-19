@@ -1,12 +1,12 @@
-// src/components/Manager/ManagerSummary.jsx
+﻿// src/components/Manager/ManagerSummary.jsx
 import React, { useMemo } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
 const ManagerSummary = ({ employees, pendingLeave, user }) => {
-  const totalEmployees = 9; // Total 9 karyawan untuk dummy data
+  const totalEmployees = 9; // Total 9 employee untuk dummy data
   const activeEmployees = 6; // 6 aktif, 3 non-aktif untuk dummy data
   
-  // Data dummy untuk karyawan yang terlambat hari ini
+  // Data dummy untuk employee yang terlambat hari ini
   const lateToday = 3; // 3 orang terlambat hari ini
 
   const pendingLeaveCount = pendingLeave?.length || 3; // 3 pending leave untuk dummy
@@ -68,7 +68,7 @@ const ManagerSummary = ({ employees, pendingLeave, user }) => {
 
   const attendanceData = getLast7DaysData();
 
-  // Data DUMMY untuk bar chart (status karyawan)
+  // Data DUMMY untuk bar chart (status employee)
   const employeeStatusData = [
     { name: 'Active', value: 6, color: '#10B981' },
     { name: 'Inactive', value: 2, color: '#EF4444' },
@@ -83,50 +83,50 @@ const ManagerSummary = ({ employees, pendingLeave, user }) => {
     <div className="space-y-6">
       {/* Statistik Utama */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-blue-100 p-3 rounded-xl">
               <i className="fas fa-users text-blue-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Total Team</p>
-              <p className="text-2xl font-bold text-gray-800">{totalEmployees}</p>
+              <p className="text-sm text-slate-300">Total Team</p>
+              <p className="text-2xl font-bold text-slate-100">{totalEmployees}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-green-100 p-3 rounded-xl">
               <i className="fas fa-user-check text-green-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Active Members</p>
-              <p className="text-2xl font-bold text-gray-800">{activeEmployees}</p>
+              <p className="text-sm text-slate-300">Active Members</p>
+              <p className="text-2xl font-bold text-slate-100">{activeEmployees}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-red-100 p-3 rounded-xl">
               <i className="fas fa-hourglass-end text-red-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Late Today</p>
-              <p className="text-2xl font-bold text-gray-800">{lateToday}</p>
+              <p className="text-sm text-slate-300">Late Today</p>
+              <p className="text-2xl font-bold text-slate-100">{lateToday}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-yellow-100 p-3 rounded-xl">
               <i className="fas fa-plane-departure text-yellow-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Pending Leave</p>
-              <p className="text-2xl font-bold text-gray-800">{pendingLeaveCount}</p>
+              <p className="text-sm text-slate-300">Pending Leave</p>
+              <p className="text-2xl font-bold text-slate-100">{pendingLeaveCount}</p>
             </div>
           </div>
         </div>
@@ -135,8 +135,8 @@ const ManagerSummary = ({ employees, pendingLeave, user }) => {
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Line Chart - Attendance Trend */}
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Attendance Trend (Last 7 Days)</h3>
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Attendance Trend (Last 7 Days)</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={attendanceData}>
@@ -189,8 +189,8 @@ const ManagerSummary = ({ employees, pendingLeave, user }) => {
         </div>
 
         {/* Bar Chart - Employee Status */}
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Team Status Distribution</h3>
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Team Status Distribution</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={employeeStatusData}>
@@ -229,22 +229,22 @@ const ManagerSummary = ({ employees, pendingLeave, user }) => {
 
       {/* Additional Stats */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-chart-line text-blue-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Avg Daily Attendance</p>
-          <p className="text-2xl font-bold text-gray-800">{averageAttendance}</p>
+          <p className="text-sm text-slate-300">Avg Daily Attendance</p>
+          <p className="text-2xl font-bold text-slate-100">{averageAttendance}</p>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-percentage text-green-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Attendance Rate</p>
-          <p className="text-2xl font-bold text-gray-800">{attendanceRate}%</p>
+          <p className="text-sm text-slate-300">Attendance Rate</p>
+          <p className="text-2xl font-bold text-slate-100">{attendanceRate}%</p>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-calendar-check text-purple-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Pending Approvals</p>
-          <p className="text-2xl font-bold text-gray-800">{pendingLeaveCount}</p>
+          <p className="text-sm text-slate-300">Pending Approvals</p>
+          <p className="text-2xl font-bold text-slate-100">{pendingLeaveCount}</p>
         </div>
       </div>
     </div>

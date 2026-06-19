@@ -1,4 +1,4 @@
-// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceDetailReport.jsx
+﻿// src/pages/Dashboard/OwnerDashboard/OwnerAttendanceDetailReport.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard } from '../../../components/Shared/Modals/componentsUtilityUI';
 import { formattedCurrency } from '../../../utils/formatters';
@@ -9,10 +9,10 @@ import ReportGenerator from '../../../components/Reporting/ReportGenerator';
 const ActionButton = ({ onClick, children, variant = 'primary', disabled = false, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
-        primary: "bg-[#708993] text-white hover:bg-[#5a6f7a] active:scale-95",
-        secondary: "bg-white/40 text-[#708993] border border-[#708993]/30 hover:bg-white/60",
+        primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
-        ghost: "bg-transparent text-[#708993] hover:bg-white/40"
+        ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
     
     const disabledClasses = "opacity-50 cursor-not-allowed";
@@ -32,8 +32,8 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Input field with consistent styling
 const FormInput = ({ label, icon, type = 'text', value, onChange, name, required = false, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
             {required && <span className="text-red-400">*</span>}
         </label>
         <input 
@@ -42,7 +42,7 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
             value={value || ''} 
             onChange={onChange}
             required={required}
-            className="w-full px-4 py-3 bg-white border border-[#708993]/20 rounded-2xl text-gray-800 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         />
     </div>
 );
@@ -50,14 +50,14 @@ const FormInput = ({ label, icon, type = 'text', value, onChange, name, required
 // Select input with consistent styling
 const FormSelect = ({ label, icon, value, onChange, name, options, className = '' }) => (
     <div className={className}>
-        <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-            <i className={`fas ${icon} text-[#708993] text-xs`}></i> {label}
+        <label className="flex items-center gap-2 text-sm font-medium text-slate-200 mb-2">
+            <i className={`fas ${icon} text-[#6366F1] text-xs`}></i> {label}
         </label>
         <select 
             name={name}
             value={value || ''} 
             onChange={onChange}
-            className="w-full px-4 py-3 bg-white border border-[#708993]/20 rounded-2xl text-gray-800 focus:outline-none focus:ring-2 focus:ring-[#708993]/30 focus:border-transparent transition-all duration-200"
+            className="w-full px-4 py-3 bg-slate-800 border border-[#6366F1]/20 rounded-2xl text-slate-100 focus:outline-none focus:ring-2 focus:ring-[#6366F1]/30 focus:border-transparent transition-all duration-200"
         >
             {options.map(option => (
                 <option key={option.value} value={option.value}>
@@ -68,7 +68,7 @@ const FormSelect = ({ label, icon, value, onChange, name, options, className = '
     </div>
 );
 
-// Flatten dan gabungkan semua data absensi dari semua personil
+// Flatten dan gabungkan all data absensi dari all personil
 const flattenAttendanceData = (employees, managers, supervisors) => {
     const allPersonnel = [...employees, ...managers, ...supervisors];
     
@@ -76,7 +76,7 @@ const flattenAttendanceData = (employees, managers, supervisors) => {
         (person.currentMonthAttendance || []).map(record => ({
             ...record,
             employeeName: person.name,
-            division: person.division || person.role,
+            divisionon: person.divisionon || person.role,
             role: person.role,
         }))
     ).sort((a, b) => new Date(b.date + ' ' + b.time) - new Date(a.date + ' ' + a.time)); // Urutkan terbaru
@@ -86,19 +86,19 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
     const fullAttendanceData = useMemo(() => flattenAttendanceData(employees, managers, supervisors), [employees, managers, supervisors]);
     
     const [filterDate, setFilterDate] = useState(new Date().toISOString().split('T')[0]);
-    const [filterDivision, setFilterDivision] = useState('All');
+    const [filterDivisionon, setFilterDivisionon] = useState('All');
     
-    const uniqueDivisions = ['All', ...new Set([...employees, ...managers, ...supervisors].map(e => e.division || e.role))];
+    const uniqueDivisionons = ['All', ...new Set([...employees, ...managers, ...supervisors].map(e => e.divisionon || e.role))];
     
     const filteredData = fullAttendanceData.filter(d => 
-        (filterDivision === 'All' || d.division === filterDivision) &&
+        (filterDivisionon === 'All' || d.divisionon === filterDivisionon) &&
         (d.date === filterDate)
     );
 
     // Columns for ReportGenerator
     const attendanceColumns = [
         { header: 'Name', dataKey: 'employeeName' },
-        { header: 'Division', dataKey: 'division' },
+        { header: 'Divisionon', dataKey: 'divisionon' },
         { header: 'Role', dataKey: 'role' },
         { header: 'Date', dataKey: 'date' },
         { header: 'Time', dataKey: 'time' },
@@ -113,17 +113,17 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
             {/* Header */}
             <div className="flex flex-col lg:flex-row lg:items-center justify-between mb-8 gap-4">
                 <div>
-                    <h2 className="text-2xl font-bold text-gray-800 flex items-center gap-3">
-                        <div className="bg-[#708993] p-3 rounded-2xl">
+                    <h2 className="text-2xl font-bold text-slate-100 flex items-center gap-3">
+                        <div className="bg-indigo-600 p-3 rounded-2xl">
                             <i className="fas fa-list-alt text-white text-lg"></i>
                         </div>
                         Detailed Attendance Report
                     </h2>
-                    <p className="text-gray-600 text-sm mt-2">View and export detailed attendance records</p>
+                    <p className="text-slate-300 text-sm mt-2">View and export detailed attendance records</p>
                 </div>
             </div>
 
-            <div className="bg-white/30 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#708993]/20 p-6">
+            <div className="bg-slate-800/50 backdrop-blur-2xl rounded-3xl shadow-sm border border-[#6366F1]/20 p-6">
                 {/* Filter Controls */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
                     <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
@@ -138,12 +138,12 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                             className="w-full sm:w-48"
                         />
                         <FormSelect
-                            label="Division/Role"
+                            label="Divisionon/Role"
                             icon="fa-filter"
-                            name="division"
-                            value={filterDivision}
-                            onChange={(e) => setFilterDivision(e.target.value)}
-                            options={uniqueDivisions.map(div => ({ value: div, label: div }))}
+                            name="divisionon"
+                            value={filterDivisionon}
+                            onChange={(e) => setFilterDivisionon(e.target.value)}
+                            options={uniqueDivisionons.map(div => ({ value: div, label: div }))}
                             className="w-full sm:w-48"
                         />
                     </div>
@@ -153,7 +153,7 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                         title={`Detailed Attendance Report - ${filterDate}`}
                         data={filteredData}
                         columns={attendanceColumns}
-                        filename={`AttendanceDetail_${filterDate}_${filterDivision}`}
+                        filename={`AttendanceDetail_${filterDate}_${filterDivisionon}`}
                         buttonText="Download Report"
                     />
                 </div>
@@ -162,23 +162,23 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                 <div className="overflow-x-auto rounded-xl">
                     <table className="min-w-full divide-y divide-gray-200">
                         <thead>
-                            <tr className="bg-[#708993]">
-                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tl-xl">Name & Division</th>
+                            <tr className="bg-indigo-600">
+                                <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tl-xl">Name & Divisionon</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Date & Time</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Type</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Status</th>
                                 <th className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider rounded-tr-xl">Location (Coordinates)</th>
                             </tr>
                         </thead>
-                        <tbody className="bg-white divide-y divide-gray-200">
+                        <tbody className="bg-slate-800 divide-y divide-gray-200">
                             {filteredData.map((d, index) => (
-                                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                                <tr key={index} className="hover:bg-slate-900 transition-colors">
                                     <td className="px-6 py-4 whitespace-nowrap">
-                                        <div className="text-sm font-medium text-gray-900">{d.employeeName}</div>
-                                        <div className="text-xs text-gray-500">{d.division} ({d.role})</div>
+                                        <div className="text-sm font-medium text-slate-100">{d.employeeName}</div>
+                                        <div className="text-xs text-slate-400">{d.divisionon} ({d.role})</div>
                                     </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {d.date} <span className="font-semibold text-gray-700">{d.time}</span>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">
+                                        {d.date} <span className="font-semibold text-slate-200">{d.time}</span>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${d.type === 'Clock In' ? 'bg-blue-100 text-blue-800' : 'bg-orange-100 text-orange-800'}`}>
@@ -190,7 +190,7 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                                             {d.late ? 'Late' : d.earlyLeave ? 'Early Leave' : 'On Time'}
                                         </span>
                                     </td>
-                                    <td className="px-6 py-4 text-xs text-gray-500 max-w-xs truncate">
+                                    <td className="px-6 py-4 text-xs text-slate-400 max-w-xs truncate">
                                         {d.location.split(' (')[0]}
                                     </td>
                                 </tr>
@@ -202,7 +202,7 @@ const OwnerAttendanceDetailReport = ({ employees, managers, supervisors }) => {
                 {filteredData.length === 0 && (
                     <div className="text-center py-12">
                         <i className="fas fa-calendar-times text-4xl text-gray-400 mb-3"></i>
-                        <p className="text-gray-500">No attendance data found for the selected criteria.</p>
+                        <p className="text-slate-400">No attendance data found for the selected criteria.</p>
                     </div>
                 )}
             </div>

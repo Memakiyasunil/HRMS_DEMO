@@ -1,10 +1,10 @@
-// src/components/Approvals/ManagerLeaveApproval.jsx
+﻿// src/components/Approvals/ManagerLeaveApproval.jsx
 import React from 'react';
 import { showSwal } from '../../utils/swal';
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-white/30 border border-[#708993]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -13,11 +13,11 @@ const GlassCard = ({ children, className = '' }) => (
 const ActionButton = ({ onClick, children, variant = 'primary', disabled = false, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
-        primary: "bg-[#708993] text-white hover:bg-[#5a6f7a] active:scale-95",
-        secondary: "bg-white/40 text-[#708993] border border-[#708993]/30 hover:bg-white/60",
+        primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
         success: "bg-emerald-500/90 text-white hover:bg-emerald-600 active:scale-95",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
-        ghost: "bg-transparent text-[#708993] hover:bg-white/40"
+        ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
     
     const disabledClasses = "opacity-50 cursor-not-allowed";
@@ -37,14 +37,14 @@ const ActionButton = ({ onClick, children, variant = 'primary', disabled = false
 // Leave type badge with consistent styling
 const LeaveTypeBadge = ({ type }) => {
     const typeConfig = {
-        'Cuti Tahunan': { color: 'bg-blue-100 text-blue-700', icon: 'fa-sun' },
+        'Annual Leave': { color: 'bg-blue-100 text-blue-700', icon: 'fa-sun' },
         'Cuti Sakit': { color: 'bg-red-100 text-red-700', icon: 'fa-heartbeat' },
         'Cuti Melahirkan': { color: 'bg-pink-100 text-pink-700', icon: 'fa-baby' },
         'Cuti Penting': { color: 'bg-purple-100 text-purple-700', icon: 'fa-star' },
         'Cuti Besar': { color: 'bg-orange-100 text-orange-700', icon: 'fa-umbrella-beach' }
     };
     
-    const config = typeConfig[type] || { color: 'bg-gray-100 text-gray-700', icon: 'fa-calendar' };
+    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-200', icon: 'fa-calendar' };
     
     return (
         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${config.color}`}>
@@ -57,9 +57,9 @@ const LeaveTypeBadge = ({ type }) => {
 // Status badge component
 const StatusBadge = ({ status }) => {
     const statusConfig = {
-        'pending': { color: 'bg-amber-100 text-amber-700', label: 'Menunggu' },
-        'approved': { color: 'bg-emerald-100 text-emerald-700', label: 'Disetujui' },
-        'rejected': { color: 'bg-red-100 text-red-700', label: 'Ditolak' }
+        'pending': { color: 'bg-amber-100 text-amber-700', label: 'Pending' },
+        'approved': { color: 'bg-emerald-100 text-emerald-700', label: 'Diapprovei' },
+        'rejected': { color: 'bg-red-100 text-red-700', label: 'Direject' }
     };
     
     const config = statusConfig[status] || statusConfig.pending;
@@ -85,43 +85,43 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     <div className="flex items-start justify-between">
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <h3 className="text-lg font-semibold text-gray-800">{request.employeeName}</h3>
+                                <h3 className="text-lg font-semibold text-slate-100">{request.employeeName}</h3>
                                 <StatusBadge status={request.status} />
                             </div>
                             <div className="flex items-center gap-3">
                                 <LeaveTypeBadge type={request.type} />
-                                <span className="text-sm text-gray-600 font-medium">
+                                <span className="text-sm text-slate-300 font-medium">
                                     {request.days} hari
                                 </span>
                             </div>
                         </div>
                         <div className="text-right">
-                            <p className="text-sm text-gray-500">Sisa Cuti</p>
-                            <p className="text-lg font-bold text-[#708993]">{employeeDetail.cutiBalance} hari</p>
+                            <p className="text-sm text-slate-400">Leave Balance</p>
+                            <p className="text-lg font-bold text-[#6366F1]">{employeeDetail.cutiBalance} hari</p>
                         </div>
                     </div>
                     
                     {/* Date Range */}
                     <div className="bg-white/40 rounded-2xl p-4">
-                        <p className="text-sm text-gray-500 mb-3">Periode Cuti</p>
+                        <p className="text-sm text-slate-400 mb-3">Periode Cuti</p>
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2 text-sm text-gray-700">
-                                <div className="bg-[#708993]/10 p-2 rounded-2xl">
-                                    <i className="fas fa-calendar-day text-[#708993] text-sm"></i>
+                            <div className="flex items-center gap-2 text-sm text-slate-200">
+                                <div className="bg-indigo-600/10 p-2 rounded-2xl">
+                                    <i className="fas fa-calendar-day text-[#6366F1] text-sm"></i>
                                 </div>
                                 <div>
                                     <p className="font-medium">{request.startDate}</p>
-                                    <p className="text-xs text-gray-500">Mulai</p>
+                                    <p className="text-xs text-slate-400">Mulai</p>
                                 </div>
                             </div>
                             <i className="fas fa-arrow-right text-gray-400 text-sm"></i>
-                            <div className="flex items-center gap-2 text-sm text-gray-700">
-                                <div className="bg-[#708993]/10 p-2 rounded-2xl">
-                                    <i className="fas fa-calendar-day text-[#708993] text-sm"></i>
+                            <div className="flex items-center gap-2 text-sm text-slate-200">
+                                <div className="bg-indigo-600/10 p-2 rounded-2xl">
+                                    <i className="fas fa-calendar-day text-[#6366F1] text-sm"></i>
                                 </div>
                                 <div>
                                     <p className="font-medium">{request.endDate}</p>
-                                    <p className="text-xs text-gray-500">Selesai</p>
+                                    <p className="text-xs text-slate-400">Completed</p>
                                 </div>
                             </div>
                         </div>
@@ -129,8 +129,8 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     
                     {/* Reason */}
                     <div className="bg-white/40 rounded-2xl p-4">
-                        <p className="text-sm text-gray-500 mb-2">Alasan Cuti</p>
-                        <p className="text-gray-700 text-sm leading-relaxed">
+                        <p className="text-sm text-slate-400 mb-2">Reason Cuti</p>
+                        <p className="text-slate-200 text-sm leading-relaxed">
                             {request.reason}
                         </p>
                     </div>
@@ -138,19 +138,19 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     {/* File Attachment for Sick Leave */}
                     {isSickLeave && request.attachment && (
                         <div className="flex items-center gap-3 p-4 bg-white/40 rounded-2xl">
-                            <div className="bg-[#708993]/10 p-2 rounded-2xl">
-                                <i className="fas fa-file-medical text-[#708993]"></i>
+                            <div className="bg-indigo-600/10 p-2 rounded-2xl">
+                                <i className="fas fa-file-medical text-[#6366F1]"></i>
                             </div>
                             <div>
-                                <p className="text-sm font-medium text-gray-700">File Pendukung</p>
-                                <p className="text-xs text-gray-500">Surat dokter tersedia</p>
+                                <p className="text-sm font-medium text-slate-200">File Pendukung</p>
+                                <p className="text-xs text-slate-400">Surat dokter tersedia</p>
                             </div>
                         </div>
                     )}
                 </div>
                 
                 {/* Right Section - Action Buttons */}
-                <div className="flex lg:flex-col gap-3 lg:w-40 text-gray-700">
+                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-200">
                     <ActionButton 
                         onClick={() => onApprove(request)}
                         variant="success"
@@ -158,7 +158,7 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     >
                         <div className="flex items-center gap-2">
                             <i className="fas fa-check-circle text-green-500"></i>
-                            <span className="ml-2">Setujui</span>
+                            <span className="ml-2">Approvei</span>
                         </div>
                     </ActionButton>
                     <ActionButton 
@@ -168,7 +168,7 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
                     >
                         <div className="flex items-center gap-2">
                             <i className="fas fa-times-circle text-red-500"></i>
-                            <span className="ml-2">Tolak</span>
+                            <span className="ml-2">Reject</span>
                         </div>
                     </ActionButton>
                 </div>
@@ -178,14 +178,14 @@ const LeaveRequestCard = ({ request, employeeDetail, onApprove, onReject }) => {
 };
 
 // Stats Card Component
-const StatsCard = ({ value, label, color = '[#708993]', icon }) => (
+const StatsCard = ({ value, label, color = '[#6366F1]', icon }) => (
     <GlassCard className="p-4 flex items-center gap-4">
         <div className={`bg-${color}/10 p-3 rounded-2xl`}>
             <i className={`fas ${icon} text-${color} text-lg`}></i>
         </div>
         <div>
-            <p className="text-2xl font-bold text-gray-800">{value}</p>
-            <p className="text-sm text-gray-600">{label}</p>
+            <p className="text-2xl font-bold text-slate-100">{value}</p>
+            <p className="text-sm text-slate-300">{label}</p>
         </div>
     </GlassCard>
 );
@@ -193,22 +193,22 @@ const StatsCard = ({ value, label, color = '[#708993]', icon }) => (
 // Empty state component
 const EmptyState = () => (
     <div className="text-center py-16">
-        <div className="bg-[#708993]/10 p-8 rounded-3xl inline-block mb-6">
-            <i className="fas fa-check-circle text-4xl text-[#708993]"></i>
+        <div className="bg-indigo-600/10 p-8 rounded-3xl inline-block mb-6">
+            <i className="fas fa-check-circle text-4xl text-[#6366F1]"></i>
         </div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-3">Tidak Ada Permintaan Cuti</h3>
-        <p className="text-gray-500 text-sm max-w-md mx-auto">
-            Semua permintaan cuti telah diproses. Tim Anda sedang bekerja dengan produktif.
+        <h3 className="text-xl font-semibold text-slate-200 mb-3">Tidak Ada Permintaan Cuti</h3>
+        <p className="text-slate-400 text-sm max-w-md mx-auto">
+            All permintaan cuti telah diproses. Tim Anda sedang bekerja dengan produktif.
         </p>
     </div>
 );
 
-// --- B2. Persetujuan Cuti ---
+// --- B2. Perapprovean Cuti ---
 const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendingLeave }) => {
     
     // Handler untuk menyetujui (Approve) permintaan cuti
     const handleApprove = (request) => {
-        // 1. Tambahkan ke data attendance (Simulasi: status cuti sebagai 'On Leave')
+        // 1. Addkan ke data attendance (Simulasi: status cuti sebagai 'On Leave')
         const updatedEmployees = employees.map(emp => {
             if (emp.id === request.employeeId) {
                 // Kurangi saldo cuti (asumsi request.days sudah benar di data dummy)
@@ -222,41 +222,41 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
             return emp;
         });
 
-        // 2. Hapus dari daftar pending
+        // 2. Delete dari daftar pending
         const updatedPending = pendingLeave.filter(p => p.id !== request.id);
 
         // 3. Update state
         setEmployees(updatedEmployees);
         setPendingLeave(updatedPending);
 
-        showSwal('Disetujui!', `Permintaan cuti ${request.employeeName} (${request.type}) telah disetujui.`, 'success');
+        showSwal('Diapprovei!', `Permintaan cuti ${request.employeeName} (${request.type}) telah diapprovei.`, 'success');
     };
 
     // Handler untuk menolak (Reject) permintaan cuti
     const handleReject = (requestId, employeeName) => {
-        // Hapus dari daftar pending
+        // Delete dari daftar pending
         const updatedPending = pendingLeave.filter(p => p.id !== requestId);
         setPendingLeave(updatedPending);
 
-        showSwal('Ditolak!', `Permintaan cuti ${employeeName} telah ditolak.`, 'error');
+        showSwal('Direject!', `Permintaan cuti ${employeeName} telah direject.`, 'error');
     };
 
     // Stats untuk header
     const pendingCount = pendingLeave.length;
     const sickLeaveCount = pendingLeave.filter(req => req.type === 'Cuti Sakit').length;
-    const annualLeaveCount = pendingLeave.filter(req => req.type === 'Cuti Tahunan').length;
+    const annualLeaveCount = pendingLeave.filter(req => req.type === 'Annual Leave').length;
 
     return (
         <div className="p-6 min-h-screen bg-gradient-to-br from-[#f8fafc] to-[#eef2f6] rounded-xl">
             {/* Header Section */}
             <div className="mb-8">
                 <div className="flex items-center gap-4 mb-6">
-                    <div className="bg-[#708993] p-3 rounded-2xl">
+                    <div className="bg-indigo-600 p-3 rounded-2xl">
                         <i className="fas fa-plane-departure text-white text-xl"></i>
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800 text-left">Persetujuan Cuti</h2>
-                        <p className="text-gray-600 text-sm text-left">Kelola permintaan cuti dari tim Anda</p>
+                        <h2 className="text-2xl font-bold text-slate-100 text-left">Perapprovean Cuti</h2>
+                        <p className="text-slate-300 text-sm text-left">Kelola permintaan cuti dari tim Anda</p>
                     </div>
                 </div>
                 
@@ -264,13 +264,13 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                     <StatsCard 
                         value={pendingCount}
-                        label="Menunggu Persetujuan"
-                        color="[#708993]"
+                        label="Pending Perapprovean"
+                        color="[#6366F1]"
                         icon="fa-clock"
                     />
                     <StatsCard 
                         value={annualLeaveCount}
-                        label="Cuti Tahunan"
+                        label="Annual Leave"
                         color="blue"
                         icon="fa-sun"
                     />
@@ -291,8 +291,8 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                     <div className="space-y-4 text-left">
                         <div className="flex justify-between items-center mb-4 ">
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-800">Permintaan Cuti</h3>
-                                <p className="text-gray-600 text-sm">{pendingCount} permintaan perlu ditinjau</p>
+                                <h3 className="text-lg font-semibold text-slate-100">Permintaan Cuti</h3>
+                                <p className="text-slate-300 text-sm">{pendingCount} permintaan perlu ditinjau</p>
                             </div>
                             
                             {/* Bulk Actions */}
@@ -305,19 +305,19 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                                     variant="success"
                                 >
                                     <i className="fas fa-check-circle"></i>
-                                    Setujui Semua
+                                    Approvei All
                                 </ActionButton>
                                 <ActionButton 
                                     onClick={() => {
                                         if (pendingLeave.length === 0) return;
                                         showSwal({
-                                            title: 'Tolak Semua?',
-                                            text: `Anda akan menolak semua ${pendingLeave.length} permintaan cuti.`,
+                                            title: 'Reject All?',
+                                            text: `Anda akan menolak all ${pendingLeave.length} permintaan cuti.`,
                                             icon: 'warning',
                                             buttons: {
-                                                cancel: "Batal",
+                                                cancel: "Cancel",
                                                 confirm: {
-                                                    text: "Ya, Tolak Semua",
+                                                    text: "Ya, Reject All",
                                                     value: true,
                                                     className: "bg-red-500"
                                                 }
@@ -326,21 +326,21 @@ const ManagerLeaveApproval = ({ employees, setEmployees, pendingLeave, setPendin
                                             if (willReject) {
                                                 const updatedPending = [];
                                                 setPendingLeave(updatedPending);
-                                                showSwal('Berhasil!', 'Semua permintaan cuti telah ditolak.', 'success');
+                                                showSwal('Success!', 'All permintaan cuti telah direject.', 'success');
                                             }
                                         });
                                     }}
                                     variant="danger"
                                 >
                                     <i className="fas fa-times-circle"></i>
-                                    Tolak Semua
+                                    Reject All
                                 </ActionButton>
                             </div>
                         </div>
                         
                         <div className="space-y-4 max-h-[60vh] overflow-y-auto pr-2">
                             {pendingLeave.map(request => {
-                                // Cari detail karyawan
+                                // Search detail employee
                                 const employeeDetail = employees.find(e => e.id === request.employeeId) || {};
                                 
                                 return (

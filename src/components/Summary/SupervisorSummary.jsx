@@ -1,4 +1,4 @@
-// src/components/Summary/SupervisorSummary.jsx
+﻿// src/components/Summary/SupervisorSummary.jsx
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, BarChart, Bar } from 'recharts';
 
@@ -7,7 +7,7 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
   const totalTeam = safeEmployees.length;
   const activeTeam = safeEmployees.filter(e => e.status === 'Active').length;
   
-  // Hitung absensi terlambat hari ini (defensive)
+  // Calculate absensi terlambat hari ini (defensive)
   const today = new Date().toLocaleDateString('id-ID');
   const attendanceLists = safeEmployees.flatMap(e => Array.isArray(e.currentMonthAttendance) ? e.currentMonthAttendance : []);
   const lateToday = attendanceLists.filter(a => a.type === 'Clock In' && a.late && a.date === today).length;
@@ -76,7 +76,7 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
 
   const attendanceData = getLast7DaysData();
 
-  // Data DUMMY untuk bar chart (status karyawan) - sama seperti Manager
+  // Data DUMMY untuk bar chart (status employee) - sama seperti Manager
   const employeeStatusData = [
     { name: 'Active', value: 6, color: '#10B981' },
     { name: 'Inactive', value: 2, color: '#EF4444' },
@@ -92,50 +92,50 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
     <div className="space-y-6">
       {/* Statistik Utama - Design sama dengan Manager */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-blue-100 p-3 rounded-xl">
               <i className="fas fa-users text-blue-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Team Members</p>
-              <p className="text-2xl font-bold text-gray-800">{totalTeam}</p>
+              <p className="text-sm text-slate-300">Team Members</p>
+              <p className="text-2xl font-bold text-slate-100">{totalTeam}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-green-100 p-3 rounded-xl">
               <i className="fas fa-user-check text-green-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Active Members</p>
-              <p className="text-2xl font-bold text-gray-800">{activeTeam}</p>
+              <p className="text-sm text-slate-300">Active Members</p>
+              <p className="text-2xl font-bold text-slate-100">{activeTeam}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-red-100 p-3 rounded-xl">
               <i className="fas fa-user-clock text-red-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Late Today</p>
-              <p className="text-2xl font-bold text-gray-800">{lateToday}</p>
+              <p className="text-sm text-slate-300">Late Today</p>
+              <p className="text-2xl font-bold text-slate-100">{lateToday}</p>
             </div>
           </div>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-4 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-4 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
           <div className="flex items-center">
             <div className="bg-yellow-100 p-3 rounded-xl">
               <i className="fas fa-tasks text-yellow-600 text-lg"></i>
             </div>
             <div className="ml-4">
-              <p className="text-sm text-gray-600">Pending Tasks</p>
-              <p className="text-2xl font-bold text-gray-800">{pendingTasksCount}</p>
+              <p className="text-sm text-slate-300">Pending Tasks</p>
+              <p className="text-2xl font-bold text-slate-100">{pendingTasksCount}</p>
             </div>
           </div>
         </div>
@@ -144,8 +144,8 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
       {/* Charts Grid - Sama seperti Manager */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Line Chart - Attendance Trend */}
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Attendance Trend (Last 7 Days)</h3>
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Attendance Trend (Last 7 Days)</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={attendanceData}>
@@ -198,8 +198,8 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
         </div>
 
         {/* Bar Chart - Employee Status */}
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-          <h3 className="text-lg font-bold text-gray-800 mb-4">Team Status Distribution</h3>
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+          <h3 className="text-lg font-bold text-slate-100 mb-4">Team Status Distribution</h3>
           <div className="h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={employeeStatusData}>
@@ -238,22 +238,22 @@ const SupervisorSummary = ({ employees = [], pendingTasks = [], pendingAttendanc
 
       {/* Additional Stats - Design sama dengan Manager */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-chart-line text-blue-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Avg Daily Attendance</p>
-          <p className="text-2xl font-bold text-gray-800">{averageAttendance}</p>
+          <p className="text-sm text-slate-300">Avg Daily Attendance</p>
+          <p className="text-2xl font-bold text-slate-100">{averageAttendance}</p>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-percentage text-green-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Attendance Rate</p>
-          <p className="text-2xl font-bold text-gray-800">{attendanceRate}%</p>
+          <p className="text-sm text-slate-300">Attendance Rate</p>
+          <p className="text-2xl font-bold text-slate-100">{attendanceRate}%</p>
         </div>
 
-        <div className="bg-white/50 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
+        <div className="bg-slate-700/50 backdrop-blur-xl rounded-2xl p-6 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-center">
           <i className="fas fa-calendar-check text-purple-500 text-2xl mb-2"></i>
-          <p className="text-sm text-gray-600">Pending Approvals</p>
-          <p className="text-2xl font-bold text-gray-800">{totalPending}</p>
+          <p className="text-sm text-slate-300">Pending Approvals</p>
+          <p className="text-2xl font-bold text-slate-100">{totalPending}</p>
         </div>
       </div>
     </div>

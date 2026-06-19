@@ -1,11 +1,11 @@
-// src/pages/Dashboard/OwnerDashboard/OwnerEmployeePerformance.jsx
+﻿// src/pages/Dashboard/OwnerDashboard/OwnerEmployeePerformance.jsx
 import React, { useState, useMemo } from 'react';
 import { GlassCard, PrimaryButton } from '../../../components/Shared/Modals/componentsUtilityUI';
 import { showSwal } from '../../../utils/swal';
 
 // Color scheme
 const colorPalette = {
-    primary: '#708993',
+    primary: '#6366F1',
     primaryLight: '#8fa4ad',
     primaryDark: '#5a717a',
     accent: '#a8c0c9',
@@ -14,7 +14,7 @@ const colorPalette = {
     border: '#e1e8eb'
 };
 
-// --- LOGIKA UTAMA: Perhitungan Skor Performa ---
+// --- LOGIKA UTAMA: Perhitungan Skor Performance ---
 const calculatePerformanceScore = (employee) => {
     // --- 1. Data Absensi (Kontribusi 40%) ---
     const attendanceRecords = employee.currentMonthAttendance || [];
@@ -86,7 +86,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
             case 'Baik': return { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-200' };
             case 'Cukup': return { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-yellow-200' };
             case 'Perlu Perbaikan': return { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-200' };
-            default: return { bg: 'bg-gray-100', text: 'text-gray-800', border: 'border-gray-200' };
+            default: return { bg: 'bg-gray-100', text: 'text-slate-100', border: 'border-slate-600' };
         }
     };
     
@@ -102,16 +102,16 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
     return (
         <div className="fixed inset-0 z-50 overflow-y-auto flex items-center justify-center p-4 bg-black bg-opacity-50" onClick={onClose}>
             <div 
-                className="bg-white rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-slate-800 rounded-2xl p-6 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
                 onClick={(e) => e.stopPropagation()}
             >
                 <div className="flex justify-between items-center mb-6">
-                    <h3 className="text-xl font-bold text-black">Detail Performa {employee.name}</h3>
+                    <h3 className="text-xl font-bold text-black">Detail Performance {employee.name}</h3>
                     <button 
                         onClick={onClose}
                         className="p-2 rounded-full hover:bg-gray-100 transition-colors"
                     >
-                        <i className="fas fa-times text-gray-500"></i>
+                        <i className="fas fa-times text-slate-400"></i>
                     </button>
                 </div>
                 
@@ -126,13 +126,13 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
                     <div className="flex-1">
                         <h4 className="font-semibold text-black mb-3">Target & Realisasi</h4>
                         <div className="grid grid-cols-2 gap-4 mb-4">
-                            <div className="text-center p-3 rounded-lg bg-gray-50">
+                            <div className="text-center p-3 rounded-lg bg-slate-900">
                                 <div className="font-semibold text-black">Target</div>
                                 <div className="text-lg font-bold text-black">
                                     {p.details.target > 0 ? p.details.target : 'Tidak Ada'}
                                 </div>
                             </div>
-                            <div className="text-center p-3 rounded-lg bg-gray-50">
+                            <div className="text-center p-3 rounded-lg bg-slate-900">
                                 <div className="font-semibold text-black">Realisasi</div>
                                 <div className="text-lg font-bold text-black">
                                     {p.details.realisasi}
@@ -159,7 +159,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
                                         }}
                                     ></div>
                                 </div>
-                                <div className="text-xs text-gray-500 mt-1">
+                                <div className="text-xs text-slate-400 mt-1">
                                     {p.details.totalClockIns}/{p.details.assumedWorkingDays} hari • {p.details.totalLate} terlambat • {p.details.totalEarlyLeave} pulang cepat
                                 </div>
                             </div>
@@ -205,7 +205,7 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
                     {/* Right Column - Chart Visualization */}
                     <div className="flex-1">
                         <h4 className="font-semibold text-black mb-3">Visualisasi Skor</h4>
-                        <div className="bg-gray-50 rounded-lg p-4 h-64 flex items-center justify-center">
+                        <div className="bg-slate-900 rounded-lg p-4 h-64 flex items-center justify-center">
                             <div className="relative w-48 h-48">
                                 {/* Simple circular progress indicator */}
                                 <svg className="transform -rotate-90 w-48 h-48">
@@ -278,19 +278,19 @@ const PerformanceDetailModal = ({ employee, isOpen, onClose }) => {
 };
 
 const OwnerEmployeePerformance = ({ employees }) => {
-    const [filterDivision, setFilterDivision] = useState('All');
+    const [filterDivisionon, setFilterDivisionon] = useState('All');
     const [sortBy, setSortBy] = useState('score');
     const [sortOrder, setSortOrder] = useState('desc');
     const [selectedEmployee, setSelectedEmployee] = useState(null);
     const [showDetailModal, setShowDetailModal] = useState(false);
-    const uniqueDivisions = ['All', ...new Set(employees.map(e => e.division))];
+    const uniqueDivisionons = ['All', ...new Set(employees.map(e => e.divisionon))];
 
     const performanceData = useMemo(() => {
         let data = employees.map(emp => ({
             ...emp,
             performance: calculatePerformanceScore(emp)
         }))
-        .filter(emp => filterDivision === 'All' || emp.division === filterDivision);
+        .filter(emp => filterDivisionon === 'All' || emp.divisionon === filterDivisionon);
 
         // Sorting
         data.sort((a, b) => {
@@ -302,8 +302,8 @@ const OwnerEmployeePerformance = ({ employees }) => {
                 aVal = a.name.toLowerCase();
                 bVal = b.name.toLowerCase();
             } else {
-                aVal = a.division.toLowerCase();
-                bVal = b.division.toLowerCase();
+                aVal = a.divisionon.toLowerCase();
+                bVal = b.divisionon.toLowerCase();
             }
 
             if (sortOrder === 'desc') {
@@ -314,7 +314,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
         });
 
         return data;
-    }, [employees, filterDivision, sortBy, sortOrder]);
+    }, [employees, filterDivisionon, sortBy, sortOrder]);
     
     const getBadgeColor = (category) => {
         switch (category) {
@@ -322,7 +322,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
             case 'Baik': return { bg: 'bg-blue-100', text: 'text-blue-800', border: 'border-blue-200' };
             case 'Cukup': return { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-yellow-200' };
             case 'Perlu Perbaikan': return { bg: 'bg-red-100', text: 'text-red-800', border: 'border-red-200' };
-            default: return { bg: 'bg-gray-100', text: 'text-gray-800', border: 'border-gray-200' };
+            default: return { bg: 'bg-gray-100', text: 'text-slate-100', border: 'border-slate-600' };
         }
     };
 
@@ -360,11 +360,11 @@ const OwnerEmployeePerformance = ({ employees }) => {
     const topPerformers = performanceData.slice(0, 3);
 
     return (
-        <div className="space-y-6 bg-white rounded-xl p-6 min-h-screen text-left">
+        <div className="space-y-6 bg-slate-800 rounded-xl p-6 min-h-screen text-left">
             {/* Header */}
             <div className="text-left mb-8">
                 <h2 className="text-3xl font-bold mb-2 text-black">
-                    Laporan Performa Karyawan
+                    Report Performance Employee
                 </h2>
                 <p className="text-lg" style={{ color: colorPalette.primary }}>
                     {new Date().toLocaleDateString('id-ID', { month: 'long', year: 'numeric' })} - Analisis Komprehensif
@@ -374,21 +374,21 @@ const OwnerEmployeePerformance = ({ employees }) => {
             <div className="space-y-6 rounded-2xl p-6 bg-white">
                 {/* Stats Overview */}
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                    <div className="text-center p-4 rounded-xl bg-gray-50">
+                    <div className="text-center p-4 rounded-xl bg-slate-900">
                         <div className="text-2xl font-bold" style={{ color: colorPalette.primary }}>{performanceData.length}</div>
-                        <div className="text-sm text-black">Total Karyawan</div>
+                        <div className="text-sm text-black">Total Employee</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-gray-50">
+                    <div className="text-center p-4 rounded-xl bg-slate-900">
                         <div className="text-2xl font-bold" style={{ color: colorPalette.primary }}>{averageScore}</div>
-                        <div className="text-sm text-black">Rata-rata Skor</div>
+                        <div className="text-sm text-black">Average Skor</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-gray-50">
+                    <div className="text-center p-4 rounded-xl bg-slate-900">
                         <div className="text-2xl font-bold" style={{ color: colorPalette.primary }}>
                             {performanceData.filter(e => e.performance.score >= 80).length}
                         </div>
                         <div className="text-sm text-black">Performers Baik+</div>
                     </div>
-                    <div className="text-center p-4 rounded-xl bg-gray-50">
+                    <div className="text-center p-4 rounded-xl bg-slate-900">
                         <div className="text-2xl font-bold" style={{ color: colorPalette.primary }}>
                             {performanceData.filter(e => e.performance.score < 65).length}
                         </div>
@@ -397,27 +397,27 @@ const OwnerEmployeePerformance = ({ employees }) => {
                 </div>
 
                 {/* Filter and Sort Controls */}
-                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 p-4 rounded-xl bg-gray-50">
+                <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4 p-4 rounded-xl bg-slate-900">
                     <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
                         <div>
-                            <label htmlFor="division-filter" className="text-sm font-medium mr-2 text-black">
-                                Filter Divisi:
+                            <label htmlFor="divisionon-filter" className="text-sm font-medium mr-2 text-black">
+                                Filter Division:
                             </label>
                             <select 
-                                id="division-filter"
-                                value={filterDivision}
-                                onChange={(e) => setFilterDivision(e.target.value)}
-                                className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-black"
+                                id="divisionon-filter"
+                                value={filterDivisionon}
+                                onChange={(e) => setFilterDivisionon(e.target.value)}
+                                className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-slate-800 text-black"
                                 style={{ borderColor: colorPalette.primary }}
                             >
-                                {uniqueDivisions.map(div => (
+                                {uniqueDivisionons.map(div => (
                                     <option key={div} value={div}>{div}</option>
                                 ))}
                             </select>
                         </div>
                         
                         <div className="text-sm px-3 py-1 rounded-full" style={{ background: colorPalette.primary, color: 'white' }}>
-                            {performanceData.length} Karyawan
+                            {performanceData.length} Employee
                         </div>
                     </div>
                     
@@ -430,14 +430,14 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                 setSortBy(newSortBy);
                                 setSortOrder(newSortOrder);
                             }}
-                            className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-white text-black"
+                            className="p-2 border rounded-lg focus:ring-2 focus:outline-none transition-all bg-slate-800 text-black"
                             style={{ borderColor: colorPalette.primary }}
                         >
                             <option value="score-desc">Skor Tertinggi</option>
                             <option value="score-asc">Skor Terendah</option>
-                            <option value="name-asc">Nama A-Z</option>
-                            <option value="name-desc">Nama Z-A</option>
-                            <option value="division-asc">Divisi A-Z</option>
+                            <option value="name-asc">Name A-Z</option>
+                            <option value="name-desc">Name Z-A</option>
+                            <option value="divisionon-asc">Division A-Z</option>
                         </select>
                     </div>
                 </div>
@@ -452,17 +452,17 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                     onClick={() => handleSort('name')}
                                 >
                                     <div className="flex items-center gap-2">
-                                        Karyawan
+                                        Employee
                                         <i className={getSortIcon('name')}></i>
                                     </div>
                                 </th>
                                 <th 
                                     className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider cursor-pointer"
-                                    onClick={() => handleSort('division')}
+                                    onClick={() => handleSort('divisionon')}
                                 >
                                     <div className="flex items-center gap-2">
-                                        Divisi
-                                        <i className={getSortIcon('division')}></i>
+                                        Division
+                                        <i className={getSortIcon('divisionon')}></i>
                                     </div>
                                 </th>
                                 <th 
@@ -478,7 +478,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                     Kategori
                                 </th>
                                 <th className="px-6 py-4 text-left text-sm font-semibold text-white uppercase tracking-wider rounded-tr-xl">
-                                    Aksi
+                                    Action
                                 </th>
                             </tr>
                         </thead>
@@ -486,7 +486,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                             {performanceData.map((e) => {
                                 const badgeColors = getBadgeColor(e.performance.category);
                                 return (
-                                    <tr key={e.id} className="hover:bg-gray-50 transition-colors">
+                                    <tr key={e.id} className="hover:bg-slate-900 transition-colors">
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div>
                                                 <div className="text-sm font-medium text-black">
@@ -498,7 +498,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                             </div>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm text-black">
-                                            {e.division}
+                                            {e.divisionon}
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
                                             <div className="flex items-center gap-3">
@@ -542,17 +542,17 @@ const OwnerEmployeePerformance = ({ employees }) => {
                     <div className="text-center py-12">
                         <i className="fas fa-chart-line text-4xl mb-4" style={{ color: colorPalette.primaryLight }}></i>
                         <p className="text-lg text-black">
-                            Tidak ada data performa yang sesuai dengan filter
+                            No data available performance yang sesuai dengan filter
                         </p>
                     </div>
                 )}
 
                 {/* Top Performers */}
                 {topPerformers.length > 0 && (
-                    <div className="mt-8 p-6 rounded-xl bg-gray-50">
+                    <div className="mt-8 p-6 rounded-xl bg-slate-900">
                         <h3 className="text-lg font-semibold mb-4 flex items-center gap-2 text-black">
                             <i className="fas fa-trophy" style={{ color: colorPalette.primary }}></i>
-                            Top Performers Bulan Ini
+                            Top Performers This Month
                         </h3>
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                             {topPerformers.map((emp, index) => (
@@ -561,7 +561,7 @@ const OwnerEmployeePerformance = ({ employees }) => {
                                         #{index + 1}
                                     </div>
                                     <div className="font-semibold mb-1 text-black">{emp.name}</div>
-                                    <div className="text-sm mb-2" style={{ color: colorPalette.primaryLight }}>{emp.division}</div>
+                                    <div className="text-sm mb-2" style={{ color: colorPalette.primaryLight }}>{emp.divisionon}</div>
                                     <div className="text-xl font-bold" style={{ color: getScoreColor(emp.performance.score).replace('text', 'text') }}>
                                         {emp.performance.score}
                                     </div>

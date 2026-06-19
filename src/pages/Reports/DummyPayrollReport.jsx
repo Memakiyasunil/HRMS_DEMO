@@ -1,14 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+﻿import React, { useState, useRef, useEffect } from 'react';
 import { Camera, ClipboardList, TrendingUp, DollarSign, X } from 'lucide-react';
 
-// Data dummy untuk simulasi laporan
+// Data dummy untuk simulasi report
 const dummyReports = [
     { id: 1, name: 'Bambang Sudarsono', role: 'Manager', salary: 15000000, deductions: 1200000, net: 13800000, status: 'Completed' },
     { id: 2, name: 'Siti Nurhaliza', role: 'Staff Marketing', salary: 7500000, deductions: 500000, net: 7000000, status: 'Pending' },
     { id: 3, name: 'Joko Widodo', role: 'Staff IT Support', salary: 8200000, deductions: 650000, net: 7550000, status: 'Completed' },
 ];
 
-// Fungsi untuk memformat angka menjadi mata uang Rupiah
+// Function for memformat angka menjadi mata uang Rupiah
 const formatRupiah = (number) => {
     if (number === undefined || number === null) return 'Rp 0';
     return new Intl.NumberFormat('id-ID', {
@@ -18,19 +18,19 @@ const formatRupiah = (number) => {
     }).format(number);
 };
 
-// Komponen utama (Menggunakan nama 'App' agar kompatibel dengan lingkungan React sandbox)
+// Component utama (Menggunakan nama 'App' agar kompatibel dengan lingkungan React sandbox)
 const ManagerReports = () => {
     const [reports, setReports] = useState(dummyReports);
     const [isCameraActive, setIsCameraActive] = useState(false);
     const [cameraStatus, setCameraStatus] = useState('Idle: Klik tombol untuk memulai presensi.');
     const videoRef = useRef(null);
-    const streamRef = useRef(null); // Untuk menyimpan stream kamera agar bisa dihentikan
+    const streamRef = useRef(null); // For menyimpan stream kamera agar bisa dihentikan
 
-    // Fungsi untuk memulai akses kamera
+    // Function for memulai akses kamera
     const startCamera = async () => {
-        // Cek apakah API MediaDevices tersedia di browser
+        // Check apakah API MediaDevices tersedia di browser
         if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-            setCameraStatus('Gagal: Browser tidak mendukung akses kamera (MediaDevices API tidak ditemukan).');
+            setCameraStatus('Failed: Browser tidak mendukung akses kamera (MediaDevices API tidak ditemukan).');
             setIsCameraActive(false);
             return;
         }
@@ -47,33 +47,33 @@ const ManagerReports = () => {
                 } 
             });
             
-            // Menampilkan stream ke elemen <video>
+            // Display stream ke elemen <video>
             if (videoRef.current) {
                 videoRef.current.srcObject = stream;
                 // Memastikan video mulai diputar
                 videoRef.current.play().catch(e => console.error("Video play failed:", e));
             }
-            streamRef.current = stream; // Simpan stream
-            setCameraStatus('Live Camera Feed Aktif. Waktunya Presensi!');
+            streamRef.current = stream; // Save stream
+            setCameraStatus('Live Camera Feed Active. Timenya Presensi!');
 
         } catch (error) {
-            console.error("Gagal mengakses kamera:", error);
+            console.error("Failed mengakses kamera:", error);
             setIsCameraActive(false);
             
             let errorMessage = 'Terjadi kesalahan tidak terduga saat memulai kamera.';
             if (error.name === 'NotAllowedError' || error.name === 'PermissionDeniedError') {
-                errorMessage = 'Gagal Akses: Mohon izinkan penggunaan kamera. (Izin Ditolak Browser).';
+                errorMessage = 'Failed Akses: Mohon izinkan penggunaan kamera. (Izin Direject Browser).';
             } else if (error.name === 'NotFoundError') {
-                errorMessage = 'Gagal: Tidak ditemukan perangkat kamera di perangkat ini.';
+                errorMessage = 'Failed: Tidak ditemukan perangkat kamera di perangkat ini.';
             } else if (error.name === 'NotReadableError') {
-                errorMessage = 'Gagal: Kamera sedang digunakan oleh aplikasi lain.';
+                errorMessage = 'Failed: Kamera sedang digunakan oleh aplikasi lain.';
             }
 
             setCameraStatus(errorMessage);
         }
     };
 
-    // Fungsi untuk menghentikan akses kamera
+    // Function for menghentikan akses kamera
     const stopCamera = () => {
         if (streamRef.current) {
             streamRef.current.getTracks().forEach(track => track.stop());
@@ -101,7 +101,7 @@ const ManagerReports = () => {
 
     // Kartu untuk menampilkan status kamera
     const CameraCard = () => (
-        <div className="p-4 bg-white rounded-xl shadow-lg border border-gray-100 flex flex-col items-center">
+        <div className="p-4 bg-slate-800 rounded-xl shadow-lg border border-gray-100 flex flex-col items-center">
             <h3 className="text-xl font-semibold mb-3 text-indigo-700 flex items-center">
                 <Camera className="w-5 h-5 mr-2" />
                 Sistem Presensi
@@ -127,20 +127,20 @@ const ManagerReports = () => {
                         autoPlay 
                         playsInline 
                         className="w-full h-full object-cover"
-                        style={{ transform: 'scaleX(-1)' }} // Membalik gambar (agar terlihat seperti cermin)
+                        style={{ transform: 'scaleX(-1)' }} // Membalik gambar (agar terview seperti cermin)
                     />
                 )}
             </div>
 
             {/* Status Kamera yang Lebih Informatif */}
             <p className={`mt-4 text-sm font-medium text-center p-2 rounded-lg w-full ${
-                cameraStatus.includes('Gagal Akses') || cameraStatus.includes('Gagal:') || cameraStatus.includes('tidak ditemukan')
+                cameraStatus.includes('Failed Akses') || cameraStatus.includes('Failed:') || cameraStatus.includes('tidak ditemukan')
                     ? 'bg-red-100 text-red-700' 
-                    : isCameraActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-500'
+                    : isCameraActive ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-slate-400'
             }`}>
                 {cameraStatus}
             </p>
-            {(cameraStatus.includes('Izin Ditolak') || cameraStatus.includes('tidak didukung')) && (
+            {(cameraStatus.includes('Izin Direject') || cameraStatus.includes('tidak didukung')) && (
                 <p className="text-xs text-red-500 mt-1 text-center">
                     Tolong pastikan Anda memberikan izin akses kamera pada *pop-up* browser atau cek perangkat Anda.
                 </p>
@@ -149,13 +149,13 @@ const ManagerReports = () => {
     );
 
     return (
-        <div className="min-h-screen bg-gray-50 p-4 sm:p-8 font-sans">
+        <div className="min-h-screen bg-slate-900 p-4 sm:p-8 font-sans">
             <header className="mb-8">
-                <h1 className="text-3xl font-extrabold text-gray-900 flex items-center">
+                <h1 className="text-3xl font-extrabold text-slate-100 flex items-center">
                     <ClipboardList className="w-8 h-8 mr-2 text-indigo-600" />
                     Employee Payroll & Access System
                 </h1>
-                <p className="text-gray-500">Dummy Data untuk Laporan Gaji dan Integrasi Kamera Presensi</p>
+                <p className="text-slate-400">Dummy Data untuk Report Salary dan Integrasi Kamera Presensi</p>
             </header>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
@@ -164,31 +164,31 @@ const ManagerReports = () => {
                     <CameraCard />
                 </div>
 
-                {/* Kolom 2: Laporan Gaji */}
+                {/* Kolom 2: Report Salary */}
                 <div className="lg:col-span-2">
-                    <div className="bg-white p-6 rounded-xl shadow-lg">
-                        <h2 className="text-2xl font-bold mb-4 text-gray-800 flex items-center">
+                    <div className="bg-slate-800 p-6 rounded-xl shadow-lg">
+                        <h2 className="text-2xl font-bold mb-4 text-slate-100 flex items-center">
                             <TrendingUp className="w-6 h-6 mr-2 text-green-600" />
-                            Ringkasan Laporan Gaji (Periode Okt 2025)
+                            Summary Report Salary (Periode Okt 2025)
                         </h2>
                         
                         <div className="overflow-x-auto">
                             <table className="min-w-full divide-y divide-gray-200">
-                                <thead className="bg-gray-50">
+                                <thead className="bg-slate-900">
                                     <tr>
-                                        {['Nama Karyawan', 'Jabatan', 'Gaji Pokok', 'Potongan', 'Gaji Bersih', 'Status'].map(header => (
-                                            <th key={header} className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        {['Name Employee', 'Jabatan', 'Base Salary', 'Deductions', 'Salary Bersih', 'Status'].map(header => (
+                                            <th key={header} className="px-6 py-3 text-left text-xs font-medium text-slate-400 uppercase tracking-wider">
                                                 {header}
                                             </th>
                                         ))}
                                     </tr>
                                 </thead>
-                                <tbody className="bg-white divide-y divide-gray-200">
+                                <tbody className="bg-slate-800 divide-y divide-gray-200">
                                     {reports.map((report) => (
                                         <tr key={report.id}>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{report.name}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{report.role}</td>
-                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 font-semibold">{formatRupiah(report.salary)}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-100">{report.name}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-400">{report.role}</td>
+                                            <td className="px-6 py-4 whitespace-nowrap text-sm text-slate-100 font-semibold">{formatRupiah(report.salary)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-red-500">{formatRupiah(report.deductions)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap text-sm text-indigo-600 font-bold">{formatRupiah(report.net)}</td>
                                             <td className="px-6 py-4 whitespace-nowrap">
@@ -209,7 +209,7 @@ const ManagerReports = () => {
                 </div>
             </div>
 
-            <footer className="mt-8 pt-4 border-t border-gray-200 text-center text-sm text-gray-500">
+            <footer className="mt-8 pt-4 border-t border-slate-600 text-center text-sm text-slate-400">
                 Data ini adalah dummy dan fungsionalitas kamera diaktifkan menggunakan Web Media API.
             </footer>
         </div>

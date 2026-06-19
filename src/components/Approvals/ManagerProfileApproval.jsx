@@ -1,10 +1,10 @@
-// src/components/Approvals/ManagerProfileApproval.jsx
+﻿// src/components/Approvals/ManagerProfileApproval.jsx
 import React from 'react';
 import { showSwal } from '../../utils/swal';
 
 // Glass Card component with iOS 26 liquid glass design
 const GlassCard = ({ children, className = '' }) => (
-    <div className={`backdrop-blur-2xl bg-white/30 border border-[#708993]/20 rounded-3xl shadow-sm ${className}`}>
+    <div className={`backdrop-blur-2xl bg-slate-800/50 border border-[#6366F1]/20 rounded-3xl shadow-sm ${className}`}>
         {children}
     </div>
 );
@@ -13,11 +13,11 @@ const GlassCard = ({ children, className = '' }) => (
 const ActionButton = ({ onClick, children, variant = 'primary', disabled = false, ...props }) => {
     const baseClasses = "inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full font-medium text-sm transition-all duration-200";
     const variants = {
-        primary: "bg-[#708993] text-white hover:bg-[#5a6f7a] active:scale-95",
-        secondary: "bg-white/40 text-[#708993] border border-[#708993]/30 hover:bg-white/60",
+        primary: "bg-indigo-600 text-white hover:bg-indigo-700 active:scale-95",
+        secondary: "bg-white/40 text-[#6366F1] border border-[#6366F1]/30 hover:bg-slate-700/60",
         success: "bg-emerald-500/90 text-white hover:bg-emerald-600 active:scale-95",
         danger: "bg-red-500/90 text-white hover:bg-red-600 active:scale-95",
-        ghost: "bg-transparent text-[#708993] hover:bg-white/40"
+        ghost: "bg-transparent text-[#6366F1] hover:bg-white/40"
     };
     
     const disabledClasses = "opacity-50 cursor-not-allowed";
@@ -43,7 +43,7 @@ const ChangeTypeBadge = ({ type }) => {
         'personal': { color: 'bg-orange-100 text-orange-700', icon: 'fa-id-card' }
     };
     
-    const config = typeConfig[type] || { color: 'bg-gray-100 text-gray-700', icon: 'fa-edit' };
+    const config = typeConfig[type] || { color: 'bg-gray-100 text-slate-200', icon: 'fa-edit' };
     
     return (
         <span className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium ${config.color}`}>
@@ -61,7 +61,7 @@ const ChangeItem = ({ field, oldValue, newValue, type = 'text' }) => {
             email: 'fa-envelope',
             phone: 'fa-phone',
             address: 'fa-map-marker-alt',
-            division: 'fa-briefcase',
+            divisionon: 'fa-briefcase',
             profileImage: 'fa-camera',
             cvFile: 'fa-file-pdf',
             diplomaFile: 'fa-file-certificate'
@@ -77,11 +77,11 @@ const ChangeItem = ({ field, oldValue, newValue, type = 'text' }) => {
 
     return (
         <div className="flex items-start gap-3 p-3 bg-white/40 rounded-2xl">
-            <div className="bg-[#708993]/10 p-2 rounded-2xl">
-                <i className={`fas ${getFieldIcon(field)} text-[#708993] text-sm`}></i>
+            <div className="bg-indigo-600/10 p-2 rounded-2xl">
+                <i className={`fas ${getFieldIcon(field)} text-[#6366F1] text-sm`}></i>
             </div>
             <div className="flex-1">
-                <p className="text-sm font-medium text-gray-700 capitalize">
+                <p className="text-sm font-medium text-slate-200 capitalize">
                     {field.replace(/([A-Z])/g, ' $1').replace(/^./, str => str.toUpperCase())}
                 </p>
                 <div className="flex items-center gap-2 mt-1 text-xs">
@@ -115,16 +115,16 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
                     <div className="flex items-start justify-between">
                         <div className="space-y-2">
                             <div className="flex items-center gap-3">
-                                <h3 className="text-lg font-semibold text-gray-800">{request.employeeName}</h3>
+                                <h3 className="text-lg font-semibold text-slate-100">{request.employeeName}</h3>
                                 <ChangeTypeBadge type={changeType} />
                             </div>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-slate-300">
                                 {changeCount} perubahan • Diajukan {request.requestedAt}
                             </p>
                         </div>
                         <div className="text-right">
-                            <p className="text-sm text-gray-500">Divisi</p>
-                            <p className="text-sm font-medium text-[#708993]">{employee?.division || 'N/A'}</p>
+                            <p className="text-sm text-slate-400">Division</p>
+                            <p className="text-sm font-medium text-[#6366F1]">{employee?.divisionon || 'N/A'}</p>
                         </div>
                     </div>
 
@@ -147,14 +147,14 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
                     </div>
                 </div>
                 {/* Right Section - Action Buttons */}
-                <div className="flex lg:flex-col gap-3 lg:w-40 text-gray-700">
+                <div className="flex lg:flex-col gap-3 lg:w-40 text-slate-200">
                     <ActionButton 
                         onClick={() => onApprove(request)}
                         variant="success"
                         className="lg:w-full justify-center"
                     >
                         <i className="fas fa-check-circle text-green-600 mr-2"></i>
-                        Setujui
+                        Approvei
                     </ActionButton>
                     <ActionButton 
                         onClick={() => onReject(request.id, request.employeeName)}
@@ -162,7 +162,7 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
                         className="lg:w-full justify-center"
                     >
                         <i className="fas fa-times-circle text-red-500 mr-2"></i>
-                        Tolak
+                        Reject
                     </ActionButton>
                 </div>
             </div>
@@ -171,14 +171,14 @@ const ProfileChangeCard = ({ request, employee, onApprove, onReject }) => {
 };
 
 // Stats Card Component
-const StatsCard = ({ value, label, color = '[#708993]', icon }) => (
+const StatsCard = ({ value, label, color = '[#6366F1]', icon }) => (
     <GlassCard className="p-4 flex items-center gap-4">
         <div className={`bg-${color}/10 p-3 rounded-2xl`}>
             <i className={`fas ${icon} text-${color} text-lg`}></i>
         </div>
         <div>
-            <p className="text-2xl font-bold text-gray-800">{value}</p>
-            <p className="text-sm text-gray-600">{label}</p>
+            <p className="text-2xl font-bold text-slate-100">{value}</p>
+            <p className="text-sm text-slate-300">{label}</p>
         </div>
     </GlassCard>
 );
@@ -186,28 +186,28 @@ const StatsCard = ({ value, label, color = '[#708993]', icon }) => (
 // Empty state component
 const EmptyState = () => (
     <div className="text-center py-16">
-        <div className="bg-[#708993]/10 p-8 rounded-3xl inline-block mb-6">
-            <i className="fas fa-check-circle text-4xl text-[#708993]"></i>
+        <div className="bg-indigo-600/10 p-8 rounded-3xl inline-block mb-6">
+            <i className="fas fa-check-circle text-4xl text-[#6366F1]"></i>
         </div>
-        <h3 className="text-xl font-semibold text-gray-700 mb-3">Tidak Ada Perubahan Profil</h3>
-        <p className="text-gray-500 text-sm max-w-md mx-auto">
-            Semua permintaan perubahan profil telah diproses. Tidak ada perubahan yang menunggu persetujuan.
+        <h3 className="text-xl font-semibold text-slate-200 mb-3">Tidak Ada Perubahan Profile</h3>
+        <p className="text-slate-400 text-sm max-w-md mx-auto">
+            All permintaan perubahan profile telah diproses. No perubahan yang pending perapprovean.
         </p>
     </div>
 );
 
-// --- B3. Persetujuan Perubahan Profil ---
+// --- B3. Perapprovean Perubahan Profile ---
 const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges, setPendingProfileChanges, setAuthUser }) => {
     
-    // Handler untuk menyetujui (Approve) perubahan profil
+    // Handler untuk menyetujui (Approve) perubahan profile
     const handleApprove = (request) => {
-        // 1. Terapkan perubahan ke data karyawan
+        // 1. Terapkan perubahan ke data employee
         const updatedEmployees = employees.map(emp => {
             if (emp.id === request.employeeId) {
-                // Terapkan semua perubahan
+                // Terapkan all perubahan
                 const updated = { ...emp, ...request.requestedChanges };
 
-                // Khusus file: Simpan metadata file (simulasi)
+                // Khusus file: Save metadata file (simulasi)
                 if (request.requestedChanges.cvFile) updated.cvFile = request.requestedChanges.cvFile;
                 if (request.requestedChanges.diplomaFile) updated.diplomaFile = request.requestedChanges.diplomaFile;
                 
@@ -225,19 +225,19 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
              setAuthUser(updatedManager);
         }
 
-        // 4. Hapus dari daftar pending
+        // 4. Delete dari daftar pending
         const updatedPending = pendingProfileChanges.filter(p => p.id !== request.id);
         setPendingProfileChanges(updatedPending);
 
-        showSwal('Disetujui!', `Perubahan profil ${request.employeeName} telah disetujui dan diterapkan.`, 'success');
+        showSwal('Diapprovei!', `Perubahan profile ${request.employeeName} telah diapprovei dan diterapkan.`, 'success');
     };
 
-    // Handler untuk menolak (Reject) perubahan profil
+    // Handler untuk menolak (Reject) perubahan profile
     const handleReject = (requestId, employeeName) => {
         const updatedPending = pendingProfileChanges.filter(p => p.id !== requestId);
         setPendingProfileChanges(updatedPending);
 
-        showSwal('Ditolak!', `Permintaan perubahan profil ${employeeName} telah ditolak.`, 'error');
+        showSwal('Direject!', `Permintaan perubahan profile ${employeeName} telah direject.`, 'error');
     };
 
     // Calculate statistics
@@ -257,12 +257,12 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
             {/* Header Section */}
             <div className="mb-8">
                 <div className="flex items-center gap-4 mb-6">
-                    <div className="bg-[#708993] p-3 rounded-2xl">
+                    <div className="bg-indigo-600 p-3 rounded-2xl">
                         <i className="fas fa-user-check text-white text-xl"></i>
                     </div>
                     <div>
-                        <h2 className="text-2xl font-bold text-gray-800 text-left">Persetujuan Perubahan Profil</h2>
-                        <p className="text-gray-600 text-sm text-left">Kelola permintaan perubahan data karyawan</p>
+                        <h2 className="text-2xl font-bold text-slate-100 text-left">Perapprovean Perubahan Profile</h2>
+                        <p className="text-slate-300 text-sm text-left">Kelola permintaan perubahan data employee</p>
                     </div>
                 </div>
                 
@@ -270,13 +270,13 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
                     <StatsCard 
                         value={pendingCount}
-                        label="Total Menunggu"
-                        color="[#708993]"
+                        label="Total Pending"
+                        color="[#6366F1]"
                         icon="fa-clock"
                     />
                     <StatsCard 
                         value={profileChanges}
-                        label="Foto Profil"
+                        label="Foto Profile"
                         color="blue"
                         icon="fa-camera"
                     />
@@ -303,8 +303,8 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                     <div className="space-y-4 text-left">
                         <div className="flex justify-between items-center mb-4">
                             <div>
-                                <h3 className="text-lg font-semibold text-gray-800">Permintaan Perubahan</h3>
-                                <p className="text-gray-600 text-sm">{pendingCount} perubahan perlu ditinjau</p>
+                                <h3 className="text-lg font-semibold text-slate-100">Permintaan Perubahan</h3>
+                                <p className="text-slate-300 text-sm">{pendingCount} perubahan perlu ditinjau</p>
                             </div>
                             
                             {/* Bulk Actions */}
@@ -317,19 +317,19 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                                     variant="success"
                                 >
                                     <i className="fas fa-check-circle"></i>
-                                    Setujui Semua
+                                    Approvei All
                                 </ActionButton>
                                 <ActionButton 
                                     onClick={() => {
                                         if (pendingProfileChanges.length === 0) return;
                                         showSwal({
-                                            title: 'Tolak Semua?',
-                                            text: `Anda akan menolak semua ${pendingProfileChanges.length} permintaan perubahan.`,
+                                            title: 'Reject All?',
+                                            text: `Anda akan menolak all ${pendingProfileChanges.length} permintaan perubahan.`,
                                             icon: 'warning',
                                             buttons: {
-                                                cancel: "Batal",
+                                                cancel: "Cancel",
                                                 confirm: {
-                                                    text: "Ya, Tolak Semua",
+                                                    text: "Ya, Reject All",
                                                     value: true,
                                                     className: "bg-red-500"
                                                 }
@@ -338,14 +338,14 @@ const ManagerProfileApproval = ({ employees, setEmployees, pendingProfileChanges
                                             if (willReject) {
                                                 const updatedPending = [];
                                                 setPendingProfileChanges(updatedPending);
-                                                showSwal('Berhasil!', 'Semua permintaan perubahan telah ditolak.', 'success');
+                                                showSwal('Success!', 'All permintaan perubahan telah direject.', 'success');
                                             }
                                         });
                                     }}
                                     variant="danger"
                                 >
                                     <i className="fas fa-times-circle"></i>
-                                    Tolak Semua
+                                    Reject All
                                 </ActionButton>
                             </div>
                         </div>

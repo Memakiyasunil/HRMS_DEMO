@@ -1,4 +1,4 @@
-// src/pages/Dashboard/OwnerDashboard/OwnerDashboard.jsx
+﻿// src/pages/Dashboard/OwnerDashboard/OwnerDashboard.jsx
 import React, { useState, useEffect } from 'react';
 import { showSwal } from '../../../utils/swal.js';
 
@@ -24,7 +24,7 @@ const INITIAL_SUPERVISORS = [
         role: 'supervisor',
         email: 'sari.supervisor@company.com',
         phone: '08111222333',
-        division: 'Tech',
+        divisionon: 'Tech',
         status: 'Active',
         joinDate: '2023-01-15',
         subordinates: [101, 102],
@@ -51,7 +51,7 @@ const OwnerDashboard = (props) => {
         localStorage.setItem('supervisors', JSON.stringify(supervisors));
     }, [supervisors]);
 
-    // Gabungkan semua props yang diperlukan untuk sub-komponen
+    // Gabungkan all props yang diperlukan untuk sub-komponen
     const allProps = { 
         user,
         managers, 
@@ -95,14 +95,14 @@ const OwnerDashboard = (props) => {
     };
 
     return (
-        <div className="min-h-screen bg-[#D3DFFE] pt-16 lg:pt-22">
+        <div className="min-h-screen bg-[#0F172A] pt-16 lg:pt-22">
             {/* Mobile Menu Button */}
             <div className="lg:hidden fixed top-20 left-4 z-50">
                 <button
                     onClick={() => setSidebarOpen(!sidebarOpen)}
-                    className="bg-[#19183B] backdrop-blur-2xl rounded-2xl p-3 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-white/20 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.25)] transition-all duration-300"
+                    className="bg-slate-800 backdrop-blur-2xl rounded-2xl p-3 shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] border border-indigo-500/10 hover:shadow-[0_8px_32px_0_rgba(31,38,135,0.25)] transition-all duration-300"
                 >
-                    <i className={`fas ${sidebarOpen ? 'fa-times' : 'fa-bars'} text-gray-700/90`}></i>
+                    <i className={`fas ${sidebarOpen ? 'fa-times' : 'fa-bars'} text-slate-200/90`}></i>
                 </button>
             </div>
 
@@ -125,30 +125,30 @@ const OwnerDashboard = (props) => {
                         }
                         fixed lg:static left-0 top-20 h-full lg:h-auto z-40 w-64 lg:w-auto
                     `}>
-                        <div className="bg-white/30 backdrop-blur-2xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] p-4 lg:sticky lg:top-24 border border-white/20 h-full lg:h-auto overflow-y-auto">
+                        <div className="bg-slate-800/50 backdrop-blur-2xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] p-4 lg:sticky lg:top-24 border border-indigo-500/10 h-full lg:h-auto overflow-y-auto">
                             {/* Close button for mobile */}
                             <div className="flex justify-between items-center mb-6 lg:hidden">
-                                <h3 className="text-lg font-semibold text-gray-800/90">Owner Menu</h3>
+                                <h3 className="text-lg font-semibold text-slate-100">Owner Menu</h3>
                                 <button
                                     onClick={() => setSidebarOpen(false)}
-                                    className="p-2 rounded-2xl hover:bg-white/20 transition-all duration-200"
+                                    className="p-2 rounded-2xl hover:bg-slate-700/30 transition-all duration-200"
                                 >
-                                    <i className="fas fa-times text-gray-600/80"></i>
+                                    <i className="fas fa-times text-slate-400"></i>
                                 </button>
                             </div>
 
                             {/* User Info */}
-                            <div className="flex items-center mb-6 p-3 bg-white/20 backdrop-blur-xl backdrop-blur-xl rounded-2xl border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-left ">
+                            <div className="flex items-center mb-6 p-3 bg-slate-700/30 backdrop-blur-xl backdrop-blur-xl rounded-2xl border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)] text-left ">
                                 <div className="relative">
                                     <img
                                         src={user?.profileImage || 'https://picsum.photos/seed/owner/48/48.jpg'}
                                         alt="Profile"
-                                        className="w-12 h-12 rounded-full object-cover border-2 border-white/50 shadow-[0_4px_16px_0_rgba(31,38,135,0.2)]"
+                                        className="w-12 h-12 rounded-full object-cover border-2 border-slate-600/50 shadow-[0_4px_16px_0_rgba(31,38,135,0.2)]"
                                     />                
                                 </div>
                                 <div className="ml-3">
-                                    <p className="text-sm font-semibold text-gray-600/80 truncate max-w-[120px]">{user?.name || 'Owner'}</p>
-                                    <p className="text-xs text-gray-600/80 capitalize">
+                                    <p className="text-sm font-semibold text-slate-400 truncate max-w-[120px]">{user?.name || 'Owner'}</p>
+                                    <p className="text-xs text-slate-400 capitalize">
                                         {user?.role?.toUpperCase() || 'OWNER'}
                                     </p>
                                 </div>
@@ -165,12 +165,12 @@ const OwnerDashboard = (props) => {
                                         }}
                                         className={`w-full flex items-center px-4 py-3 rounded-xl focus:outline-none ${
                                             activeTab === tab.id
-                                                ? 'bg-[#708993] text-white shadow-md'
-                                                : 'text-black'
+                                                ? 'bg-indigo-600 text-white shadow-md'
+                                                : 'text-slate-200'
                                         }`}
                                     >
-                                        <i className={`fas ${tab.icon} mr-3 text-sm ${activeTab === tab.id ? 'text-white' : 'text-black-500'}`}></i>
-                                        <span className={`text-sm font-medium ${activeTab === tab.id ? 'text-white' : 'text-gray-700'}`}>{tab.label}</span>
+                                        <i className={`fas ${tab.icon} mr-3 text-sm ${activeTab === tab.id ? 'text-white' : 'text-slate-400'}`}></i>
+                                        <span className={`text-sm font-medium ${activeTab === tab.id ? 'text-white' : 'text-slate-200'}`}>{tab.label}</span>
                                         {activeTab === tab.id && (
                                             <i className="fas fa-chevron-right ml-auto text-xs text-white"></i>
                                         )}
@@ -179,22 +179,22 @@ const OwnerDashboard = (props) => {
                             </div>
 
                             {/* Quick Stats */}
-                            <div className="mt-6 pt-4 border-t border-white/20">
+                            <div className="mt-6 pt-4 border-t border-indigo-500/10">
                                 <div className="grid grid-cols-2 gap-2 text-center">
-                                    <div className="bg-green-400/20 backdrop-blur-xl rounded-2xl p-2 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+                                    <div className="bg-green-400/20 backdrop-blur-xl rounded-2xl p-2 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
                                         <i className="fas fa-building text-green-500/80 text-sm"></i>
-                                        <p className="text-xs text-gray-600/80 mt-1">Company</p>
+                                        <p className="text-xs text-slate-400 mt-1">Company</p>
                                     </div>
-                                    <div className="bg-blue-400/20 backdrop-blur-xl rounded-2xl p-2 border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+                                    <div className="bg-blue-400/20 backdrop-blur-xl rounded-2xl p-2 border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
                                         <i className="fas fa-chart-line text-blue-500/80 text-sm"></i>
-                                        <p className="text-xs text-gray-600/80 mt-1">Active</p>
+                                        <p className="text-xs text-slate-400 mt-1">Active</p>
                                     </div>
                                 </div>
                             </div>
 
                             {/* Current Date */}
-                            <div className="mt-4 p-3 bg-white/20 backdrop-blur-xl rounded-2xl border border-white/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
-                                <p className="text-xs text-gray-600/80 text-center">
+                            <div className="mt-4 p-3 bg-slate-700/30 backdrop-blur-xl rounded-2xl border border-slate-600/30 shadow-[0_4px_16px_0_rgba(31,38,135,0.1)]">
+                                <p className="text-xs text-slate-400 text-center">
                                     {new Date().toLocaleDateString('en-US', { 
                                         weekday: 'long', 
                                         year: 'numeric', 
@@ -208,19 +208,19 @@ const OwnerDashboard = (props) => {
 
                     {/* Main Content */}
                     <div className="flex-1 lg:ml-0">
-                        <div className="bg-white/30 backdrop-blur-2xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] p-4 sm:p-6 border border-white/20 min-h-[calc(100vh-6rem)]">
+                        <div className="bg-slate-800/50 backdrop-blur-2xl rounded-3xl shadow-[0_8px_32px_0_rgba(31,38,135,0.15)] p-4 sm:p-6 border border-indigo-500/10 min-h-[calc(100vh-6rem)]">
                             {/* Content Header */}
                             <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-3">
                                 <div>
-                                    <h2 className="text-xl sm:text-2xl font-bold text-gray-800/90 tracking-tight text-left">
+                                    <h2 className="text-xl sm:text-2xl font-bold text-slate-100 tracking-tight text-left">
                                         {tabs.find(tab => tab.id === activeTab)?.label || 'Owner Dashboard'}
                                     </h2>
-                                    <p className="text-sm text-gray-600/80 mt-1 text-left">
+                                    <p className="text-sm text-slate-400 mt-1 text-left">
                                         HRIS company management control panel
                                     </p>
                                 </div>
                                 <div className="flex items-center space-x-2">
-                                    <div className="bg-[#708993] backdrop-blur-xl rounded-2xl px-3 py-2 border border-white/30 shadow-[0_4px_16px_0_RGBA(31,38,135,0.1)]">
+                                    <div className="bg-indigo-600 backdrop-blur-xl rounded-2xl px-3 py-2 border border-slate-600/30 shadow-[0_4px_16px_0_RGBA(31,38,135,0.1)]">
                                         <span className="text-xs font-medium text-white">
                                             PT. DOODLE INDONESIA
                                         </span>

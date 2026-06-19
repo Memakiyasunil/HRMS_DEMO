@@ -1,13 +1,14 @@
+﻿// src/api/dataApi.js
 import { showSwal } from '../utils/swal';
 
-// Koordinat PT Wilmar Bisnis Medan
+// Company Location Coordinates
 const COMPANY_LOCATION = {
   latitude: 3.6206229,
   longitude: 98.7294571,
-  name: 'PT Wilmar Bisnis Medan'
+  name: 'PT. DOODLE INDONESIA'
 };
 
-// Fungsi untuk menghitung selisih waktu dalam menit
+// Calculate time difference in minutes
 const calculateTimeDifference = (time1, time2) => {
   const [hour1, minute1] = time1.split(':').map(Number);
   const [hour2, minute2] = time2.split(':').map(Number);
@@ -16,15 +17,13 @@ const calculateTimeDifference = (time1, time2) => {
   return Math.abs(totalMinutes1 - totalMinutes2);
 };
 
-// Fungsi utama handle absensi karyawan
+// Main employee attendance handler
 export const handleAttendanceClock = async (user, type, photoData, workSettings, permissionData = null) => {
   try {
-    // Ambil waktu & tanggal sekarang
     const now = new Date();
-    const date = now.toLocaleDateString('id-ID');
-    const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString('en-US');
+    const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-    // Deteksi terlambat / pulang cepat
     const startTime = workSettings?.startTime || '08:00';
     const endTime = workSettings?.endTime || '17:00';
     
@@ -35,7 +34,7 @@ export const handleAttendanceClock = async (user, type, photoData, workSettings,
     let permissionFile = '';
     let lateDuration = 0;
 
-    // Deteksi terlambat untuk Clock In (lebih dari jam 08:00)
+    // Detect late for Clock In (after start time)
     if (type === 'In') {
       if (time > startTime) {
         isLate = true;
@@ -43,21 +42,21 @@ export const handleAttendanceClock = async (user, type, photoData, workSettings,
       }
     }
 
-    // Deteksi pulang cepat untuk Clock Out (kurang dari jam 17:00)
+    // Detect early leave for Clock Out (before end time)
     if (type === 'Out') {
       if (time < endTime) {
         isEarlyLeave = true;
       }
     }
 
-    // Jika ada data izin, gunakan data tersebut
+    // If permission data exists, use it
     if (permissionData) {
       permissionNote = permissionData.note || '';
       permissionFile = permissionData.file || '';
-      reason = permissionData.note || ''; // Gunakan catatan izin sebagai alasan
+      reason = permissionData.note || '';
     }
 
-    // Buat record absensi
+    // Create attendance record
     const newRecord = {
       id: Date.now(),
       userId: user.id,
@@ -71,13 +70,13 @@ export const handleAttendanceClock = async (user, type, photoData, workSettings,
       reason,
       permissionNote,
       permissionFile,
-      location: 'PT Wilmar Bisnis Medan',
+      location: 'PT. DOODLE INDONESIA',
       coordinates: `${COMPANY_LOCATION.latitude}, ${COMPANY_LOCATION.longitude}`,
-      division: user.division,
+      divisionon: user.divisionon,
       hasPermission: !!permissionData
     };
 
-    // Simpan foto absen
+    // Save attendance photo
     const newPhotoRecord = {
       id: Date.now(),
       userId: user.id,
@@ -87,20 +86,20 @@ export const handleAttendanceClock = async (user, type, photoData, workSettings,
       timestamp: now.toISOString()
     };
 
-    // Notifikasi sukses
-    let successMessage = `Berhasil melakukan ${type === 'In' ? 'Clock In' : 'Clock Out'}!`;
+    // Success notification
+    let successMessage = `Successfully performed ${type === 'In' ? 'Clock In' : 'Clock Out'}!`;
     
     if (isLate) {
-      successMessage += ` (Terlambat ${lateDuration} menit)`;
+      successMessage += ` (Late by ${lateDuration} minutes)`;
     }
     if (isEarlyLeave) {
-      successMessage += ' (Pulang Cepat)';
+      successMessage += ' (Early Leave)';
     }
     if (permissionData) {
-      successMessage += ' - Dengan Izin';
+      successMessage += ' - With Permission';
     }
 
-    showSwal('Berhasil', successMessage, 'success');
+    showSwal('Success', successMessage, 'success');
 
     return { 
       success: true, 
@@ -112,66 +111,63 @@ export const handleAttendanceClock = async (user, type, photoData, workSettings,
     };
 
   } catch (error) {
-    console.error('Error handleAttendanceClock:', error);
-    showSwal('Error', 'Gagal melakukan absensi: ' + error.message, 'error');
+    console.error('Error in handleAttendanceClock:', error);
+    showSwal('Error', 'Failed to record attendance: ' + error.message, 'error');
     return { success: false, error: error.message };
   }
 };
 
-// Fungsi untuk mengajukan permohonan izin
+// Submit permission request
 export const submitPermissionRequest = async (user, type, permissionData, workSettings) => {
   try {
     const now = new Date();
-    const date = now.toLocaleDateString('id-ID');
-    const time = now.toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+    const date = now.toLocaleDateString('en-US');
+    const time = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
 
-    // Buat record permohonan izin
     const permissionRecord = {
       id: Date.now(),
       userId: user.id,
       name: user.name,
       date,
       time,
-      type: type === 'In' ? 'Izin Terlambat' : 'Izin Pulang Cepat',
+      type: type === 'In' ? 'Late Permission' : 'Early Leave Permission',
       permissionType: type === 'In' ? 'late' : 'early_out',
       note: permissionData.note,
       file: permissionData.file,
-      status: 'approved', // Untuk dummy data langsung approved
+      status: 'approved',
       approvedBy: 'System Auto',
       approvedAt: now.toISOString(),
-      division: user.division
+      divisionon: user.divisionon
     };
 
-    // Simpan ke history permohonan izin
     const userPermissionHistory = user.permissionHistory || [];
     userPermissionHistory.push(permissionRecord);
 
-    // Hitung durasi keterlambatan jika izin terlambat
     let additionalInfo = '';
     if (type === 'In' && permissionData.lateDuration) {
-      additionalInfo = ` (${permissionData.lateDuration} menit)`;
+      additionalInfo = ` (${permissionData.lateDuration} minutes)`;
     }
 
     showSwal(
-      'Izin Disetujui', 
-      `Permohonan izin ${type === 'In' ? 'terlambat' : 'pulang cepat'} Anda telah disetujui${additionalInfo}. ${type === 'Out' ? 'Clock out otomatis telah dicatat.' : 'Silahkan lanjutkan absensi.'}`, 
+      'Permission Approved', 
+      `Your ${type === 'In' ? 'late' : 'early leave'} permission has been approved${additionalInfo}. ${type === 'Out' ? 'Automatic clock out has been recorded.' : 'Please proceed with attendance.'}`, 
       'success'
     );
 
     return {
       success: true,
       permissionRecord,
-      message: 'Izin berhasil diajukan dan disetujui'
+      message: 'Permission successfully submitted and approved'
     };
 
   } catch (error) {
-    console.error('Error submitPermissionRequest:', error);
-    showSwal('Error', 'Gagal mengajukan permohonan izin: ' + error.message, 'error');
+    console.error('Error in submitPermissionRequest:', error);
+    showSwal('Error', 'Failed to submit permission request: ' + error.message, 'error');
     return { success: false, error: error.message };
   }
 };
 
-// Fungsi untuk mendapatkan data performa
+// Get performance data
 export const getPerformanceData = (user) => {
   return {
     score: user.performanceScore || 85,
@@ -182,26 +178,25 @@ export const getPerformanceData = (user) => {
   };
 };
 
-// Fungsi untuk mendapatkan riwayat cuti
+// Get leave history
 export const getLeaveHistory = (user) => {
   return user.leaveHistory || [];
 };
 
-// Fungsi untuk update profile
+// Update employee profile
 export const updateEmployeeProfile = async (employeeId, changes) => {
   try {
-    // Simulasi API call
     await new Promise(resolve => setTimeout(resolve, 1000));
     
     return {
       success: true,
-      message: 'Permintaan perubahan profile berhasil dikirim',
+      message: 'Profile change request submitted successfully',
       requestId: Date.now()
     };
   } catch (error) {
     return {
       success: false,
-      error: 'Gagal mengirim permintaan perubahan'
+      error: 'Failed to submit profile change request'
     };
   }
 };

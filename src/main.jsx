@@ -1,12 +1,11 @@
-// src/main.jsx (Kode Lengkap)
-import React, { StrictMode } from 'react' // <--- UBAH BARIS INI
+// src/main.jsx
+import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App.jsx'
-import './styles/index.css' // <--- PATH BARU
-import './styles/App.css' // <--- PATH BARU
+import './styles/index.css'
+import './styles/App.css'
 
 createRoot(document.getElementById('root')).render(
-  // Sekarang JSX ini kenal 'React'
   <StrictMode> 
     <App />
   </StrictMode>,

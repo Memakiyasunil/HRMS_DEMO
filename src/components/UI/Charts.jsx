@@ -1,8 +1,7 @@
 // src/components/UI/Charts.jsx
 import React from 'react';
 
-// --- Custom Cell component for Recharts PieChart (Dipindahkan dari componentsUtilityUI.jsx) ---
-// Note: Ini hanyalah komponen dummy yang dibutuhkan Recharts, aslinya adalah path SVG.
+// --- Custom Cell component for Recharts PieChart ---
 export const Cell = ({ fill }) => <path d="M0 0" fill={fill} />;
 
-// CATATAN: TIDAK ADA komponen lain di sini.
+// NOTE: No other components in this file.
